@@ -2,12 +2,128 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes" />
+
+    <!-- Primary Meta Tags -->
+    <title>Image Converter - Fast Browser-Based Image Processing</title>
+    <meta name="title" content="Image Converter - Fast Browser-Based Image Processing" />
+    <meta name="description" content="Convert, resize, and compress images instantly in your browser. Privacy-focused with no uploads - all processing happens locally." />
+
+    <!-- Browser Color Theme -->
+    <meta name="theme-color" content="#667eea" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Apple/iOS Specific -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Image Converter" />
+
+    <!-- Microsoft/Edge Specific -->
+    <meta name="msapplication-TileColor" content="#667eea" />
+
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>image-converter</title>
+    <link rel="alternate icon" href="/favicon.ico" type="image/x-icon" />
+
+    <!-- Font Preload -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- CSS Print -->
+    <meta name="supported-color-schemes" content="light dark" />
+
+    <!-- Permissions Policy -->
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()" />
+
+    <!-- Browser Feature Detection and Fallbacks -->
+    <script>
+      // Early browser feature detection
+      (function() {
+        // Check for essential features
+        var hasCanvas = !!document.createElement('canvas').getContext;
+        var hasFileAPI = !!(window.File && window.FileReader && window.FileList && window.Blob);
+        var hasDragDrop = 'draggable' in document.createElement('div');
+
+        // Add feature classes to HTML element
+        var html = document.documentElement;
+        html.className = html.className.replace('no-js', '');
+
+        if (hasCanvas) html.className += ' canvas';
+        if (hasFileAPI) html.className += ' filereader';
+        if (hasDragDrop) html.className += ' draganddrop';
+
+        // Check for CSS features
+        if (CSS && CSS.supports) {
+          if (CSS.supports('backdrop-filter', 'blur(10px)') ||
+              CSS.supports('-webkit-backdrop-filter', 'blur(10px)')) {
+            html.className += ' backdrop-filter';
+          }
+        }
+
+        // Warn for unsupported browsers
+        if (!hasCanvas || !hasFileAPI) {
+          window.addEventListener('load', function() {
+            console.warn('Your browser may not support all features of this application.');
+          });
+        }
+      })();
+    </script>
+
+    <!-- No-JS Fallback Styles -->
+    <noscript>
+      <style>
+        .no-js-message {
+          display: block !important;
+          padding: 20px;
+          background: #f44336;
+          color: white;
+          text-align: center;
+          font-family: system-ui, -apple-system, sans-serif;
+        }
+      </style>
+    </noscript>
   </head>
   <body>
+    <!-- No JavaScript Warning -->
+    <noscript>
+      <div class="no-js-message">
+        This application requires JavaScript to function. Please enable JavaScript in your browser settings.
+      </div>
+    </noscript>
+
     <div id="root"></div>
+
+    <!-- Browser Compatibility Polyfills -->
+    <script>
+      // Polyfill for older browsers if needed
+      if (!window.Promise) {
+        document.write('<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8.2.3/dist/polyfill.min.js"><\/script>');
+      }
+
+      // Object.assign polyfill for IE11
+      if (typeof Object.assign !== 'function') {
+        Object.assign = function(target) {
+          'use strict';
+          if (target == null) {
+            throw new TypeError('Cannot convert undefined or null to object');
+          }
+          target = Object(target);
+          for (var index = 1; index < arguments.length; index++) {
+            var source = arguments[index];
+            if (source != null) {
+              for (var key in source) {
+                if (Object.prototype.hasOwnProperty.call(source, key)) {
+                  target[key] = source[key];
+                }
+              }
+            }
+          }
+          return target;
+        };
+      }
+    </script>
+
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

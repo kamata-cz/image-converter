@@ -1,3 +1,5 @@
+import { getOptimalImageFormat, detectBrowserFeatures } from './browserCompat';
+
 export interface ResizeOptions {
   width?: number;
   height?: number;
@@ -145,7 +147,25 @@ export async function processImage(
   conversionOptions: ConversionOptions = { format: 'png', quality: 0.9 }
 ): Promise<ProcessedImage> {
   const orientation = await getExifOrientation(file);
-  const img = await createImageBitmap(file);
+
+  // Use createImageBitmap if available, fallback to Image element
+  const features = detectBrowserFeatures();
+  let img: ImageBitmap | HTMLImageElement;
+
+  if (features.createImageBitmap) {
+    img = await createImageBitmap(file);
+  } else {
+    // Fallback for browsers without createImageBitmap
+    const imgElement = new Image();
+    const url = URL.createObjectURL(file);
+    await new Promise((resolve, reject) => {
+      imgElement.onload = resolve;
+      imgElement.onerror = reject;
+      imgElement.src = url;
+    });
+    URL.revokeObjectURL(url);
+    img = imgElement;
+  }
 
   const { width: newWidth, height: newHeight } = calculateDimensions(
     img.width,
@@ -174,24 +194,39 @@ export async function processImage(
   ctx.imageSmoothingQuality = 'high';
   ctx.drawImage(img, 0, 0, newWidth, newHeight);
 
-  // Convert to blob
-  const mimeType = `image/${conversionOptions.format}`;
+  // Get optimal format with fallback
+  const optimalFormat = getOptimalImageFormat(conversionOptions.format);
+
+  // Convert to blob with fallback
   const blob = await new Promise<Blob>((resolve, reject) => {
-    canvas.toBlob(
-      (b) => {
-        if (b) resolve(b);
-        else reject(new Error('Failed to convert canvas to blob'));
-      },
-      mimeType,
-      conversionOptions.quality
-    );
+    const tryFormat = (format: string, quality: number) => {
+      canvas.toBlob(
+        (b) => {
+          if (b) {
+            resolve(b);
+          } else {
+            // If format fails, try fallback
+            if (format !== 'jpeg') {
+              console.warn(`Failed to convert to ${format}, falling back to JPEG`);
+              tryFormat('jpeg', quality);
+            } else {
+              reject(new Error('Failed to convert canvas to blob'));
+            }
+          }
+        },
+        `image/${format}`,
+        quality
+      );
+    };
+
+    tryFormat(optimalFormat, conversionOptions.quality || 0.9);
   });
 
   return {
     blob,
     width: newWidth,
     height: newHeight,
-    format: conversionOptions.format,
+    format: optimalFormat,
   };
 }
 
