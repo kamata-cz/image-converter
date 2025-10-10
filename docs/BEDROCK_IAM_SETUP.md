@@ -92,7 +92,7 @@ export AWS_PROFILE=admin  # または管理者プロファイル名
 # ポリシーを作成
 aws iam create-policy \
   --policy-name BedrockInvokeModelPolicy \
-  --policy-document file://bedrock-policy.json \
+  --policy-document file://docs/templates/bedrock-policy.json \
   --description "Allow invoking AWS Bedrock models for AIRS"
 
 # ポリシーARNを取得（出力から確認）
@@ -199,7 +199,7 @@ aws bedrock get-foundation-model-availability \
 
 ## 参考
 
-- **IAM Policy**: `bedrock-policy.json`
+- **IAM Policy**: `docs/templates/bedrock-policy.json`
 - **README**: セットアップガイド全体
 - **BEDROCK_SETUP.md**: Bedrock 詳細ガイド
 - **Issue #1**: https://github.com/kamata-cz/image-converter/issues/1

@@ -41,7 +41,7 @@ IAM ユーザー `kamata` に対して、AWS Bedrock の Claude モデルを呼�
 ```bash
 aws iam create-policy \
   --policy-name BedrockInvokeModelPolicy \
-  --policy-document file://bedrock-policy.json \
+  --policy-document file://docs/templates/bedrock-policy.json \
   --description "Allow invoking AWS Bedrock Claude models for AIRS"
 ```
 
@@ -193,8 +193,8 @@ python -m airs.generator.claude_client "Hello, test message"
 
 プロジェクト内のドキュメント:
 - `docs/BEDROCK_IAM_SETUP.md` - 詳細なIAMセットアップガイド
-- `bedrock-policy.json` - ポリシーのテンプレートファイル
-- `QUICKSTART_IAM.md` - クイックスタートガイド
+- `docs/templates/bedrock-policy.json` - ポリシーのテンプレートファイル
+- `docs/QUICKSTART_IAM.md` - クイックスタートガイド
 - `README.md` - プロジェクト全体のドキュメント
 
 AWS公式ドキュメント:

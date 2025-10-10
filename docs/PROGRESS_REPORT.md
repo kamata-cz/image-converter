@@ -242,7 +242,7 @@ DEFAULT_MODEL = "us.anthropic.claude-3-5-sonnet-20241022-v2:0"
    - CLI コマンド
    - トラブルシューティング
 
-3. **QUICKSTART_IAM.md**
+3. **docs/QUICKSTART_IAM.md**
    - IAM 設定の5分ガイド
 
 **コミット**:
@@ -398,7 +398,7 @@ gh secret set AWS_SECRET_ACCESS_KEY --body "..."
 | `docs/BEDROCK_SETUP.md` | 200+ | Bedrock セットアップ |
 | `docs/TEAM_GUIDE.md` | 150+ | チームガイド |
 | `QUICKSTART.md` | 100+ | クイックスタート |
-| `QUICKSTART_IAM.md` | 150+ | IAM クイックスタート |
+| `docs/QUICKSTART_IAM.md` | 150+ | IAM クイックスタート |
 | `docs/IAM_REQUEST.md` | 250+ | IAM 依頼書 |
 | `docs/PROGRESS_REPORT.md` | 400+ | 本報告書 |
 
