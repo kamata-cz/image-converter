@@ -5,7 +5,10 @@ pydantic>=2.4.0
 python-dotenv>=1.0.0
 
 # AI and GitHub integration
-anthropic>=0.18.0
+# Note: anthropic is optional if using AWS Bedrock (USE_BEDROCK=true)
+# For Anthropic API: requires CLAUDE_API_KEY
+# For AWS Bedrock: requires AWS credentials (IAM role or access keys)
+anthropic>=0.18.0  # Optional: only needed if USE_BEDROCK=false
 PyGithub>=2.1.1
 
 # Retry and backoff
