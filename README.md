@@ -238,6 +238,7 @@ Add label: `ai-resolvable`
 
 ## 📚 Documentation
 
+- **[BEDROCK_IAM_SETUP.md](docs/BEDROCK_IAM_SETUP.md)** - IAM権限設定ガイド（必須）
 - **[BEDROCK_SETUP.md](docs/BEDROCK_SETUP.md)** - Complete AWS Bedrock setup guide
 - **[DEPLOYMENT_GUIDE.md](docs/DEPLOYMENT_GUIDE.md)** - Full AIRS deployment guide (if exists)
 - **[TEAM_GUIDE.md](docs/TEAM_GUIDE.md)** - Team usage guide (if exists)
