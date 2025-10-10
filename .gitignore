@@ -25,3 +25,19 @@ dist-ssr
 
 # Vercel
 .vercel
+
+# AIRS System
+airs_system/
+*.pyc
+__pycache__/
+.pytest_cache/
+.env
+*.log
+metrics/
+*.jsonl
+.airs_cache/
+generated_changes.json
+implementation_plan.json
+parsed_issue.json
+feasibility.json
+context.json

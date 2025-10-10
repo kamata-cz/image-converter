@@ -1,0 +1,149 @@
+# AI-Driven Issue Resolution System Configuration
+
+# Issue Analyzer Settings
+analyzer:
+  # Model to use for issue analysis
+  model: "claude-3-5-sonnet-20241022"
+
+  # Maximum complexity level for AI resolution
+  # Options: simple, medium, complex
+  max_complexity: "medium"
+
+  # Keywords that automatically trigger human escalation
+  auto_reject_keywords:
+    - "production database"
+    - "delete all"
+    - "drop table"
+    - "remove data"
+    - "security vulnerability"
+    - "authentication bypass"
+    - "payment processing"
+    - "billing"
+    - "gdpr"
+    - "pii"
+    - "personally identifiable"
+
+# Code Generator Settings
+generator:
+  # Model to use for code generation
+  model: "claude-3-5-sonnet-20241022"
+
+  # Maximum number of files that can be modified in one PR
+  max_file_changes: 10
+
+  # Maximum lines per file (to prevent too large changes)
+  max_lines_per_file: 500
+
+  # Programming languages supported (THIS PROJECT: TypeScript + React)
+  languages:
+    - typescript
+    - javascript
+    - tsx
+    - jsx
+
+  # Always generate tests for these complexity levels
+  require_tests_for:
+    - medium
+    - complex
+
+  # Temperature for code generation (0.0 - 1.0)
+  # Lower = more deterministic, Higher = more creative
+  temperature: 0.7
+
+# Review Handler Settings
+review:
+  # Enable GitHub Copilot for PR reviews
+  copilot_enabled: true
+
+  # Number of human approvals required before merge
+  required_approvals: 1
+
+  # Allow auto-merge after approvals (requires explicit label)
+  auto_merge: false
+
+  # Maximum number of fix iterations before escalating to human
+  max_fix_iterations: 3
+
+  # Time to wait for review before pinging reviewers (hours)
+  review_reminder_after_hours: 24
+
+# Security Settings
+security:
+  # Patterns to block from being modified
+  protected_files:
+    - ".github/workflows/*"
+    - "*.pem"
+    - "*.key"
+    - ".env"
+    - "credentials/*"
+    - "secrets/*"
+
+  # Run security scans on all AI-generated code
+  enable_security_scanning: true
+
+  # Block PRs with these security issues
+  block_on_security_issues:
+    - "hardcoded_credentials"
+    - "sql_injection"
+    - "command_injection"
+    - "path_traversal"
+
+# Notification Settings
+notifications:
+  # Slack webhook for notifications
+  slack_enabled: false
+  slack_webhook_url: "${SLACK_WEBHOOK_URL}"
+
+  # Email notifications
+  email_enabled: false
+  email_recipients: []
+
+  # When to send notifications
+  notify_on:
+    - pr_created
+    - pr_approved
+    - pr_merged
+    - human_intervention_needed
+    - max_iterations_reached
+
+# Rate Limiting
+rate_limits:
+  # Maximum number of issues to process per hour
+  max_issues_per_hour: 10
+
+  # Maximum number of PRs to create per day
+  max_prs_per_day: 50
+
+  # Minimum time between retries (seconds)
+  min_retry_interval: 300
+
+# Metrics and Logging
+observability:
+  # Enable detailed logging
+  detailed_logging: true
+
+  # Log level: DEBUG, INFO, WARNING, ERROR
+  log_level: "INFO"
+
+  # Export metrics
+  metrics_enabled: false
+
+  # Metrics destination
+  metrics_endpoint: ""
+
+# Feature Flags
+features:
+  # Enable iterative fixing based on reviews
+  iterative_fixes: true
+
+  # Enable automatic test generation
+  auto_generate_tests: true
+
+  # Enable integration test generation
+  generate_integration_tests: false
+
+  # Enable code quality checks before PR creation
+  pre_pr_quality_checks: true
+
+  # Enable AI code review comments
+  ai_code_review_comments: true

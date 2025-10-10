@@ -1,0 +1,307 @@
+name: Merge Gate
+
+on:
+  pull_request_review:
+    types: [submitted]
+  pull_request:
+    types: [labeled]
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  check-approval:
+    # Only run on AI-generated PRs
+    if: contains(github.event.pull_request.labels.*.name, 'ai-generated')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check Approval Status
+        id: check-approval
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const pr = await github.rest.pulls.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            });
+
+            const reviews = await github.rest.pulls.listReviews({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            });
+
+            // Get latest review per reviewer
+            const latestReviews = {};
+            for (const review of reviews.data) {
+              const user = review.user.login;
+              if (!latestReviews[user] || new Date(review.submitted_at) > new Date(latestReviews[user].submitted_at)) {
+                latestReviews[user] = review;
+              }
+            }
+
+            const approvals = Object.values(latestReviews).filter(r => r.state === 'APPROVED');
+            const changesRequested = Object.values(latestReviews).filter(r => r.state === 'CHANGES_REQUESTED');
+
+            const isApproved = approvals.length > 0 && changesRequested.length === 0;
+            const isMergeable = pr.data.mergeable && pr.data.mergeable_state !== 'blocked';
+
+            core.setOutput('approved', isApproved);
+            core.setOutput('mergeable', isMergeable);
+            core.setOutput('approval_count', approvals.length);
+            core.setOutput('changes_requested_count', changesRequested.length);
+
+            return {
+              approved: isApproved,
+              mergeable: isMergeable,
+              approvals: approvals.length,
+              changesRequested: changesRequested.length
+            };
+
+      - name: Check Tests Status
+        id: check-tests
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const checkRuns = await github.rest.checks.listForRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: context.payload.pull_request.head.sha
+            });
+
+            const allPassed = checkRuns.data.check_runs.every(run =>
+              run.status === 'completed' && run.conclusion === 'success'
+            );
+
+            core.setOutput('tests_passed', allPassed);
+            return allPassed;
+
+      - name: Update PR Status
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const approved = '${{ steps.check-approval.outputs.approved }}' === 'true';
+            const mergeable = '${{ steps.check-approval.outputs.mergeable }}' === 'true';
+            const testsPassed = '${{ steps.check-tests.outputs.tests_passed }}' === 'true';
+            const approvalCount = '${{ steps.check-approval.outputs.approval_count }}';
+
+            let statusComment = `## 🎯 Merge Status\n\n`;
+
+            // Approval status
+            if (approved) {
+              statusComment += `✅ **Approved** (${approvalCount} approval(s))\n`;
+            } else {
+              const changesCount = '${{ steps.check-approval.outputs.changes_requested_count }}';
+              if (changesCount > 0) {
+                statusComment += `❌ **Changes Requested** (${changesCount} reviewer(s))\n`;
+              } else {
+                statusComment += `⏳ **Awaiting Approval** (${approvalCount} approval(s))\n`;
+              }
+            }
+
+            // Tests status
+            if (testsPassed) {
+              statusComment += `✅ **All Tests Passing**\n`;
+            } else {
+              statusComment += `❌ **Tests Failing**\n`;
+            }
+
+            // Mergeable status
+            if (mergeable) {
+              statusComment += `✅ **No Merge Conflicts**\n`;
+            } else {
+              statusComment += `❌ **Merge Conflicts Detected**\n`;
+            }
+
+            statusComment += `\n---\n\n`;
+
+            if (approved && testsPassed && mergeable) {
+              statusComment += `### ✨ Ready to Merge!\n\n`;
+              statusComment += `This PR has been approved and all checks have passed. It's ready for final human verification and merge.\n\n`;
+              statusComment += `**Next Steps:**\n`;
+              statusComment += `1. Perform final review of changes\n`;
+              statusComment += `2. Click "Merge pull request" when ready\n`;
+              statusComment += `3. Choose appropriate merge method (squash recommended)\n`;
+            } else {
+              statusComment += `### ⏳ Not Ready to Merge\n\n`;
+              statusComment += `This PR needs attention before it can be merged:\n\n`;
+
+              if (!approved) {
+                statusComment += `- 📝 Needs human approval\n`;
+              }
+              if (!testsPassed) {
+                statusComment += `- 🧪 Tests need to pass\n`;
+              }
+              if (!mergeable) {
+                statusComment += `- 🔀 Merge conflicts need resolution\n`;
+              }
+            }
+
+            // Only post comment if status changed significantly
+            const comments = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number
+            });
+
+            const hasStatusComment = comments.data.some(c => c.body.includes('## 🎯 Merge Status'));
+
+            if (!hasStatusComment || (approved && testsPassed && mergeable)) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                body: statusComment
+              });
+            }
+
+      - name: Update Labels
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const approved = '${{ steps.check-approval.outputs.approved }}' === 'true';
+            const testsPassed = '${{ steps.check-tests.outputs.tests_passed }}' === 'true';
+            const mergeable = '${{ steps.check-approval.outputs.mergeable }}' === 'true';
+
+            const labelsToRemove = ['needs-review', 'ready-for-human-review', 'ready-for-re-review'];
+            const labelsToAdd = [];
+
+            if (approved && testsPassed && mergeable) {
+              labelsToAdd.push('ready-to-merge');
+            }
+
+            // Remove old labels
+            for (const label of labelsToRemove) {
+              try {
+                await github.rest.issues.removeLabel({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  issue_number: context.issue.number,
+                  name: label
+                });
+              } catch (e) {
+                // Ignore if label doesn't exist
+              }
+            }
+
+            // Add new labels
+            if (labelsToAdd.length > 0) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: labelsToAdd
+              });
+            }
+
+  notify-approval-needed:
+    if: |
+      contains(github.event.pull_request.labels.*.name, 'ready-for-human-review') &&
+      !contains(github.event.pull_request.labels.*.name, 'approval-requested')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Request Human Review
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            // Get repository settings to find code owners or maintainers
+            const comment = `## 👨‍💻 Human Review Required
+
+            This AI-generated PR is ready for human review and approval.
+
+            **What to Review:**
+            1. 🔍 Code quality and correctness
+            2. 🧪 Test coverage and results
+            3. 🔒 Security implications
+            4. 📝 Documentation completeness
+
+            **Approval Checklist:**
+            - [ ] Code meets project standards
+            - [ ] All tests pass
+            - [ ] No security concerns
+            - [ ] Documentation is adequate
+            - [ ] Changes align with issue requirements
+
+            @<CODEOWNERS> Please review when you have a chance.
+
+            *Automated reviews have been completed. This is the final human gate before merge.*
+            `;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: comment
+            });
+
+            // Add label to prevent duplicate notifications
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              labels: ['approval-requested']
+            });
+
+            // Request review from team or specific users
+            // This would be configured based on your team structure
+            try {
+              await github.rest.pulls.requestReviewers({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                pull_number: context.issue.number,
+                reviewers: [] // Add specific reviewers here
+                // team_reviewers: ['your-team'] // Or request from a team
+              });
+            } catch (e) {
+              console.log('Could not request reviewers:', e.message);
+            }
+
+  # Optional: Auto-merge if configured
+  auto-merge:
+    if: |
+      contains(github.event.pull_request.labels.*.name, 'auto-merge-approved') &&
+      contains(github.event.pull_request.labels.*.name, 'ready-to-merge')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Auto-merge PR
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            // Only auto-merge if explicitly approved
+            const comment = `## 🎉 Auto-merging
+
+            This PR has been approved for auto-merge and all conditions are met.
+
+            Merging now...
+            `;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: comment
+            });
+
+            // Merge the PR
+            await github.rest.pulls.merge({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number,
+              merge_method: 'squash', // or 'merge', 'rebase'
+              commit_title: `${context.payload.pull_request.title} (#${context.issue.number})`,
+              commit_message: 'Auto-merged by AI-Driven Issue Resolution System'
+            });
+
+            console.log('PR merged successfully!');

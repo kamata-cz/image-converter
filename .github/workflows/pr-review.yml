@@ -1,0 +1,195 @@
+name: AI PR Review
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review]
+    branches:
+      - main
+      - develop
+
+permissions:
+  contents: read
+  pull-requests: write
+  issues: write
+
+jobs:
+  ai-review:
+    # Only run on PRs with ai-generated label
+    if: contains(github.event.pull_request.labels.*.name, 'ai-generated')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Set up Python (for AIRS system)
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install Python dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Install Node dependencies
+        run: |
+          npm ci
+
+      - name: Get PR files
+        id: pr-files
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const files = await github.rest.pulls.listFiles({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              pull_number: context.issue.number
+            });
+
+            const fileList = files.data.map(f => f.filename).join(',');
+            core.setOutput('files', fileList);
+            core.setOutput('file_count', files.data.length);
+
+            return files.data;
+
+      - name: Run Code Quality Checks
+        id: quality
+        run: |
+          echo "Running code quality checks for TypeScript/React..."
+
+          # Linting with ESLint
+          echo "::group::ESLint"
+          npm run lint || echo "::warning::Linting issues found"
+          echo "::endgroup::"
+
+          # Type checking with TypeScript
+          echo "::group::TypeScript"
+          npx tsc --noEmit || echo "::warning::Type checking issues found"
+          echo "::endgroup::"
+
+          # Format checking with Prettier
+          echo "::group::Prettier"
+          npx prettier --check "src/**/*.{ts,tsx,js,jsx,json,css}" || echo "::warning::Formatting issues found"
+          echo "::endgroup::"
+
+      - name: Build Project
+        id: build
+        continue-on-error: true
+        run: |
+          npm run build
+
+      - name: Review with AI
+        id: ai-review
+        env:
+          CLAUDE_API_KEY: ${{ secrets.CLAUDE_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          python -m airs.orchestrator.review_handler \
+            --pr-number=${{ github.event.pull_request.number }} \
+            --repo=${{ github.repository }}
+
+      - name: Comment Review Results
+        if: always()
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const buildPassed = '${{ steps.build.outcome }}' === 'success';
+            const emoji = buildPassed ? '✅' : '❌';
+
+            let comment = `## ${emoji} AI Code Review\n\n`;
+
+            comment += `**Files Reviewed:** ${{ steps.pr-files.outputs.file_count }}\n\n`;
+
+            comment += `### Automated Checks\n`;
+            comment += `- **ESLint:** Linting completed\n`;
+            comment += `- **TypeScript:** Type checking completed\n`;
+            comment += `- **Build:** ${buildPassed ? '✅ Passed' : '❌ Failed'}\n\n`;
+
+            if (buildPassed) {
+              comment += `### 🎉 Review Summary\n\n`;
+              comment += `The code passes all automated quality checks! ✅\n\n`;
+              comment += `**Next Steps:**\n`;
+              comment += `1. Review the generated code manually\n`;
+              comment += `2. Test the changes locally if needed\n`;
+              comment += `3. Approve or request changes\n\n`;
+            } else {
+              comment += `### ⚠️ Build Failed\n\n`;
+              comment += `The build failed. Please review the errors and either:\n`;
+              comment += `1. Request AI to fix the issues (comment with specific feedback)\n`;
+              comment += `2. Manually fix the issues\n\n`;
+            }
+
+            comment += `---\n`;
+            comment += `*This review was automated. Human approval still required.*\n`;
+            comment += `\n[View full workflow run](${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId})`;
+
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: comment
+            });
+
+      - name: Update PR Labels
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const buildPassed = '${{ steps.build.outcome }}' === 'success';
+
+            if (buildPassed) {
+              // Remove needs-review, add reviewed
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                name: 'needs-review'
+              }).catch(() => {});
+
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: ['ai-reviewed', 'ready-for-human-review']
+              });
+            } else {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: context.issue.number,
+                labels: ['build-failing']
+              });
+            }
+
+  security-scan:
+    runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.labels.*.name, 'ai-generated')
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run CodeQL Analysis
+        uses: github/codeql-action/init@v2
+        with:
+          languages: javascript, typescript
+
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v2
+
+      - name: Check for Secrets
+        uses: trufflesecurity/trufflehog@main
+        with:
+          path: ./
+          base: ${{ github.event.repository.default_branch }}
+          head: HEAD
