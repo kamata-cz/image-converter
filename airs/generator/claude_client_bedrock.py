@@ -31,8 +31,10 @@ class Message:
 class ClaudeClientBedrock:
     """Client for interacting with Claude via AWS Bedrock."""
 
-    # Bedrock model IDs
-    DEFAULT_MODEL = "anthropic.claude-3-5-sonnet-20241022-v2:0"
+    # Bedrock inference profile IDs (required for on-demand throughput)
+    # Format: us.anthropic.claude-3-5-sonnet-20241022-v2:0
+    # NOT: anthropic.claude-3-5-sonnet-20241022-v2:0 (foundation model ID)
+    DEFAULT_MODEL = "us.anthropic.claude-3-5-sonnet-20241022-v2:0"
     DEFAULT_MAX_TOKENS = 8000
     DEFAULT_TEMPERATURE = 0.7
 
