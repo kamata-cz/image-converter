@@ -26,14 +26,35 @@ dist-ssr
 # Vercel
 .vercel
 
-# AIRS System
-airs_system/
+# Python
 *.pyc
 __pycache__/
 .pytest_cache/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+venv/
+env/
+ENV/
+
+# AIRS System
 .env
-*.log
-metrics/
+/metrics/
 *.jsonl
 .airs_cache/
 generated_changes.json

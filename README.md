@@ -238,8 +238,17 @@ Add label: `ai-resolvable`
 
 ## 📚 Documentation
 
+### Setup & Configuration
 - **[BEDROCK_IAM_SETUP.md](docs/BEDROCK_IAM_SETUP.md)** - IAM権限設定ガイド（必須）
 - **[BEDROCK_SETUP.md](docs/BEDROCK_SETUP.md)** - Complete AWS Bedrock setup guide
+- **[QUICKSTART_IAM.md](docs/QUICKSTART_IAM.md)** - 5-minute IAM setup guide
+
+### Project Information
+- **[DIRECTORY_STRUCTURE.md](docs/DIRECTORY_STRUCTURE.md)** - プロジェクト構造の詳細説明
+- **[IAM_REQUEST.md](docs/IAM_REQUEST.md)** - 管理者向けIAM権限追加依頼
+- **[PROGRESS_REPORT.md](docs/PROGRESS_REPORT.md)** - 作業進捗報告書
+
+### For Teams
 - **[DEPLOYMENT_GUIDE.md](docs/DEPLOYMENT_GUIDE.md)** - Full AIRS deployment guide (if exists)
 - **[TEAM_GUIDE.md](docs/TEAM_GUIDE.md)** - Team usage guide (if exists)
 
