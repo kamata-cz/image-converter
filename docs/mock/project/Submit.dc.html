@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>案2 提出用に整える</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#0969da}a:hover{color:#0550ae}
+</style>
+</helmet>
+<div style="width: 1280px; height: 900px; box-sizing: border-box; background: #ffffff; color: #1f2328; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Hiragino Sans', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; display: flex; flex-direction: column">
+  <header style="background: #f6f8fa; border-bottom: 1px solid #d1d9e0; padding: 16px 32px; display: flex; align-items: center; gap: 12px">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#59636e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M9 8h6M9 12h6M9 16h3"></path></svg>
+    <span style="font-size: 20px"><span style="color: #59636e">画像コンバータ</span> / <strong style="font-weight: 600">提出用に整える</strong></span>
+    <span style="border: 1px solid #d1d9e0; border-radius: 999px; padding: 0 8px; font-size: 12px; font-weight: 500; color: #59636e">画像は送信しません</span>
+  </header>
+  <div style="padding: 24px 32px; display: flex; flex-direction: column; gap: 20px; flex-grow: 1; min-height: 0">
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <strong style="font-weight: 600">1. 提出先を選ぶ</strong>
+      <div style="display: flex; gap: 8px; flex-wrap: wrap">
+        <button aria-pressed="true" style="height: 32px; padding: 0 14px; border: 1px solid #0969da; border-radius: 6px; background: #ddf4ff; color: #0969da; font: inherit; font-weight: 600">マイナンバーカードのオンライン申請</button>
+        <button aria-pressed="false" style="height: 32px; padding: 0 14px; border: 1px solid #d1d9e0; border-radius: 6px; background: #f6f8fa; color: #1f2328; font: inherit; font-weight: 500">Web 応募の履歴書（条件は応募先で確認）</button>
+        <button aria-pressed="false" style="height: 32px; padding: 0 14px; border: 1px solid #d1d9e0; border-radius: 6px; background: #f6f8fa; color: #1f2328; font: inherit; font-weight: 500">条件を自分で入れる</button>
+      </div>
+    </div>
+    <div style="display: flex; gap: 24px; flex-grow: 1; min-height: 0">
+      <div style="width: 360px; flex-shrink: 0; display: flex; flex-direction: column; gap: 12px">
+        <strong style="font-weight: 600">2. 写真</strong>
+        <div style="height: 420px; border: 1px solid #d1d9e0; border-radius: 6px; background: #f6f8fa; display: flex; align-items: center; justify-content: center; color: #59636e">[写真のプレビュー]</div>
+        <div style="color: #59636e; font-size: 12px">IMG_4031.HEIC（4032×3024・2.9 MB）→ JPEG に変換して確認します</div>
+      </div>
+      <div style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 12px">
+        <strong style="font-weight: 600">3. 条件の確認</strong>
+        <div style="border: 1px solid #d1d9e0; border-radius: 6px; overflow: hidden">
+          <div style="background: #f6f8fa; border-bottom: 1px solid #d1d9e0; padding: 12px 16px; display: flex; align-items: center; gap: 8px"><strong style="font-weight: 600">マイナンバーカード申請の写真の条件</strong><span style="flex-grow: 1"></span><a href="https://www.kojinbango-card.go.jp/faq_photo2/">出典: 公式 FAQ</a></div>
+          <div style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) minmax(0, 3fr) minmax(0, 2fr); padding: 8px 16px; color: #59636e; font-size: 12px; border-bottom: 1px solid #d1d9e0"><span>項目</span><span>条件</span><span>整えた後</span><span>結果</span></div>
+          <div style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) minmax(0, 3fr) minmax(0, 2fr); padding: 10px 16px; border-bottom: 1px solid #d1d9e0"><span>形式</span><span>JPEG（HEIC 不可）</span><span>JPEG</span><span style="color: #1a7f37; font-weight: 600">満たす</span></div>
+          <div style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) minmax(0, 3fr) minmax(0, 2fr); padding: 10px 16px; border-bottom: 1px solid #d1d9e0"><span>容量</span><span>20 KB 〜 7 MB</span><span>1.4 MB</span><span style="color: #1a7f37; font-weight: 600">満たす</span></div>
+          <div style="display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 3fr) minmax(0, 3fr) minmax(0, 2fr); padding: 10px 16px"><span>寸法</span><span>幅・高さとも 480〜6000 px</span><span>3024×4032</span><span style="color: #1a7f37; font-weight: 600">満たす</span></div>
+        </div>
+        <div style="border: 1px solid #d4a72c; background: #fff8c5; border-radius: 6px; padding: 12px 16px">
+          <strong style="font-weight: 600">注意:</strong> この確認は形式・容量・寸法だけです。顔の写り、背景、影、加工の有無などは確認できません。最後は提出先の基準で確かめてください。
+        </div>
+        <div style="display: flex; gap: 8px; align-items: center">
+          <button style="height: 40px; padding: 0 20px; border: 1px solid rgba(31,35,40,0.15); border-radius: 6px; background: #1f883d; color: #ffffff; font: inherit; font-weight: 600">条件に合わせて保存</button>
+          <button style="height: 40px; padding: 0 16px; border: 1px solid #d1d9e0; border-radius: 6px; background: #f6f8fa; color: #1f2328; font: inherit; font-weight: 500">別の写真にする</button>
+          <span style="flex-grow: 1"></span>
+          <span style="color: #59636e; font-size: 12px">収益の案: 提出先ごとの解説ページと広告、寄付</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

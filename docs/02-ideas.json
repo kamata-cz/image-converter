@@ -1,0 +1,236 @@
+{
+ "weights": {
+  "pain": 3,
+  "gap": 3,
+  "feasibility": 2,
+  "effort": 3,
+  "cost": 1,
+  "revenue": 2,
+  "risk": 1
+ },
+ "minimums": {
+  "gap": 2
+ },
+ "ideas": [
+  {
+   "id": "I1",
+   "name": "提出写真ぴったり",
+   "scores": {
+    "pain": 4,
+    "gap": 3,
+    "feasibility": 4,
+    "effort": 4,
+    "cost": 5,
+    "revenue": 2,
+    "risk": 3
+   },
+   "reasons": {
+    "pain": "公式要件（マイナンバー 20KB〜7MB・HEIC 不可）と身分証の外部送信不安の相談（S3）",
+    "gap": "ID Photo Maker（マイナンバー等のプリセット）・Codia（目標容量）と重なる（批評、照合済み）（2026-11-04 批評で修正）",
+    "feasibility": "目標容量は品質の自動探索で可。HEIC は Safari 以外 LGPL の wasm（C）",
+    "effort": "既存の変換に条件プリセットと判定を足す程度",
+    "cost": "端末内で完結",
+    "revenue": "単発利用が多く課金は弱い。解説ページ＋広告は独自ドメイン前提で未検証",
+    "risk": "加工画像は受け付けない場合ありと公式 FAQ。左右反転・影はツールで判定できない（2026-11-04 批評で修正）"
+   }
+  },
+  {
+   "id": "I2",
+   "name": "出品画像そろえ",
+   "scores": {
+    "pain": 2,
+    "gap": 2,
+    "feasibility": 5,
+    "effort": 4,
+    "cost": 5,
+    "revenue": 3,
+    "risk": 5
+   },
+   "reasons": {
+    "pain": "根拠が各 1 件のみ（I7 と基準をそろえる）（2026-11-04 批評で修正）",
+    "gap": "imageonline.co・BIRME が切らずに正方形・一括・ZIP を提供（2026-11-04 批評で修正）",
+    "feasibility": "既存の変換・リサイズ・fflate で足りる",
+    "effort": "プリセット・余白・ZIP",
+    "cost": "端末内で完結",
+    "revenue": "業務利用で大量処理なら買い切りの余地",
+    "risk": "商品画像のみで個人情報は少ない"
+   }
+  },
+  {
+   "id": "I3",
+   "name": "ブログ画像まとめ軽量化",
+   "scores": {
+    "pain": 4,
+    "gap": 3,
+    "feasibility": 4,
+    "effort": 3,
+    "cost": 5,
+    "revenue": 3,
+    "risk": 5
+   },
+   "reasons": {
+    "pain": "20 枚ずつへの不満、100 枚超のための有料移行（S3、課金根拠が最も具体的）",
+    "gap": "100〜200 枚の一括は日本語ツールにある。構成保持は未確認",
+    "feasibility": "webkitdirectory は Baseline 2025（MDN 照合済み）。構成を保つ ZIP は全ブラウザで可（2026-11-04 批評で修正）",
+    "effort": "フォルダ API・Worker・ZIP・一覧で中程度",
+    "cost": "端末内で完結",
+    "revenue": "ブラウザだけでは有料機能を守れない。EWWW（無料、100 万以上）がある（2026-11-04 批評で修正）",
+    "risk": "個人情報は少ない"
+   }
+  },
+  {
+   "id": "I4",
+   "name": "WebP もどし",
+   "scores": {
+    "pain": 3,
+    "gap": 2,
+    "feasibility": 5,
+    "effort": 4,
+    "cost": 4,
+    "revenue": 1,
+    "risk": 4
+   },
+   "reasons": {
+    "pain": "楽天画像・素材配布の Q&A・拡張子書き換えの声（S3）",
+    "gap": "7 万〜10 万人の既存拡張あり（S2）",
+    "feasibility": "canvas と MV3 で可",
+    "effort": "拡張の包装が追加",
+    "cost": "拡張の登録費約 $5",
+    "revenue": "課金例なし",
+    "risk": "ストア審査あり"
+   }
+  },
+  {
+   "id": "I5",
+   "name": "iPhone 写真を資料用に",
+   "scores": {
+    "pain": 4,
+    "gap": 2,
+    "feasibility": 3,
+    "effort": 3,
+    "cost": 5,
+    "revenue": 1,
+    "risk": 5
+   },
+   "reasons": {
+    "pain": "HEIC が提出先で使えない声と公式の HEIC 不可（S3）",
+    "gap": "HEIC 変換は Apple 標準・多数の無料サイトにある（S1）",
+    "feasibility": "HEIC は LGPL か古い MIT の wasm、約 1.5MB（C）",
+    "effort": "HEIC 部品の組み込みと検証",
+    "cost": "端末内で完結",
+    "revenue": "払う理由が見当たらない",
+    "risk": "学校の写真も外に出さない"
+   }
+  },
+  {
+   "id": "I6",
+   "name": "○KB 以下にする",
+   "scores": {
+    "pain": 3,
+    "gap": 1,
+    "feasibility": 5,
+    "effort": 5,
+    "cost": 5,
+    "revenue": 2,
+    "risk": 5
+   },
+   "reasons": {
+    "pain": "Squoosh Issue #1422 と申請の容量条件",
+    "gap": "Codia が日本語・無料で目標容量・一括・ZIP を提供（2026-11-04 批評で修正）",
+    "feasibility": "品質の二分探索で可",
+    "effort": "最も小さい",
+    "cost": "端末内で完結",
+    "revenue": "広告のみ、単機能",
+    "risk": "安全"
+   }
+  },
+  {
+   "id": "I7",
+   "name": "SNS 見切れチェック",
+   "scores": {
+    "pain": 2,
+    "gap": 3,
+    "feasibility": 4,
+    "effort": 3,
+    "cost": 5,
+    "revenue": 2,
+    "risk": 4
+   },
+   "reasons": {
+    "pain": "体験談 2 件のみ（S3）",
+    "gap": "専用の確認ツールは未確認。Canva で代用",
+    "feasibility": "切り抜きは react-easy-crop",
+    "effort": "投稿先ごとのガイド作りと仕様変更への追従",
+    "cost": "端末内で完結",
+    "revenue": "広告・テンプレート販売は未検証",
+    "risk": "各社の仕様変更・名称の扱いに注意"
+   }
+  },
+  {
+   "id": "I8",
+   "name": "変換レシピ共有",
+   "scores": {
+    "pain": 2,
+    "gap": 3,
+    "feasibility": 5,
+    "effort": 4,
+    "cost": 5,
+    "revenue": 1,
+    "risk": 5
+   },
+   "reasons": {
+    "pain": "悩みの根拠なし",
+    "gap": "URL 共有は未確認",
+    "feasibility": "設定を URL に入れるだけ",
+    "effort": "小さい",
+    "cost": "端末内で完結",
+    "revenue": "ブラウザだけでは有料機能を守れない（C）",
+    "risk": "安全"
+   }
+  },
+  {
+   "id": "I9",
+   "name": "一括変換レポート",
+   "scores": {
+    "pain": 3,
+    "gap": 2,
+    "feasibility": 5,
+    "effort": 4,
+    "cost": 5,
+    "revenue": 2,
+    "risk": 5
+   },
+   "reasons": {
+    "pain": "失敗や漏れの不安は codex の機会分析から（一次の声は少ない）",
+    "gap": "LIBRA Works に report.csv あり",
+    "feasibility": "既存の処理に一覧を足す",
+    "effort": "一覧・やり直し・CSV",
+    "cost": "端末内で完結",
+    "revenue": "単体では弱い",
+    "risk": "安全"
+   }
+  },
+  {
+   "id": "I10",
+   "name": "画像最適化の自動化（GitHub Action）",
+   "scores": {
+    "pain": 2,
+    "gap": 1,
+    "feasibility": 3,
+    "effort": 2,
+    "cost": 4,
+    "revenue": 2,
+    "risk": 4
+   },
+   "reasons": {
+    "pain": "今回の調査範囲外で根拠なし",
+    "gap": "既存の Action が複数ある見込み（未調査）",
+    "feasibility": "Node で別実装",
+    "effort": "Web の資産をほぼ流用できない",
+    "cost": "Actions の無料枠内",
+    "revenue": "Marketplace の相場未調査",
+    "risk": "リポジトリへの書き込み権限が要る"
+   }
+  }
+ ]
+}
