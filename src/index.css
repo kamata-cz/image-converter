@@ -1,18 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
   --gradient-1: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   --gradient-2: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
   --gradient-3: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
   --gradient-4: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
 body {
@@ -245,9 +237,6 @@ body {
 /* Gradient text */
 .gradient-text {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  background: -webkit-linear-gradient(315deg, #667eea 0%, #764ba2 100%);
-  background: -moz-linear-gradient(315deg, #667eea 0%, #764ba2 100%);
-  background: -o-linear-gradient(315deg, #667eea 0%, #764ba2 100%);
   -webkit-background-clip: text;
   -moz-background-clip: text;
   background-clip: text;
@@ -259,9 +248,6 @@ body {
 /* Button styles */
 .btn-gradient {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  background: -webkit-linear-gradient(315deg, #667eea 0%, #764ba2 100%);
-  background: -moz-linear-gradient(315deg, #667eea 0%, #764ba2 100%);
-  background: -o-linear-gradient(315deg, #667eea 0%, #764ba2 100%);
   position: relative;
   overflow: hidden;
   -webkit-transition: all 0.3s ease;
