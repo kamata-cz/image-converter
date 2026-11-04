@@ -1,0 +1,102 @@
+[
+  {
+    "file": "p01.jpg",
+    "noiseAmp": 4,
+    "bytes": 2055738
+  },
+  {
+    "file": "p02.jpg",
+    "noiseAmp": 6,
+    "bytes": 2778394
+  },
+  {
+    "file": "p03.jpg",
+    "noiseAmp": 8,
+    "bytes": 3406108
+  },
+  {
+    "file": "p04.jpg",
+    "noiseAmp": 10,
+    "bytes": 3841428
+  },
+  {
+    "file": "p05.jpg",
+    "noiseAmp": 12,
+    "bytes": 4336697
+  },
+  {
+    "file": "p06.jpg",
+    "noiseAmp": 14,
+    "bytes": 4570851
+  },
+  {
+    "file": "p07.jpg",
+    "noiseAmp": 16,
+    "bytes": 4876100
+  },
+  {
+    "file": "p08.jpg",
+    "noiseAmp": 18,
+    "bytes": 5120573
+  },
+  {
+    "file": "p09.jpg",
+    "noiseAmp": 20,
+    "bytes": 5385624
+  },
+  {
+    "file": "p10.jpg",
+    "noiseAmp": 22,
+    "bytes": 5611386
+  },
+  {
+    "file": "p11.jpg",
+    "noiseAmp": 24,
+    "bytes": 5756517
+  },
+  {
+    "file": "p12.jpg",
+    "noiseAmp": 26,
+    "bytes": 5954564
+  },
+  {
+    "file": "p13.jpg",
+    "noiseAmp": 28,
+    "bytes": 6107976
+  },
+  {
+    "file": "p14.jpg",
+    "noiseAmp": 30,
+    "bytes": 6125903
+  },
+  {
+    "file": "p15.jpg",
+    "noiseAmp": 32,
+    "bytes": 6436571
+  },
+  {
+    "file": "p16.jpg",
+    "noiseAmp": 34,
+    "bytes": 6410288
+  },
+  {
+    "file": "p17.jpg",
+    "noiseAmp": 36,
+    "bytes": 6668069
+  },
+  {
+    "file": "p18.jpg",
+    "noiseAmp": 38,
+    "bytes": 6674846
+  },
+  {
+    "file": "p19.jpg",
+    "noiseAmp": 40,
+    "bytes": 6785386
+  },
+  {
+    "file": "p20.jpg",
+    "noiseAmp": 42,
+    "bytes": 7186155
+  }
+]

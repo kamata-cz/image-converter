@@ -1,0 +1,6509 @@
+{
+  "version": "144.0.2",
+  "caps": {
+    "ua": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:144.0) Gecko/20100101 Firefox/144.0",
+    "cores": 10,
+    "toBlob": {
+      "image/png": "image/png",
+      "image/jpeg": "image/jpeg",
+      "image/webp": "image/webp",
+      "image/avif": "image/png"
+    },
+    "convertToBlob": {
+      "image/png": "image/png",
+      "image/jpeg": "image/jpeg",
+      "image/webp": "image/webp",
+      "image/avif": "image/png"
+    },
+    "webkitdirectory": true,
+    "webkitGetAsEntry": true,
+    "getAsFileSystemHandle": false,
+    "showDirectoryPicker": false,
+    "performanceMemory": false,
+    "longtask": false
+  },
+  "folder": {
+    "total": 13,
+    "images": 8,
+    "excluded": 5,
+    "allHaveRelativePath": true,
+    "maxDepth": 4,
+    "rows": [
+      {
+        "path": "tree/2026-10/cover.png",
+        "size": 124,
+        "type": "",
+        "isImage": true
+      },
+      {
+        "path": "tree/2026-10/kyoto/day2/IMG_0003.jpeg",
+        "size": 834,
+        "type": "",
+        "isImage": true
+      },
+      {
+        "path": "tree/2026-10/kyoto/day2/photo.png",
+        "size": 124,
+        "type": "",
+        "isImage": true
+      },
+      {
+        "path": "tree/2026-10/kyoto/day2/clip.mov",
+        "size": 13,
+        "type": "",
+        "isImage": false
+      },
+      {
+        "path": "tree/2026-10/kyoto/day1/IMG_0001.jpg",
+        "size": 834,
+        "type": "",
+        "isImage": true
+      },
+      {
+        "path": "tree/2026-10/kyoto/day1/IMG_0002.JPG",
+        "size": 834,
+        "type": "",
+        "isImage": true
+      },
+      {
+        "path": "tree/2026-10/kyoto/day1/memo.txt",
+        "size": 13,
+        "type": "",
+        "isImage": false
+      },
+      {
+        "path": "tree/2026-10/notes.md",
+        "size": 13,
+        "type": "",
+        "isImage": false
+      },
+      {
+        "path": "tree/2026-11/osaka/night/.DS_Store",
+        "size": 13,
+        "type": "",
+        "isImage": false
+      },
+      {
+        "path": "tree/2026-11/osaka/night/IMG_0101.jpg",
+        "size": 834,
+        "type": "",
+        "isImage": true
+      },
+      {
+        "path": "tree/2026-11/osaka/night/IMG_0100.heic",
+        "size": 504,
+        "type": "",
+        "isImage": true
+      },
+      {
+        "path": "tree/top.webp",
+        "size": 34,
+        "type": "",
+        "isImage": true
+      },
+      {
+        "path": "tree/readme.txt",
+        "size": 13,
+        "type": "",
+        "isImage": false
+      }
+    ]
+  },
+  "drop": {
+    "status": "not automatable",
+    "reason": "no CDP Input.dispatchDragEvent in this engine via Playwright"
+  },
+  "exif": [
+    {
+      "file": "orient1.jpg",
+      "cibDefault": {
+        "w": 200,
+        "h": 400,
+        "q": {
+          "TL": "red",
+          "TR": "green",
+          "BL": "blue",
+          "BR": "white"
+        },
+        "upright": true
+      },
+      "cibNone": {
+        "w": 200,
+        "h": 400,
+        "q": {
+          "TL": "red",
+          "TR": "green",
+          "BL": "blue",
+          "BR": "white"
+        },
+        "upright": true
+      },
+      "cibFromImage": {
+        "w": 200,
+        "h": 400,
+        "q": {
+          "TL": "red",
+          "TR": "green",
+          "BL": "blue",
+          "BR": "white"
+        },
+        "upright": true
+      },
+      "imgElement": {
+        "w": 200,
+        "h": 400,
+        "q": {
+          "TL": "red",
+          "TR": "green",
+          "BL": "blue",
+          "BR": "white"
+        },
+        "upright": true
+      },
+      "legacyParser": "threw RangeError: offset is outside the bounds of the DataView",
+      "correctParser": 1,
+      "legacyRotateWithCorrectValue": {
+        "w": 200,
+        "h": 400,
+        "q": {
+          "TL": "red",
+          "TR": "green",
+          "BL": "blue",
+          "BR": "white"
+        },
+        "upright": true
+      },
+      "legacyAsIs": "parser did not return a number (original code would hang: no try/catch in onload)",
+      "fixPipelineOutput": {
+        "w": 200,
+        "h": 400,
+        "q": {
+          "TL": "red",
+          "TR": "green",
+          "BL": "blue",
+          "BR": "white"
+        },
+        "upright": true
+      }
+    },
+    {
+      "file": "orient6.jpg",
+      "cibDefault": {
+        "w": 200,
+        "h": 400,
+        "q": {
+          "TL": "red",
+          "TR": "green",
+          "BL": "blue",
+          "BR": "white"
+        },
+        "upright": true
+      },
+      "cibNone": {
+        "w": 200,
+        "h": 400,
+        "q": {
+          "TL": "red",
+          "TR": "green",
+          "BL": "blue",
+          "BR": "white"
+        },
+        "upright": true
+      },
+      "cibFromImage": {
+        "w": 200,
+        "h": 400,
+        "q": {
+          "TL": "red",
+          "TR": "green",
+          "BL": "blue",
+          "BR": "white"
+        },
+        "upright": true
+      },
+      "imgElement": {
+        "w": 200,
+        "h": 400,
+        "q": {
+          "TL": "red",
+          "TR": "green",
+          "BL": "blue",
+          "BR": "white"
+        },
+        "upright": true
+      },
+      "legacyParser": "threw RangeError: offset is outside the bounds of the DataView",
+      "correctParser": 6,
+      "legacyRotateWithCorrectValue": {
+        "w": 400,
+        "h": 200,
+        "q": {
+          "TL": "red",
+          "TR": "black",
+          "BL": "green",
+          "BR": "black"
+        },
+        "upright": false
+      },
+      "legacyAsIs": "parser did not return a number (original code would hang: no try/catch in onload)",
+      "fixPipelineOutput": {
+        "w": 200,
+        "h": 400,
+        "q": {
+          "TL": "red",
+          "TR": "green",
+          "BL": "blue",
+          "BR": "white"
+        },
+        "upright": true
+      }
+    },
+    {
+      "file": "orient8.jpg",
+      "cibDefault": {
+        "w": 200,
+        "h": 400,
+        "q": {
+          "TL": "red",
+          "TR": "green",
+          "BL": "blue",
+          "BR": "white"
+        },
+        "upright": true
+      },
+      "cibNone": {
+        "w": 200,
+        "h": 400,
+        "q": {
+          "TL": "red",
+          "TR": "green",
+          "BL": "blue",
+          "BR": "white"
+        },
+        "upright": true
+      },
+      "cibFromImage": {
+        "w": 200,
+        "h": 400,
+        "q": {
+          "TL": "red",
+          "TR": "green",
+          "BL": "blue",
+          "BR": "white"
+        },
+        "upright": true
+      },
+      "imgElement": {
+        "w": 200,
+        "h": 400,
+        "q": {
+          "TL": "red",
+          "TR": "green",
+          "BL": "blue",
+          "BR": "white"
+        },
+        "upright": true
+      },
+      "legacyParser": "threw RangeError: offset is outside the bounds of the DataView",
+      "correctParser": 8,
+      "legacyRotateWithCorrectValue": {
+        "w": 400,
+        "h": 200,
+        "q": {
+          "TL": "black",
+          "TR": "black",
+          "BL": "black",
+          "BR": "black"
+        },
+        "upright": false
+      },
+      "legacyAsIs": "parser did not return a number (original code would hang: no try/catch in onload)",
+      "fixPipelineOutput": {
+        "w": 200,
+        "h": 400,
+        "q": {
+          "TL": "red",
+          "TR": "green",
+          "BL": "blue",
+          "BR": "white"
+        },
+        "upright": true
+      }
+    },
+    {
+      "file": "orient6_le.jpg",
+      "cibDefault": {
+        "w": 200,
+        "h": 400,
+        "q": {
+          "TL": "red",
+          "TR": "green",
+          "BL": "blue",
+          "BR": "white"
+        },
+        "upright": true
+      },
+      "cibNone": {
+        "w": 200,
+        "h": 400,
+        "q": {
+          "TL": "red",
+          "TR": "green",
+          "BL": "blue",
+          "BR": "white"
+        },
+        "upright": true
+      },
+      "cibFromImage": {
+        "w": 200,
+        "h": 400,
+        "q": {
+          "TL": "red",
+          "TR": "green",
+          "BL": "blue",
+          "BR": "white"
+        },
+        "upright": true
+      },
+      "imgElement": {
+        "w": 200,
+        "h": 400,
+        "q": {
+          "TL": "red",
+          "TR": "green",
+          "BL": "blue",
+          "BR": "white"
+        },
+        "upright": true
+      },
+      "legacyParser": "threw RangeError: offset is outside the bounds of the DataView",
+      "correctParser": 6,
+      "legacyRotateWithCorrectValue": {
+        "w": 400,
+        "h": 200,
+        "q": {
+          "TL": "red",
+          "TR": "black",
+          "BL": "green",
+          "BR": "black"
+        },
+        "upright": false
+      },
+      "legacyAsIs": "parser did not return a number (original code would hang: no try/catch in onload)",
+      "fixPipelineOutput": {
+        "w": 200,
+        "h": 400,
+        "q": {
+          "TL": "red",
+          "TR": "green",
+          "BL": "blue",
+          "BR": "white"
+        },
+        "upright": true
+      }
+    }
+  ],
+  "transparent": {
+    "canvas_noFill": {
+      "transparentArea": [
+        0,
+        0,
+        0,
+        255
+      ],
+      "opaqueArea": [
+        254,
+        0,
+        0,
+        255
+      ]
+    },
+    "canvas_whiteFill": {
+      "transparentArea": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "opaqueArea": [
+        254,
+        0,
+        0,
+        255
+      ]
+    },
+    "offscreen_noFill": {
+      "transparentArea": [
+        0,
+        0,
+        0,
+        255
+      ],
+      "opaqueArea": [
+        254,
+        0,
+        0,
+        255
+      ]
+    },
+    "offscreen_whiteFill": {
+      "transparentArea": [
+        255,
+        255,
+        255,
+        255
+      ],
+      "opaqueArea": [
+        254,
+        0,
+        0,
+        255
+      ]
+    }
+  },
+  "unreadable": [
+    {
+      "file": "sample.heic",
+      "type": "image/heic",
+      "size": 714,
+      "createImageBitmap": "rejected InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable",
+      "ms": 1,
+      "workerStatus": "unreadable (InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable)"
+    },
+    {
+      "file": "broken.jpg",
+      "type": "image/jpeg",
+      "size": 180,
+      "createImageBitmap": "rejected InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable",
+      "ms": 0,
+      "workerStatus": "unreadable (InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable)"
+    },
+    {
+      "file": "empty.jpg",
+      "type": "image/jpeg",
+      "size": 0,
+      "createImageBitmap": "rejected InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable",
+      "ms": 0,
+      "workerStatus": "unreadable (InvalidStateError: An attempt was made to use an object that is not, or is no longer, usable)"
+    }
+  ],
+  "fit20": {
+    "webp_300": {
+      "mode": "worker",
+      "workers": 1,
+      "mime": "image/webp",
+      "targetKB": 300,
+      "search": {},
+      "count": 20,
+      "totalMs": 22214,
+      "perImageMs": {
+        "mean": 1110,
+        "p50": 1208,
+        "p95": 1355,
+        "max": 1355
+      },
+      "throughputMsPerImage": 1111,
+      "decodeMsMean": 65,
+      "encodeMsMean": 1039,
+      "attempts": {
+        "mean": 6.4,
+        "max": 7,
+        "hist": {
+          "1": 2,
+          "7": 18
+        }
+      },
+      "statuses": {
+        "ok": 20
+      },
+      "actualTypes": [
+        "image/webp"
+      ],
+      "outKB": {
+        "mean": 283,
+        "max": 299
+      },
+      "overMinKB": [],
+      "outW": 1600,
+      "outH": 1200,
+      "monitor": {
+        "maxGapMs": 80,
+        "gapsOver60ms": 15,
+        "longtasks": "unsupported",
+        "heapMB": "unsupported"
+      },
+      "perImage": [
+        {
+          "name": "p01.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 2055738,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 182824,
+          "q": 0.9,
+          "attempts": 1,
+          "decodeMs": 38,
+          "drawMs": 5,
+          "encodeMs": 137,
+          "ms": 180,
+          "tries": [
+            [
+              0.9,
+              182824
+            ]
+          ]
+        },
+        {
+          "name": "p02.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 2778394,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 306042,
+          "q": 0.9,
+          "attempts": 1,
+          "decodeMs": 44,
+          "drawMs": 5,
+          "encodeMs": 168,
+          "ms": 217,
+          "tries": [
+            [
+              0.9,
+              306042
+            ]
+          ]
+        },
+        {
+          "name": "p03.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 3406108,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 268810,
+          "q": 0.8500000000000001,
+          "attempts": 7,
+          "decodeMs": 49,
+          "drawMs": 5,
+          "encodeMs": 953,
+          "ms": 1007,
+          "tries": [
+            [
+              0.9,
+              412040
+            ],
+            [
+              0.1,
+              27650
+            ],
+            [
+              0.5,
+              65350
+            ],
+            [
+              0.7,
+              98220
+            ],
+            [
+              0.8,
+              163042
+            ],
+            [
+              0.85,
+              268810
+            ],
+            [
+              0.875,
+              333528
+            ]
+          ]
+        },
+        {
+          "name": "p04.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 3841428,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 303582,
+          "q": 0.8500000000000001,
+          "attempts": 7,
+          "decodeMs": 52,
+          "drawMs": 5,
+          "encodeMs": 999,
+          "ms": 1056,
+          "tries": [
+            [
+              0.9,
+              467026
+            ],
+            [
+              0.1,
+              25992
+            ],
+            [
+              0.5,
+              66410
+            ],
+            [
+              0.7,
+              125140
+            ],
+            [
+              0.8,
+              213970
+            ],
+            [
+              0.85,
+              303582
+            ],
+            [
+              0.875,
+              398356
+            ]
+          ]
+        },
+        {
+          "name": "p05.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 4336697,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 285240,
+          "q": 0.8,
+          "attempts": 7,
+          "decodeMs": 56,
+          "drawMs": 4,
+          "encodeMs": 1062,
+          "ms": 1122,
+          "tries": [
+            [
+              0.9,
+              539142
+            ],
+            [
+              0.1,
+              30872
+            ],
+            [
+              0.5,
+              95950
+            ],
+            [
+              0.7,
+              181374
+            ],
+            [
+              0.8,
+              285240
+            ],
+            [
+              0.85,
+              405210
+            ],
+            [
+              0.825,
+              355982
+            ]
+          ]
+        },
+        {
+          "name": "p06.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 4570851,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 280578,
+          "q": 0.775,
+          "attempts": 7,
+          "decodeMs": 59,
+          "drawMs": 5,
+          "encodeMs": 1044,
+          "ms": 1108,
+          "tries": [
+            [
+              0.9,
+              567452
+            ],
+            [
+              0.1,
+              27034
+            ],
+            [
+              0.5,
+              108360
+            ],
+            [
+              0.7,
+              206160
+            ],
+            [
+              0.8,
+              315424
+            ],
+            [
+              0.75,
+              231342
+            ],
+            [
+              0.775,
+              280578
+            ]
+          ]
+        },
+        {
+          "name": "p07.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 4876100,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 276862,
+          "q": 0.75,
+          "attempts": 7,
+          "decodeMs": 69,
+          "drawMs": 5,
+          "encodeMs": 1093,
+          "ms": 1167,
+          "tries": [
+            [
+              0.9,
+              604572
+            ],
+            [
+              0.1,
+              28482
+            ],
+            [
+              0.5,
+              145632
+            ],
+            [
+              0.7,
+              249122
+            ],
+            [
+              0.8,
+              361848
+            ],
+            [
+              0.75,
+              276862
+            ],
+            [
+              0.775,
+              322864
+            ]
+          ]
+        },
+        {
+          "name": "p08.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5120573,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 298736,
+          "q": 0.725,
+          "attempts": 7,
+          "decodeMs": 83,
+          "drawMs": 6,
+          "encodeMs": 1154,
+          "ms": 1243,
+          "tries": [
+            [
+              0.9,
+              633114
+            ],
+            [
+              0.1,
+              29856
+            ],
+            [
+              0.5,
+              182298
+            ],
+            [
+              0.7,
+              295710
+            ],
+            [
+              0.8,
+              407900
+            ],
+            [
+              0.75,
+              321018
+            ],
+            [
+              0.725,
+              298736
+            ]
+          ]
+        },
+        {
+          "name": "p09.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5385624,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 300484,
+          "q": 0.6499999999999999,
+          "attempts": 7,
+          "decodeMs": 65,
+          "drawMs": 5,
+          "encodeMs": 1135,
+          "ms": 1205,
+          "tries": [
+            [
+              0.9,
+              688542
+            ],
+            [
+              0.1,
+              38076
+            ],
+            [
+              0.5,
+              214882
+            ],
+            [
+              0.7,
+              327060
+            ],
+            [
+              0.6,
+              273432
+            ],
+            [
+              0.65,
+              300484
+            ],
+            [
+              0.675,
+              321342
+            ]
+          ]
+        },
+        {
+          "name": "p10.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5611386,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 292730,
+          "q": 0.575,
+          "attempts": 7,
+          "decodeMs": 66,
+          "drawMs": 4,
+          "encodeMs": 1116,
+          "ms": 1186,
+          "tries": [
+            [
+              0.9,
+              719746
+            ],
+            [
+              0.1,
+              47430
+            ],
+            [
+              0.5,
+              251594
+            ],
+            [
+              0.7,
+              364582
+            ],
+            [
+              0.6,
+              310618
+            ],
+            [
+              0.55,
+              274290
+            ],
+            [
+              0.575,
+              292730
+            ]
+          ]
+        },
+        {
+          "name": "p11.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5756517,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 292168,
+          "q": 0.525,
+          "attempts": 7,
+          "decodeMs": 69,
+          "drawMs": 5,
+          "encodeMs": 1142,
+          "ms": 1216,
+          "tries": [
+            [
+              0.9,
+              733214
+            ],
+            [
+              0.1,
+              55328
+            ],
+            [
+              0.5,
+              273830
+            ],
+            [
+              0.7,
+              384410
+            ],
+            [
+              0.6,
+              335720
+            ],
+            [
+              0.55,
+              309766
+            ],
+            [
+              0.525,
+              292168
+            ]
+          ]
+        },
+        {
+          "name": "p12.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5954564,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 303304,
+          "q": 0.5,
+          "attempts": 7,
+          "decodeMs": 69,
+          "drawMs": 4,
+          "encodeMs": 1181,
+          "ms": 1254,
+          "tries": [
+            [
+              0.9,
+              775316
+            ],
+            [
+              0.1,
+              71416
+            ],
+            [
+              0.5,
+              303304
+            ],
+            [
+              0.7,
+              409646
+            ],
+            [
+              0.6,
+              360710
+            ],
+            [
+              0.55,
+              335684
+            ],
+            [
+              0.525,
+              326856
+            ]
+          ]
+        },
+        {
+          "name": "p13.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6107976,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 302562,
+          "q": 0.45,
+          "attempts": 7,
+          "decodeMs": 72,
+          "drawMs": 5,
+          "encodeMs": 1131,
+          "ms": 1208,
+          "tries": [
+            [
+              0.9,
+              797252
+            ],
+            [
+              0.1,
+              83000
+            ],
+            [
+              0.5,
+              332180
+            ],
+            [
+              0.3,
+              215348
+            ],
+            [
+              0.4,
+              275962
+            ],
+            [
+              0.45,
+              302562
+            ],
+            [
+              0.475,
+              320964
+            ]
+          ]
+        },
+        {
+          "name": "p14.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6125903,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 298394,
+          "q": 0.42500000000000004,
+          "attempts": 7,
+          "decodeMs": 69,
+          "drawMs": 6,
+          "encodeMs": 1133,
+          "ms": 1208,
+          "tries": [
+            [
+              0.9,
+              792248
+            ],
+            [
+              0.1,
+              85002
+            ],
+            [
+              0.5,
+              342050
+            ],
+            [
+              0.3,
+              219738
+            ],
+            [
+              0.4,
+              280816
+            ],
+            [
+              0.45,
+              311110
+            ],
+            [
+              0.425,
+              298394
+            ]
+          ]
+        },
+        {
+          "name": "p15.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6436571,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 303650,
+          "q": 0.375,
+          "attempts": 7,
+          "decodeMs": 73,
+          "drawMs": 4,
+          "encodeMs": 1178,
+          "ms": 1255,
+          "tries": [
+            [
+              0.9,
+              843168
+            ],
+            [
+              0.1,
+              105096
+            ],
+            [
+              0.5,
+              371126
+            ],
+            [
+              0.3,
+              253098
+            ],
+            [
+              0.4,
+              318324
+            ],
+            [
+              0.35,
+              288926
+            ],
+            [
+              0.375,
+              303650
+            ]
+          ]
+        },
+        {
+          "name": "p16.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6410288,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 306638,
+          "q": 0.375,
+          "attempts": 7,
+          "decodeMs": 70,
+          "drawMs": 6,
+          "encodeMs": 1173,
+          "ms": 1249,
+          "tries": [
+            [
+              0.9,
+              829490
+            ],
+            [
+              0.1,
+              110906
+            ],
+            [
+              0.5,
+              375860
+            ],
+            [
+              0.3,
+              259736
+            ],
+            [
+              0.4,
+              320198
+            ],
+            [
+              0.35,
+              291456
+            ],
+            [
+              0.375,
+              306638
+            ]
+          ]
+        },
+        {
+          "name": "p17.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6668069,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 300346,
+          "q": 0.32499999999999996,
+          "attempts": 7,
+          "decodeMs": 73,
+          "drawMs": 5,
+          "encodeMs": 1232,
+          "ms": 1310,
+          "tries": [
+            [
+              0.9,
+              870200
+            ],
+            [
+              0.1,
+              125906
+            ],
+            [
+              0.5,
+              406004
+            ],
+            [
+              0.3,
+              284392
+            ],
+            [
+              0.4,
+              350570
+            ],
+            [
+              0.35,
+              318042
+            ],
+            [
+              0.325,
+              300346
+            ]
+          ]
+        },
+        {
+          "name": "p18.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6674846,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 292690,
+          "q": 0.3,
+          "attempts": 7,
+          "decodeMs": 76,
+          "drawMs": 5,
+          "encodeMs": 1216,
+          "ms": 1297,
+          "tries": [
+            [
+              0.9,
+              871462
+            ],
+            [
+              0.1,
+              132134
+            ],
+            [
+              0.5,
+              409964
+            ],
+            [
+              0.3,
+              292690
+            ],
+            [
+              0.4,
+              361414
+            ],
+            [
+              0.35,
+              327754
+            ],
+            [
+              0.325,
+              310882
+            ]
+          ]
+        },
+        {
+          "name": "p19.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6785386,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 305906,
+          "q": 0.3,
+          "attempts": 7,
+          "decodeMs": 75,
+          "drawMs": 5,
+          "encodeMs": 1275,
+          "ms": 1355,
+          "tries": [
+            [
+              0.9,
+              874182
+            ],
+            [
+              0.1,
+              140354
+            ],
+            [
+              0.5,
+              427386
+            ],
+            [
+              0.3,
+              305906
+            ],
+            [
+              0.4,
+              377512
+            ],
+            [
+              0.35,
+              342208
+            ],
+            [
+              0.325,
+              321116
+            ]
+          ]
+        },
+        {
+          "name": "p20.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 7186155,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 292438,
+          "q": 0.225,
+          "attempts": 7,
+          "decodeMs": 82,
+          "drawMs": 5,
+          "encodeMs": 1267,
+          "ms": 1354,
+          "tries": [
+            [
+              0.9,
+              944676
+            ],
+            [
+              0.1,
+              164108
+            ],
+            [
+              0.5,
+              471546
+            ],
+            [
+              0.3,
+              356206
+            ],
+            [
+              0.2,
+              267234
+            ],
+            [
+              0.25,
+              309170
+            ],
+            [
+              0.225,
+              292438
+            ]
+          ]
+        }
+      ],
+      "rssMB": {
+        "before": 708,
+        "peak": 828,
+        "delta": 120
+      }
+    },
+    "jpeg_300": {
+      "mode": "worker",
+      "workers": 1,
+      "mime": "image/jpeg",
+      "targetKB": 300,
+      "search": {},
+      "count": 20,
+      "totalMs": 2234,
+      "perImageMs": {
+        "mean": 111,
+        "p50": 116,
+        "p95": 126,
+        "max": 126
+      },
+      "throughputMsPerImage": 112,
+      "decodeMsMean": 65,
+      "encodeMsMean": 41,
+      "attempts": {
+        "mean": 7,
+        "max": 7,
+        "hist": {
+          "7": 20
+        }
+      },
+      "statuses": {
+        "ok": 20
+      },
+      "actualTypes": [
+        "image/jpeg"
+      ],
+      "outKB": {
+        "mean": 286,
+        "max": 299
+      },
+      "overMinKB": [],
+      "outW": 1600,
+      "outH": 1200,
+      "monitor": {
+        "maxGapMs": 79,
+        "gapsOver60ms": 16,
+        "longtasks": "unsupported",
+        "heapMB": "unsupported"
+      },
+      "perImage": [
+        {
+          "name": "p01.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 2055738,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 259665,
+          "q": 0.875,
+          "attempts": 7,
+          "decodeMs": 39,
+          "drawMs": 5,
+          "encodeMs": 36,
+          "ms": 80,
+          "tries": [
+            [
+              0.9,
+              410998
+            ],
+            [
+              0.1,
+              42002
+            ],
+            [
+              0.5,
+              90813
+            ],
+            [
+              0.7,
+              124072
+            ],
+            [
+              0.8,
+              167202
+            ],
+            [
+              0.85,
+              212820
+            ],
+            [
+              0.875,
+              259665
+            ]
+          ]
+        },
+        {
+          "name": "p02.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 2778394,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 269046,
+          "q": 0.8500000000000001,
+          "attempts": 7,
+          "decodeMs": 44,
+          "drawMs": 5,
+          "encodeMs": 38,
+          "ms": 87,
+          "tries": [
+            [
+              0.9,
+              494597
+            ],
+            [
+              0.1,
+              41456
+            ],
+            [
+              0.5,
+              94359
+            ],
+            [
+              0.7,
+              143870
+            ],
+            [
+              0.8,
+              210633
+            ],
+            [
+              0.85,
+              269046
+            ],
+            [
+              0.875,
+              323580
+            ]
+          ]
+        },
+        {
+          "name": "p03.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 3406108,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 290044,
+          "q": 0.8250000000000001,
+          "attempts": 7,
+          "decodeMs": 49,
+          "drawMs": 5,
+          "encodeMs": 38,
+          "ms": 92,
+          "tries": [
+            [
+              0.9,
+              564842
+            ],
+            [
+              0.1,
+              42219
+            ],
+            [
+              0.5,
+              103847
+            ],
+            [
+              0.7,
+              175217
+            ],
+            [
+              0.8,
+              250389
+            ],
+            [
+              0.85,
+              316143
+            ],
+            [
+              0.825,
+              290044
+            ]
+          ]
+        },
+        {
+          "name": "p04.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 3841428,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 273093,
+          "q": 0.8,
+          "attempts": 7,
+          "decodeMs": 54,
+          "drawMs": 4,
+          "encodeMs": 39,
+          "ms": 97,
+          "tries": [
+            [
+              0.9,
+              596879
+            ],
+            [
+              0.1,
+              41078
+            ],
+            [
+              0.5,
+              110414
+            ],
+            [
+              0.7,
+              193555
+            ],
+            [
+              0.8,
+              273093
+            ],
+            [
+              0.85,
+              347443
+            ],
+            [
+              0.825,
+              316524
+            ]
+          ]
+        },
+        {
+          "name": "p05.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 4336697,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 299762,
+          "q": 0.775,
+          "attempts": 7,
+          "decodeMs": 57,
+          "drawMs": 6,
+          "encodeMs": 37,
+          "ms": 100,
+          "tries": [
+            [
+              0.9,
+              680943
+            ],
+            [
+              0.1,
+              43663
+            ],
+            [
+              0.5,
+              139691
+            ],
+            [
+              0.7,
+              231701
+            ],
+            [
+              0.8,
+              322863
+            ],
+            [
+              0.75,
+              266009
+            ],
+            [
+              0.775,
+              299762
+            ]
+          ]
+        },
+        {
+          "name": "p06.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 4570851,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 274864,
+          "q": 0.75,
+          "attempts": 7,
+          "decodeMs": 60,
+          "drawMs": 6,
+          "encodeMs": 39,
+          "ms": 105,
+          "tries": [
+            [
+              0.9,
+              687603
+            ],
+            [
+              0.1,
+              41523
+            ],
+            [
+              0.5,
+              144559
+            ],
+            [
+              0.7,
+              237965
+            ],
+            [
+              0.8,
+              337473
+            ],
+            [
+              0.75,
+              274864
+            ],
+            [
+              0.775,
+              311866
+            ]
+          ]
+        },
+        {
+          "name": "p07.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 4876100,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 303668,
+          "q": 0.75,
+          "attempts": 7,
+          "decodeMs": 64,
+          "drawMs": 5,
+          "encodeMs": 41,
+          "ms": 110,
+          "tries": [
+            [
+              0.9,
+              735566
+            ],
+            [
+              0.1,
+              42136
+            ],
+            [
+              0.5,
+              163814
+            ],
+            [
+              0.7,
+              262002
+            ],
+            [
+              0.8,
+              372155
+            ],
+            [
+              0.75,
+              303668
+            ],
+            [
+              0.775,
+              344408
+            ]
+          ]
+        },
+        {
+          "name": "p08.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5120573,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 282189,
+          "q": 0.7,
+          "attempts": 7,
+          "decodeMs": 64,
+          "drawMs": 5,
+          "encodeMs": 40,
+          "ms": 109,
+          "tries": [
+            [
+              0.9,
+              768112
+            ],
+            [
+              0.1,
+              42464
+            ],
+            [
+              0.5,
+              177504
+            ],
+            [
+              0.7,
+              282189
+            ],
+            [
+              0.8,
+              400389
+            ],
+            [
+              0.75,
+              327399
+            ],
+            [
+              0.725,
+              308435
+            ]
+          ]
+        },
+        {
+          "name": "p09.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5385624,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 291731,
+          "q": 0.6749999999999999,
+          "attempts": 7,
+          "decodeMs": 66,
+          "drawMs": 5,
+          "encodeMs": 39,
+          "ms": 110,
+          "tries": [
+            [
+              0.9,
+              816094
+            ],
+            [
+              0.1,
+              44136
+            ],
+            [
+              0.5,
+              196354
+            ],
+            [
+              0.7,
+              309322
+            ],
+            [
+              0.6,
+              239349
+            ],
+            [
+              0.65,
+              269528
+            ],
+            [
+              0.675,
+              291731
+            ]
+          ]
+        },
+        {
+          "name": "p10.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5611386,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 288803,
+          "q": 0.6499999999999999,
+          "attempts": 7,
+          "decodeMs": 69,
+          "drawMs": 5,
+          "encodeMs": 42,
+          "ms": 116,
+          "tries": [
+            [
+              0.9,
+              864318
+            ],
+            [
+              0.1,
+              44309
+            ],
+            [
+              0.5,
+              209972
+            ],
+            [
+              0.7,
+              331716
+            ],
+            [
+              0.6,
+              256115
+            ],
+            [
+              0.65,
+              288803
+            ],
+            [
+              0.675,
+              312837
+            ]
+          ]
+        },
+        {
+          "name": "p11.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5756517,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 303654,
+          "q": 0.6499999999999999,
+          "attempts": 7,
+          "decodeMs": 72,
+          "drawMs": 6,
+          "encodeMs": 44,
+          "ms": 122,
+          "tries": [
+            [
+              0.9,
+              870010
+            ],
+            [
+              0.1,
+              44214
+            ],
+            [
+              0.5,
+              220086
+            ],
+            [
+              0.7,
+              348626
+            ],
+            [
+              0.6,
+              268842
+            ],
+            [
+              0.65,
+              303654
+            ],
+            [
+              0.675,
+              329031
+            ]
+          ]
+        },
+        {
+          "name": "p12.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5954564,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 286808,
+          "q": 0.6,
+          "attempts": 7,
+          "decodeMs": 78,
+          "drawMs": 5,
+          "encodeMs": 42,
+          "ms": 125,
+          "tries": [
+            [
+              0.9,
+              906193
+            ],
+            [
+              0.1,
+              45162
+            ],
+            [
+              0.5,
+              234624
+            ],
+            [
+              0.7,
+              371031
+            ],
+            [
+              0.6,
+              286808
+            ],
+            [
+              0.65,
+              323936
+            ],
+            [
+              0.625,
+              308943
+            ]
+          ]
+        },
+        {
+          "name": "p13.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6107976,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 302076,
+          "q": 0.6,
+          "attempts": 7,
+          "decodeMs": 72,
+          "drawMs": 5,
+          "encodeMs": 43,
+          "ms": 120,
+          "tries": [
+            [
+              0.9,
+              927313
+            ],
+            [
+              0.1,
+              45696
+            ],
+            [
+              0.5,
+              246716
+            ],
+            [
+              0.7,
+              389883
+            ],
+            [
+              0.6,
+              302076
+            ],
+            [
+              0.65,
+              340959
+            ],
+            [
+              0.625,
+              325112
+            ]
+          ]
+        },
+        {
+          "name": "p14.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6125903,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 306189,
+          "q": 0.6,
+          "attempts": 7,
+          "decodeMs": 70,
+          "drawMs": 5,
+          "encodeMs": 41,
+          "ms": 116,
+          "tries": [
+            [
+              0.9,
+              892943
+            ],
+            [
+              0.1,
+              41918
+            ],
+            [
+              0.5,
+              248458
+            ],
+            [
+              0.7,
+              396015
+            ],
+            [
+              0.6,
+              306189
+            ],
+            [
+              0.65,
+              346206
+            ],
+            [
+              0.625,
+              330321
+            ]
+          ]
+        },
+        {
+          "name": "p15.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6436571,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 303826,
+          "q": 0.55,
+          "attempts": 7,
+          "decodeMs": 73,
+          "drawMs": 5,
+          "encodeMs": 43,
+          "ms": 121,
+          "tries": [
+            [
+              0.9,
+              993786
+            ],
+            [
+              0.1,
+              48273
+            ],
+            [
+              0.5,
+              276403
+            ],
+            [
+              0.7,
+              431554
+            ],
+            [
+              0.6,
+              338179
+            ],
+            [
+              0.55,
+              303826
+            ],
+            [
+              0.575,
+              318033
+            ]
+          ]
+        },
+        {
+          "name": "p16.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6410288,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 304387,
+          "q": 0.55,
+          "attempts": 7,
+          "decodeMs": 72,
+          "drawMs": 7,
+          "encodeMs": 43,
+          "ms": 122,
+          "tries": [
+            [
+              0.9,
+              935460
+            ],
+            [
+              0.1,
+              44332
+            ],
+            [
+              0.5,
+              276084
+            ],
+            [
+              0.7,
+              432769
+            ],
+            [
+              0.6,
+              338960
+            ],
+            [
+              0.55,
+              304387
+            ],
+            [
+              0.575,
+              318419
+            ]
+          ]
+        },
+        {
+          "name": "p17.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6668069,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 300248,
+          "q": 0.5,
+          "attempts": 7,
+          "decodeMs": 76,
+          "drawMs": 5,
+          "encodeMs": 42,
+          "ms": 123,
+          "tries": [
+            [
+              0.9,
+              1019642
+            ],
+            [
+              0.1,
+              50025
+            ],
+            [
+              0.5,
+              300248
+            ],
+            [
+              0.7,
+              462721
+            ],
+            [
+              0.6,
+              366416
+            ],
+            [
+              0.55,
+              330199
+            ],
+            [
+              0.525,
+              318108
+            ]
+          ]
+        },
+        {
+          "name": "p18.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6674846,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 305534,
+          "q": 0.5,
+          "attempts": 7,
+          "decodeMs": 74,
+          "drawMs": 5,
+          "encodeMs": 41,
+          "ms": 120,
+          "tries": [
+            [
+              0.9,
+              983460
+            ],
+            [
+              0.1,
+              48053
+            ],
+            [
+              0.5,
+              305534
+            ],
+            [
+              0.7,
+              468890
+            ],
+            [
+              0.6,
+              372846
+            ],
+            [
+              0.55,
+              335866
+            ],
+            [
+              0.525,
+              323952
+            ]
+          ]
+        },
+        {
+          "name": "p19.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6785386,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 306383,
+          "q": 0.475,
+          "attempts": 7,
+          "decodeMs": 75,
+          "drawMs": 5,
+          "encodeMs": 39,
+          "ms": 119,
+          "tries": [
+            [
+              0.9,
+              998094
+            ],
+            [
+              0.1,
+              49265
+            ],
+            [
+              0.5,
+              317754
+            ],
+            [
+              0.3,
+              195429
+            ],
+            [
+              0.4,
+              256536
+            ],
+            [
+              0.45,
+              288365
+            ],
+            [
+              0.475,
+              306383
+            ]
+          ]
+        },
+        {
+          "name": "p20.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 7186155,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 300858,
+          "q": 0.42500000000000004,
+          "attempts": 7,
+          "decodeMs": 79,
+          "drawMs": 4,
+          "encodeMs": 43,
+          "ms": 126,
+          "tries": [
+            [
+              0.9,
+              1138173
+            ],
+            [
+              0.1,
+              62203
+            ],
+            [
+              0.5,
+              346267
+            ],
+            [
+              0.3,
+              215008
+            ],
+            [
+              0.4,
+              280083
+            ],
+            [
+              0.45,
+              314188
+            ],
+            [
+              0.425,
+              300858
+            ]
+          ]
+        }
+      ],
+      "rssMB": {
+        "before": 755,
+        "peak": 849,
+        "delta": 94
+      }
+    },
+    "webp_300_stop90": {
+      "mode": "worker",
+      "workers": 1,
+      "mime": "image/webp",
+      "targetKB": 300,
+      "search": {
+        "stopRatio": 0.9
+      },
+      "count": 20,
+      "totalMs": 17903,
+      "perImageMs": {
+        "mean": 894,
+        "p50": 984,
+        "p95": 1303,
+        "max": 1303
+      },
+      "throughputMsPerImage": 895,
+      "decodeMsMean": 66,
+      "encodeMsMean": 824,
+      "attempts": {
+        "mean": 5.1,
+        "max": 7,
+        "hist": {
+          "1": 2,
+          "3": 1,
+          "4": 4,
+          "5": 2,
+          "6": 6,
+          "7": 5
+        }
+      },
+      "statuses": {
+        "ok": 20
+      },
+      "actualTypes": [
+        "image/webp"
+      ],
+      "outKB": {
+        "mean": 280,
+        "max": 299
+      },
+      "overMinKB": [],
+      "outW": 1600,
+      "outH": 1200,
+      "monitor": {
+        "maxGapMs": 81,
+        "gapsOver60ms": 16,
+        "longtasks": "unsupported",
+        "heapMB": "unsupported"
+      },
+      "perImage": [
+        {
+          "name": "p01.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 2055738,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 182824,
+          "q": 0.9,
+          "attempts": 1,
+          "decodeMs": 40,
+          "drawMs": 5,
+          "encodeMs": 135,
+          "ms": 180,
+          "tries": [
+            [
+              0.9,
+              182824
+            ]
+          ]
+        },
+        {
+          "name": "p02.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 2778394,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 306042,
+          "q": 0.9,
+          "attempts": 1,
+          "decodeMs": 42,
+          "drawMs": 5,
+          "encodeMs": 169,
+          "ms": 216,
+          "tries": [
+            [
+              0.9,
+              306042
+            ]
+          ]
+        },
+        {
+          "name": "p03.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 3406108,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 268810,
+          "q": 0.8500000000000001,
+          "attempts": 7,
+          "decodeMs": 49,
+          "drawMs": 6,
+          "encodeMs": 963,
+          "ms": 1018,
+          "tries": [
+            [
+              0.9,
+              412040
+            ],
+            [
+              0.1,
+              27650
+            ],
+            [
+              0.5,
+              65350
+            ],
+            [
+              0.7,
+              98220
+            ],
+            [
+              0.8,
+              163042
+            ],
+            [
+              0.85,
+              268810
+            ],
+            [
+              0.875,
+              333528
+            ]
+          ]
+        },
+        {
+          "name": "p04.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 3841428,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 303582,
+          "q": 0.8500000000000001,
+          "attempts": 6,
+          "decodeMs": 52,
+          "drawMs": 6,
+          "encodeMs": 827,
+          "ms": 885,
+          "tries": [
+            [
+              0.9,
+              467026
+            ],
+            [
+              0.1,
+              25992
+            ],
+            [
+              0.5,
+              66410
+            ],
+            [
+              0.7,
+              125140
+            ],
+            [
+              0.8,
+              213970
+            ],
+            [
+              0.85,
+              303582
+            ]
+          ]
+        },
+        {
+          "name": "p05.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 4336697,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 285240,
+          "q": 0.8,
+          "attempts": 5,
+          "decodeMs": 59,
+          "drawMs": 5,
+          "encodeMs": 762,
+          "ms": 826,
+          "tries": [
+            [
+              0.9,
+              539142
+            ],
+            [
+              0.1,
+              30872
+            ],
+            [
+              0.5,
+              95950
+            ],
+            [
+              0.7,
+              181374
+            ],
+            [
+              0.8,
+              285240
+            ]
+          ]
+        },
+        {
+          "name": "p06.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 4570851,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 280578,
+          "q": 0.775,
+          "attempts": 7,
+          "decodeMs": 68,
+          "drawMs": 5,
+          "encodeMs": 1111,
+          "ms": 1184,
+          "tries": [
+            [
+              0.9,
+              567452
+            ],
+            [
+              0.1,
+              27034
+            ],
+            [
+              0.5,
+              108360
+            ],
+            [
+              0.7,
+              206160
+            ],
+            [
+              0.8,
+              315424
+            ],
+            [
+              0.75,
+              231342
+            ],
+            [
+              0.775,
+              280578
+            ]
+          ]
+        },
+        {
+          "name": "p07.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 4876100,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 276862,
+          "q": 0.75,
+          "attempts": 6,
+          "decodeMs": 64,
+          "drawMs": 4,
+          "encodeMs": 916,
+          "ms": 984,
+          "tries": [
+            [
+              0.9,
+              604572
+            ],
+            [
+              0.1,
+              28482
+            ],
+            [
+              0.5,
+              145632
+            ],
+            [
+              0.7,
+              249122
+            ],
+            [
+              0.8,
+              361848
+            ],
+            [
+              0.75,
+              276862
+            ]
+          ]
+        },
+        {
+          "name": "p08.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5120573,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 295710,
+          "q": 0.7,
+          "attempts": 4,
+          "decodeMs": 63,
+          "drawMs": 4,
+          "encodeMs": 605,
+          "ms": 672,
+          "tries": [
+            [
+              0.9,
+              633114
+            ],
+            [
+              0.1,
+              29856
+            ],
+            [
+              0.5,
+              182298
+            ],
+            [
+              0.7,
+              295710
+            ]
+          ]
+        },
+        {
+          "name": "p09.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5385624,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 300484,
+          "q": 0.6499999999999999,
+          "attempts": 6,
+          "decodeMs": 66,
+          "drawMs": 6,
+          "encodeMs": 949,
+          "ms": 1021,
+          "tries": [
+            [
+              0.9,
+              688542
+            ],
+            [
+              0.1,
+              38076
+            ],
+            [
+              0.5,
+              214882
+            ],
+            [
+              0.7,
+              327060
+            ],
+            [
+              0.6,
+              273432
+            ],
+            [
+              0.65,
+              300484
+            ]
+          ]
+        },
+        {
+          "name": "p10.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5611386,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 292730,
+          "q": 0.575,
+          "attempts": 7,
+          "decodeMs": 67,
+          "drawMs": 4,
+          "encodeMs": 1131,
+          "ms": 1202,
+          "tries": [
+            [
+              0.9,
+              719746
+            ],
+            [
+              0.1,
+              47430
+            ],
+            [
+              0.5,
+              251594
+            ],
+            [
+              0.7,
+              364582
+            ],
+            [
+              0.6,
+              310618
+            ],
+            [
+              0.55,
+              274290
+            ],
+            [
+              0.575,
+              292730
+            ]
+          ]
+        },
+        {
+          "name": "p11.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5756517,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 292168,
+          "q": 0.525,
+          "attempts": 7,
+          "decodeMs": 69,
+          "drawMs": 6,
+          "encodeMs": 1165,
+          "ms": 1240,
+          "tries": [
+            [
+              0.9,
+              733214
+            ],
+            [
+              0.1,
+              55328
+            ],
+            [
+              0.5,
+              273830
+            ],
+            [
+              0.7,
+              384410
+            ],
+            [
+              0.6,
+              335720
+            ],
+            [
+              0.55,
+              309766
+            ],
+            [
+              0.525,
+              292168
+            ]
+          ]
+        },
+        {
+          "name": "p12.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5954564,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 303304,
+          "q": 0.5,
+          "attempts": 3,
+          "decodeMs": 72,
+          "drawMs": 5,
+          "encodeMs": 498,
+          "ms": 575,
+          "tries": [
+            [
+              0.9,
+              775316
+            ],
+            [
+              0.1,
+              71416
+            ],
+            [
+              0.5,
+              303304
+            ]
+          ]
+        },
+        {
+          "name": "p13.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6107976,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 302562,
+          "q": 0.45,
+          "attempts": 6,
+          "decodeMs": 74,
+          "drawMs": 5,
+          "encodeMs": 1019,
+          "ms": 1098,
+          "tries": [
+            [
+              0.9,
+              797252
+            ],
+            [
+              0.1,
+              83000
+            ],
+            [
+              0.5,
+              332180
+            ],
+            [
+              0.3,
+              215348
+            ],
+            [
+              0.4,
+              275962
+            ],
+            [
+              0.45,
+              302562
+            ]
+          ]
+        },
+        {
+          "name": "p14.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6125903,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 280816,
+          "q": 0.4,
+          "attempts": 5,
+          "decodeMs": 72,
+          "drawMs": 5,
+          "encodeMs": 837,
+          "ms": 914,
+          "tries": [
+            [
+              0.9,
+              792248
+            ],
+            [
+              0.1,
+              85002
+            ],
+            [
+              0.5,
+              342050
+            ],
+            [
+              0.3,
+              219738
+            ],
+            [
+              0.4,
+              280816
+            ]
+          ]
+        },
+        {
+          "name": "p15.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6436571,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 288926,
+          "q": 0.35,
+          "attempts": 6,
+          "decodeMs": 75,
+          "drawMs": 4,
+          "encodeMs": 1030,
+          "ms": 1109,
+          "tries": [
+            [
+              0.9,
+              843168
+            ],
+            [
+              0.1,
+              105096
+            ],
+            [
+              0.5,
+              371126
+            ],
+            [
+              0.3,
+              253098
+            ],
+            [
+              0.4,
+              318324
+            ],
+            [
+              0.35,
+              288926
+            ]
+          ]
+        },
+        {
+          "name": "p16.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6410288,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 291456,
+          "q": 0.35,
+          "attempts": 6,
+          "decodeMs": 74,
+          "drawMs": 5,
+          "encodeMs": 1011,
+          "ms": 1090,
+          "tries": [
+            [
+              0.9,
+              829490
+            ],
+            [
+              0.1,
+              110906
+            ],
+            [
+              0.5,
+              375860
+            ],
+            [
+              0.3,
+              259736
+            ],
+            [
+              0.4,
+              320198
+            ],
+            [
+              0.35,
+              291456
+            ]
+          ]
+        },
+        {
+          "name": "p17.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6668069,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 284392,
+          "q": 0.3,
+          "attempts": 4,
+          "decodeMs": 75,
+          "drawMs": 5,
+          "encodeMs": 718,
+          "ms": 798,
+          "tries": [
+            [
+              0.9,
+              870200
+            ],
+            [
+              0.1,
+              125906
+            ],
+            [
+              0.5,
+              406004
+            ],
+            [
+              0.3,
+              284392
+            ]
+          ]
+        },
+        {
+          "name": "p18.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6674846,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 292690,
+          "q": 0.3,
+          "attempts": 4,
+          "decodeMs": 81,
+          "drawMs": 5,
+          "encodeMs": 703,
+          "ms": 789,
+          "tries": [
+            [
+              0.9,
+              871462
+            ],
+            [
+              0.1,
+              132134
+            ],
+            [
+              0.5,
+              409964
+            ],
+            [
+              0.3,
+              292690
+            ]
+          ]
+        },
+        {
+          "name": "p19.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6785386,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 305906,
+          "q": 0.3,
+          "attempts": 4,
+          "decodeMs": 74,
+          "drawMs": 5,
+          "encodeMs": 705,
+          "ms": 784,
+          "tries": [
+            [
+              0.9,
+              874182
+            ],
+            [
+              0.1,
+              140354
+            ],
+            [
+              0.5,
+              427386
+            ],
+            [
+              0.3,
+              305906
+            ]
+          ]
+        },
+        {
+          "name": "p20.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 7186155,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 292438,
+          "q": 0.225,
+          "attempts": 7,
+          "decodeMs": 78,
+          "drawMs": 6,
+          "encodeMs": 1219,
+          "ms": 1303,
+          "tries": [
+            [
+              0.9,
+              944676
+            ],
+            [
+              0.1,
+              164108
+            ],
+            [
+              0.5,
+              471546
+            ],
+            [
+              0.3,
+              356206
+            ],
+            [
+              0.2,
+              267234
+            ],
+            [
+              0.25,
+              309170
+            ],
+            [
+              0.225,
+              292438
+            ]
+          ]
+        }
+      ],
+      "rssMB": {
+        "before": 761,
+        "peak": 837,
+        "delta": 76
+      }
+    },
+    "jpeg_300_stop90": {
+      "mode": "worker",
+      "workers": 1,
+      "mime": "image/jpeg",
+      "targetKB": 300,
+      "search": {
+        "stopRatio": 0.9
+      },
+      "count": 20,
+      "totalMs": 2034,
+      "perImageMs": {
+        "mean": 101,
+        "p50": 104,
+        "p95": 115,
+        "max": 115
+      },
+      "throughputMsPerImage": 102,
+      "decodeMsMean": 64,
+      "encodeMsMean": 32,
+      "attempts": {
+        "mean": 5.75,
+        "max": 7,
+        "hist": {
+          "3": 2,
+          "4": 1,
+          "5": 4,
+          "6": 6,
+          "7": 7
+        }
+      },
+      "statuses": {
+        "ok": 20
+      },
+      "actualTypes": [
+        "image/jpeg"
+      ],
+      "outKB": {
+        "mean": 284,
+        "max": 299
+      },
+      "overMinKB": [],
+      "outW": 1600,
+      "outH": 1200,
+      "monitor": {
+        "maxGapMs": 83,
+        "gapsOver60ms": 15,
+        "longtasks": "unsupported",
+        "heapMB": "unsupported"
+      },
+      "perImage": [
+        {
+          "name": "p01.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 2055738,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 259665,
+          "q": 0.875,
+          "attempts": 7,
+          "decodeMs": 35,
+          "drawMs": 6,
+          "encodeMs": 35,
+          "ms": 76,
+          "tries": [
+            [
+              0.9,
+              410998
+            ],
+            [
+              0.1,
+              42002
+            ],
+            [
+              0.5,
+              90813
+            ],
+            [
+              0.7,
+              124072
+            ],
+            [
+              0.8,
+              167202
+            ],
+            [
+              0.85,
+              212820
+            ],
+            [
+              0.875,
+              259665
+            ]
+          ]
+        },
+        {
+          "name": "p02.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 2778394,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 269046,
+          "q": 0.8500000000000001,
+          "attempts": 7,
+          "decodeMs": 44,
+          "drawMs": 4,
+          "encodeMs": 36,
+          "ms": 84,
+          "tries": [
+            [
+              0.9,
+              494597
+            ],
+            [
+              0.1,
+              41456
+            ],
+            [
+              0.5,
+              94359
+            ],
+            [
+              0.7,
+              143870
+            ],
+            [
+              0.8,
+              210633
+            ],
+            [
+              0.85,
+              269046
+            ],
+            [
+              0.875,
+              323580
+            ]
+          ]
+        },
+        {
+          "name": "p03.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 3406108,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 290044,
+          "q": 0.8250000000000001,
+          "attempts": 7,
+          "decodeMs": 47,
+          "drawMs": 4,
+          "encodeMs": 38,
+          "ms": 89,
+          "tries": [
+            [
+              0.9,
+              564842
+            ],
+            [
+              0.1,
+              42219
+            ],
+            [
+              0.5,
+              103847
+            ],
+            [
+              0.7,
+              175217
+            ],
+            [
+              0.8,
+              250389
+            ],
+            [
+              0.85,
+              316143
+            ],
+            [
+              0.825,
+              290044
+            ]
+          ]
+        },
+        {
+          "name": "p04.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 3841428,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 273093,
+          "q": 0.8,
+          "attempts": 7,
+          "decodeMs": 51,
+          "drawMs": 4,
+          "encodeMs": 39,
+          "ms": 94,
+          "tries": [
+            [
+              0.9,
+              596879
+            ],
+            [
+              0.1,
+              41078
+            ],
+            [
+              0.5,
+              110414
+            ],
+            [
+              0.7,
+              193555
+            ],
+            [
+              0.8,
+              273093
+            ],
+            [
+              0.85,
+              347443
+            ],
+            [
+              0.825,
+              316524
+            ]
+          ]
+        },
+        {
+          "name": "p05.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 4336697,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 299762,
+          "q": 0.775,
+          "attempts": 7,
+          "decodeMs": 55,
+          "drawMs": 5,
+          "encodeMs": 37,
+          "ms": 97,
+          "tries": [
+            [
+              0.9,
+              680943
+            ],
+            [
+              0.1,
+              43663
+            ],
+            [
+              0.5,
+              139691
+            ],
+            [
+              0.7,
+              231701
+            ],
+            [
+              0.8,
+              322863
+            ],
+            [
+              0.75,
+              266009
+            ],
+            [
+              0.775,
+              299762
+            ]
+          ]
+        },
+        {
+          "name": "p06.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 4570851,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 274864,
+          "q": 0.75,
+          "attempts": 7,
+          "decodeMs": 57,
+          "drawMs": 5,
+          "encodeMs": 37,
+          "ms": 99,
+          "tries": [
+            [
+              0.9,
+              687603
+            ],
+            [
+              0.1,
+              41523
+            ],
+            [
+              0.5,
+              144559
+            ],
+            [
+              0.7,
+              237965
+            ],
+            [
+              0.8,
+              337473
+            ],
+            [
+              0.75,
+              274864
+            ],
+            [
+              0.775,
+              311866
+            ]
+          ]
+        },
+        {
+          "name": "p07.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 4876100,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 303668,
+          "q": 0.75,
+          "attempts": 6,
+          "decodeMs": 60,
+          "drawMs": 5,
+          "encodeMs": 33,
+          "ms": 98,
+          "tries": [
+            [
+              0.9,
+              735566
+            ],
+            [
+              0.1,
+              42136
+            ],
+            [
+              0.5,
+              163814
+            ],
+            [
+              0.7,
+              262002
+            ],
+            [
+              0.8,
+              372155
+            ],
+            [
+              0.75,
+              303668
+            ]
+          ]
+        },
+        {
+          "name": "p08.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5120573,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 282189,
+          "q": 0.7,
+          "attempts": 4,
+          "decodeMs": 63,
+          "drawMs": 5,
+          "encodeMs": 22,
+          "ms": 90,
+          "tries": [
+            [
+              0.9,
+              768112
+            ],
+            [
+              0.1,
+              42464
+            ],
+            [
+              0.5,
+              177504
+            ],
+            [
+              0.7,
+              282189
+            ]
+          ]
+        },
+        {
+          "name": "p09.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5385624,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 291731,
+          "q": 0.6749999999999999,
+          "attempts": 7,
+          "decodeMs": 65,
+          "drawMs": 5,
+          "encodeMs": 38,
+          "ms": 108,
+          "tries": [
+            [
+              0.9,
+              816094
+            ],
+            [
+              0.1,
+              44136
+            ],
+            [
+              0.5,
+              196354
+            ],
+            [
+              0.7,
+              309322
+            ],
+            [
+              0.6,
+              239349
+            ],
+            [
+              0.65,
+              269528
+            ],
+            [
+              0.675,
+              291731
+            ]
+          ]
+        },
+        {
+          "name": "p10.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5611386,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 288803,
+          "q": 0.6499999999999999,
+          "attempts": 6,
+          "decodeMs": 67,
+          "drawMs": 4,
+          "encodeMs": 34,
+          "ms": 105,
+          "tries": [
+            [
+              0.9,
+              864318
+            ],
+            [
+              0.1,
+              44309
+            ],
+            [
+              0.5,
+              209972
+            ],
+            [
+              0.7,
+              331716
+            ],
+            [
+              0.6,
+              256115
+            ],
+            [
+              0.65,
+              288803
+            ]
+          ]
+        },
+        {
+          "name": "p11.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5756517,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 303654,
+          "q": 0.6499999999999999,
+          "attempts": 6,
+          "decodeMs": 68,
+          "drawMs": 5,
+          "encodeMs": 33,
+          "ms": 106,
+          "tries": [
+            [
+              0.9,
+              870010
+            ],
+            [
+              0.1,
+              44214
+            ],
+            [
+              0.5,
+              220086
+            ],
+            [
+              0.7,
+              348626
+            ],
+            [
+              0.6,
+              268842
+            ],
+            [
+              0.65,
+              303654
+            ]
+          ]
+        },
+        {
+          "name": "p12.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5954564,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 286808,
+          "q": 0.6,
+          "attempts": 5,
+          "decodeMs": 70,
+          "drawMs": 5,
+          "encodeMs": 30,
+          "ms": 105,
+          "tries": [
+            [
+              0.9,
+              906193
+            ],
+            [
+              0.1,
+              45162
+            ],
+            [
+              0.5,
+              234624
+            ],
+            [
+              0.7,
+              371031
+            ],
+            [
+              0.6,
+              286808
+            ]
+          ]
+        },
+        {
+          "name": "p13.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6107976,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 302076,
+          "q": 0.6,
+          "attempts": 5,
+          "decodeMs": 69,
+          "drawMs": 6,
+          "encodeMs": 29,
+          "ms": 104,
+          "tries": [
+            [
+              0.9,
+              927313
+            ],
+            [
+              0.1,
+              45696
+            ],
+            [
+              0.5,
+              246716
+            ],
+            [
+              0.7,
+              389883
+            ],
+            [
+              0.6,
+              302076
+            ]
+          ]
+        },
+        {
+          "name": "p14.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6125903,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 306189,
+          "q": 0.6,
+          "attempts": 5,
+          "decodeMs": 72,
+          "drawMs": 5,
+          "encodeMs": 29,
+          "ms": 106,
+          "tries": [
+            [
+              0.9,
+              892943
+            ],
+            [
+              0.1,
+              41918
+            ],
+            [
+              0.5,
+              248458
+            ],
+            [
+              0.7,
+              396015
+            ],
+            [
+              0.6,
+              306189
+            ]
+          ]
+        },
+        {
+          "name": "p15.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6436571,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 303826,
+          "q": 0.55,
+          "attempts": 6,
+          "decodeMs": 73,
+          "drawMs": 5,
+          "encodeMs": 35,
+          "ms": 113,
+          "tries": [
+            [
+              0.9,
+              993786
+            ],
+            [
+              0.1,
+              48273
+            ],
+            [
+              0.5,
+              276403
+            ],
+            [
+              0.7,
+              431554
+            ],
+            [
+              0.6,
+              338179
+            ],
+            [
+              0.55,
+              303826
+            ]
+          ]
+        },
+        {
+          "name": "p16.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6410288,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 304387,
+          "q": 0.55,
+          "attempts": 6,
+          "decodeMs": 73,
+          "drawMs": 5,
+          "encodeMs": 36,
+          "ms": 114,
+          "tries": [
+            [
+              0.9,
+              935460
+            ],
+            [
+              0.1,
+              44332
+            ],
+            [
+              0.5,
+              276084
+            ],
+            [
+              0.7,
+              432769
+            ],
+            [
+              0.6,
+              338960
+            ],
+            [
+              0.55,
+              304387
+            ]
+          ]
+        },
+        {
+          "name": "p17.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6668069,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 300248,
+          "q": 0.5,
+          "attempts": 3,
+          "decodeMs": 75,
+          "drawMs": 6,
+          "encodeMs": 19,
+          "ms": 100,
+          "tries": [
+            [
+              0.9,
+              1019642
+            ],
+            [
+              0.1,
+              50025
+            ],
+            [
+              0.5,
+              300248
+            ]
+          ]
+        },
+        {
+          "name": "p18.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6674846,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 305534,
+          "q": 0.5,
+          "attempts": 3,
+          "decodeMs": 74,
+          "drawMs": 5,
+          "encodeMs": 19,
+          "ms": 98,
+          "tries": [
+            [
+              0.9,
+              983460
+            ],
+            [
+              0.1,
+              48053
+            ],
+            [
+              0.5,
+              305534
+            ]
+          ]
+        },
+        {
+          "name": "p19.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6785386,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 288365,
+          "q": 0.45,
+          "attempts": 6,
+          "decodeMs": 76,
+          "drawMs": 5,
+          "encodeMs": 34,
+          "ms": 115,
+          "tries": [
+            [
+              0.9,
+              998094
+            ],
+            [
+              0.1,
+              49265
+            ],
+            [
+              0.5,
+              317754
+            ],
+            [
+              0.3,
+              195429
+            ],
+            [
+              0.4,
+              256536
+            ],
+            [
+              0.45,
+              288365
+            ]
+          ]
+        },
+        {
+          "name": "p20.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 7186155,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 280083,
+          "q": 0.4,
+          "attempts": 5,
+          "decodeMs": 80,
+          "drawMs": 4,
+          "encodeMs": 31,
+          "ms": 115,
+          "tries": [
+            [
+              0.9,
+              1138173
+            ],
+            [
+              0.1,
+              62203
+            ],
+            [
+              0.5,
+              346267
+            ],
+            [
+              0.3,
+              215008
+            ],
+            [
+              0.4,
+              280083
+            ]
+          ]
+        }
+      ],
+      "rssMB": {
+        "before": 760,
+        "peak": 856,
+        "delta": 96
+      }
+    },
+    "webp_100": {
+      "mode": "worker",
+      "workers": 1,
+      "mime": "image/webp",
+      "targetKB": 100,
+      "search": {},
+      "count": 20,
+      "totalMs": 16539,
+      "perImageMs": {
+        "mean": 826,
+        "p50": 929,
+        "p95": 1148,
+        "max": 1148
+      },
+      "throughputMsPerImage": 827,
+      "decodeMsMean": 67,
+      "encodeMsMean": 755,
+      "attempts": {
+        "mean": 5.5,
+        "max": 7,
+        "hist": {
+          "2": 6,
+          "7": 14
+        }
+      },
+      "statuses": {
+        "ok": 14,
+        "over": 6
+      },
+      "actualTypes": [
+        "image/webp"
+      ],
+      "outKB": {
+        "mean": 104,
+        "max": 160
+      },
+      "overMinKB": [
+        103,
+        108,
+        123,
+        129,
+        137,
+        160
+      ],
+      "outW": 1600,
+      "outH": 1200,
+      "monitor": {
+        "maxGapMs": 108,
+        "gapsOver60ms": 16,
+        "longtasks": "unsupported",
+        "heapMB": "unsupported"
+      },
+      "perImage": [
+        {
+          "name": "p01.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 2055738,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 96504,
+          "q": 0.8,
+          "attempts": 7,
+          "decodeMs": 37,
+          "drawMs": 5,
+          "encodeMs": 769,
+          "ms": 811,
+          "tries": [
+            [
+              0.9,
+              182824
+            ],
+            [
+              0.1,
+              26788
+            ],
+            [
+              0.5,
+              59008
+            ],
+            [
+              0.7,
+              74420
+            ],
+            [
+              0.8,
+              96504
+            ],
+            [
+              0.85,
+              117840
+            ],
+            [
+              0.825,
+              108692
+            ]
+          ]
+        },
+        {
+          "name": "p02.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 2778394,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 100506,
+          "q": 0.775,
+          "attempts": 7,
+          "decodeMs": 43,
+          "drawMs": 4,
+          "encodeMs": 794,
+          "ms": 841,
+          "tries": [
+            [
+              0.9,
+              306042
+            ],
+            [
+              0.1,
+              27044
+            ],
+            [
+              0.5,
+              62242
+            ],
+            [
+              0.7,
+              81506
+            ],
+            [
+              0.8,
+              115346
+            ],
+            [
+              0.75,
+              86900
+            ],
+            [
+              0.775,
+              100506
+            ]
+          ]
+        },
+        {
+          "name": "p03.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 3406108,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 98220,
+          "q": 0.7,
+          "attempts": 7,
+          "decodeMs": 48,
+          "drawMs": 5,
+          "encodeMs": 862,
+          "ms": 915,
+          "tries": [
+            [
+              0.9,
+              412040
+            ],
+            [
+              0.1,
+              27650
+            ],
+            [
+              0.5,
+              65350
+            ],
+            [
+              0.7,
+              98220
+            ],
+            [
+              0.8,
+              163042
+            ],
+            [
+              0.75,
+              111268
+            ],
+            [
+              0.725,
+              109026
+            ]
+          ]
+        },
+        {
+          "name": "p04.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 3841428,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 98442,
+          "q": 0.6499999999999999,
+          "attempts": 7,
+          "decodeMs": 54,
+          "drawMs": 5,
+          "encodeMs": 859,
+          "ms": 918,
+          "tries": [
+            [
+              0.9,
+              467026
+            ],
+            [
+              0.1,
+              25992
+            ],
+            [
+              0.5,
+              66410
+            ],
+            [
+              0.7,
+              125140
+            ],
+            [
+              0.6,
+              87692
+            ],
+            [
+              0.65,
+              98442
+            ],
+            [
+              0.675,
+              110840
+            ]
+          ]
+        },
+        {
+          "name": "p05.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 4336697,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 95950,
+          "q": 0.5,
+          "attempts": 7,
+          "decodeMs": 58,
+          "drawMs": 5,
+          "encodeMs": 941,
+          "ms": 1004,
+          "tries": [
+            [
+              0.9,
+              539142
+            ],
+            [
+              0.1,
+              30872
+            ],
+            [
+              0.5,
+              95950
+            ],
+            [
+              0.7,
+              181374
+            ],
+            [
+              0.6,
+              129540
+            ],
+            [
+              0.55,
+              112992
+            ],
+            [
+              0.525,
+              112136
+            ]
+          ]
+        },
+        {
+          "name": "p06.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 4570851,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 95240,
+          "q": 0.45,
+          "attempts": 7,
+          "decodeMs": 62,
+          "drawMs": 5,
+          "encodeMs": 862,
+          "ms": 929,
+          "tries": [
+            [
+              0.9,
+              567452
+            ],
+            [
+              0.1,
+              27034
+            ],
+            [
+              0.5,
+              108360
+            ],
+            [
+              0.3,
+              57020
+            ],
+            [
+              0.4,
+              82326
+            ],
+            [
+              0.45,
+              95240
+            ],
+            [
+              0.475,
+              105760
+            ]
+          ]
+        },
+        {
+          "name": "p07.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 4876100,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 86000,
+          "q": 0.35,
+          "attempts": 7,
+          "decodeMs": 64,
+          "drawMs": 5,
+          "encodeMs": 909,
+          "ms": 978,
+          "tries": [
+            [
+              0.9,
+              604572
+            ],
+            [
+              0.1,
+              28482
+            ],
+            [
+              0.5,
+              145632
+            ],
+            [
+              0.3,
+              72506
+            ],
+            [
+              0.4,
+              105040
+            ],
+            [
+              0.35,
+              86000
+            ],
+            [
+              0.375,
+              102992
+            ]
+          ]
+        },
+        {
+          "name": "p08.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5120573,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 99044,
+          "q": 0.32499999999999996,
+          "attempts": 7,
+          "decodeMs": 62,
+          "drawMs": 5,
+          "encodeMs": 919,
+          "ms": 986,
+          "tries": [
+            [
+              0.9,
+              633114
+            ],
+            [
+              0.1,
+              29856
+            ],
+            [
+              0.5,
+              182298
+            ],
+            [
+              0.3,
+              94320
+            ],
+            [
+              0.4,
+              129054
+            ],
+            [
+              0.35,
+              105254
+            ],
+            [
+              0.325,
+              99044
+            ]
+          ]
+        },
+        {
+          "name": "p09.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5385624,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 99436,
+          "q": 0.25,
+          "attempts": 7,
+          "decodeMs": 65,
+          "drawMs": 5,
+          "encodeMs": 945,
+          "ms": 1015,
+          "tries": [
+            [
+              0.9,
+              688542
+            ],
+            [
+              0.1,
+              38076
+            ],
+            [
+              0.5,
+              214882
+            ],
+            [
+              0.3,
+              121482
+            ],
+            [
+              0.2,
+              75526
+            ],
+            [
+              0.25,
+              99436
+            ],
+            [
+              0.275,
+              112866
+            ]
+          ]
+        },
+        {
+          "name": "p10.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5611386,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 94800,
+          "q": 0.2,
+          "attempts": 7,
+          "decodeMs": 68,
+          "drawMs": 6,
+          "encodeMs": 969,
+          "ms": 1043,
+          "tries": [
+            [
+              0.9,
+              719746
+            ],
+            [
+              0.1,
+              47430
+            ],
+            [
+              0.5,
+              251594
+            ],
+            [
+              0.3,
+              144534
+            ],
+            [
+              0.2,
+              94800
+            ],
+            [
+              0.25,
+              122832
+            ],
+            [
+              0.225,
+              110924
+            ]
+          ]
+        },
+        {
+          "name": "p11.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5756517,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 100560,
+          "q": 0.17500000000000002,
+          "attempts": 7,
+          "decodeMs": 70,
+          "drawMs": 5,
+          "encodeMs": 977,
+          "ms": 1052,
+          "tries": [
+            [
+              0.9,
+              733214
+            ],
+            [
+              0.1,
+              55328
+            ],
+            [
+              0.5,
+              273830
+            ],
+            [
+              0.3,
+              169058
+            ],
+            [
+              0.2,
+              110902
+            ],
+            [
+              0.15,
+              83672
+            ],
+            [
+              0.175,
+              100560
+            ]
+          ]
+        },
+        {
+          "name": "p12.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5954564,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 100236,
+          "q": 0.15000000000000002,
+          "attempts": 7,
+          "decodeMs": 72,
+          "drawMs": 4,
+          "encodeMs": 1007,
+          "ms": 1083,
+          "tries": [
+            [
+              0.9,
+              775316
+            ],
+            [
+              0.1,
+              71416
+            ],
+            [
+              0.5,
+              303304
+            ],
+            [
+              0.3,
+              191558
+            ],
+            [
+              0.2,
+              133820
+            ],
+            [
+              0.15,
+              100236
+            ],
+            [
+              0.175,
+              118556
+            ]
+          ]
+        },
+        {
+          "name": "p13.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6107976,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 101868,
+          "q": 0.125,
+          "attempts": 7,
+          "decodeMs": 72,
+          "drawMs": 5,
+          "encodeMs": 1071,
+          "ms": 1148,
+          "tries": [
+            [
+              0.9,
+              797252
+            ],
+            [
+              0.1,
+              83000
+            ],
+            [
+              0.5,
+              332180
+            ],
+            [
+              0.3,
+              215348
+            ],
+            [
+              0.2,
+              148452
+            ],
+            [
+              0.15,
+              118834
+            ],
+            [
+              0.125,
+              101868
+            ]
+          ]
+        },
+        {
+          "name": "p14.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6125903,
+          "status": "ok",
+          "actualType": "image/webp",
+          "size": 85002,
+          "q": 0.1,
+          "attempts": 7,
+          "decodeMs": 73,
+          "drawMs": 6,
+          "encodeMs": 1046,
+          "ms": 1125,
+          "tries": [
+            [
+              0.9,
+              792248
+            ],
+            [
+              0.1,
+              85002
+            ],
+            [
+              0.5,
+              342050
+            ],
+            [
+              0.3,
+              219738
+            ],
+            [
+              0.2,
+              156014
+            ],
+            [
+              0.15,
+              120692
+            ],
+            [
+              0.125,
+              105566
+            ]
+          ]
+        },
+        {
+          "name": "p15.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6436571,
+          "status": "over",
+          "actualType": "image/webp",
+          "size": 105096,
+          "q": 0.1,
+          "attempts": 2,
+          "decodeMs": 104,
+          "drawMs": 7,
+          "encodeMs": 358,
+          "ms": 469,
+          "tries": [
+            [
+              0.9,
+              843168
+            ],
+            [
+              0.1,
+              105096
+            ]
+          ]
+        },
+        {
+          "name": "p16.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6410288,
+          "status": "over",
+          "actualType": "image/webp",
+          "size": 110906,
+          "q": 0.1,
+          "attempts": 2,
+          "decodeMs": 76,
+          "drawMs": 5,
+          "encodeMs": 352,
+          "ms": 433,
+          "tries": [
+            [
+              0.9,
+              829490
+            ],
+            [
+              0.1,
+              110906
+            ]
+          ]
+        },
+        {
+          "name": "p17.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6668069,
+          "status": "over",
+          "actualType": "image/webp",
+          "size": 125906,
+          "q": 0.1,
+          "attempts": 2,
+          "decodeMs": 74,
+          "drawMs": 5,
+          "encodeMs": 360,
+          "ms": 439,
+          "tries": [
+            [
+              0.9,
+              870200
+            ],
+            [
+              0.1,
+              125906
+            ]
+          ]
+        },
+        {
+          "name": "p18.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6674846,
+          "status": "over",
+          "actualType": "image/webp",
+          "size": 132134,
+          "q": 0.1,
+          "attempts": 2,
+          "decodeMs": 76,
+          "drawMs": 4,
+          "encodeMs": 358,
+          "ms": 438,
+          "tries": [
+            [
+              0.9,
+              871462
+            ],
+            [
+              0.1,
+              132134
+            ]
+          ]
+        },
+        {
+          "name": "p19.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6785386,
+          "status": "over",
+          "actualType": "image/webp",
+          "size": 140354,
+          "q": 0.1,
+          "attempts": 2,
+          "decodeMs": 74,
+          "drawMs": 5,
+          "encodeMs": 359,
+          "ms": 438,
+          "tries": [
+            [
+              0.9,
+              874182
+            ],
+            [
+              0.1,
+              140354
+            ]
+          ]
+        },
+        {
+          "name": "p20.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 7186155,
+          "status": "over",
+          "actualType": "image/webp",
+          "size": 164108,
+          "q": 0.1,
+          "attempts": 2,
+          "decodeMs": 79,
+          "drawMs": 4,
+          "encodeMs": 378,
+          "ms": 461,
+          "tries": [
+            [
+              0.9,
+              944676
+            ],
+            [
+              0.1,
+              164108
+            ]
+          ]
+        }
+      ],
+      "rssMB": {
+        "before": 765,
+        "peak": 838,
+        "delta": 73
+      }
+    },
+    "jpeg_100": {
+      "mode": "worker",
+      "workers": 1,
+      "mime": "image/jpeg",
+      "targetKB": 100,
+      "search": {},
+      "count": 20,
+      "totalMs": 2106,
+      "perImageMs": {
+        "mean": 105,
+        "p50": 109,
+        "p95": 122,
+        "max": 122
+      },
+      "throughputMsPerImage": 105,
+      "decodeMsMean": 63,
+      "encodeMsMean": 36,
+      "attempts": {
+        "mean": 7,
+        "max": 7,
+        "hist": {
+          "7": 20
+        }
+      },
+      "statuses": {
+        "ok": 20
+      },
+      "actualTypes": [
+        "image/jpeg"
+      ],
+      "outKB": {
+        "mean": 91,
+        "max": 99
+      },
+      "overMinKB": [],
+      "outW": 1600,
+      "outH": 1200,
+      "monitor": {
+        "maxGapMs": 84,
+        "gapsOver60ms": 15,
+        "longtasks": "unsupported",
+        "heapMB": "unsupported"
+      },
+      "perImage": [
+        {
+          "name": "p01.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 2055738,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 99558,
+          "q": 0.575,
+          "attempts": 7,
+          "decodeMs": 36,
+          "drawMs": 6,
+          "encodeMs": 34,
+          "ms": 76,
+          "tries": [
+            [
+              0.9,
+              410998
+            ],
+            [
+              0.1,
+              42002
+            ],
+            [
+              0.5,
+              90813
+            ],
+            [
+              0.7,
+              124072
+            ],
+            [
+              0.6,
+              103492
+            ],
+            [
+              0.55,
+              96563
+            ],
+            [
+              0.575,
+              99558
+            ]
+          ]
+        },
+        {
+          "name": "p02.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 2778394,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 101575,
+          "q": 0.55,
+          "attempts": 7,
+          "decodeMs": 42,
+          "drawMs": 6,
+          "encodeMs": 34,
+          "ms": 82,
+          "tries": [
+            [
+              0.9,
+              494597
+            ],
+            [
+              0.1,
+              41456
+            ],
+            [
+              0.5,
+              94359
+            ],
+            [
+              0.7,
+              143870
+            ],
+            [
+              0.6,
+              111326
+            ],
+            [
+              0.55,
+              101575
+            ],
+            [
+              0.575,
+              105644
+            ]
+          ]
+        },
+        {
+          "name": "p03.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 3406108,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 100470,
+          "q": 0.475,
+          "attempts": 7,
+          "decodeMs": 49,
+          "drawMs": 4,
+          "encodeMs": 34,
+          "ms": 87,
+          "tries": [
+            [
+              0.9,
+              564842
+            ],
+            [
+              0.1,
+              42219
+            ],
+            [
+              0.5,
+              103847
+            ],
+            [
+              0.3,
+              71253
+            ],
+            [
+              0.4,
+              85946
+            ],
+            [
+              0.45,
+              95162
+            ],
+            [
+              0.475,
+              100470
+            ]
+          ]
+        },
+        {
+          "name": "p04.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 3841428,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 98693,
+          "q": 0.45,
+          "attempts": 7,
+          "decodeMs": 52,
+          "drawMs": 4,
+          "encodeMs": 35,
+          "ms": 91,
+          "tries": [
+            [
+              0.9,
+              596879
+            ],
+            [
+              0.1,
+              41078
+            ],
+            [
+              0.5,
+              110414
+            ],
+            [
+              0.3,
+              68620
+            ],
+            [
+              0.4,
+              86418
+            ],
+            [
+              0.45,
+              98693
+            ],
+            [
+              0.475,
+              105353
+            ]
+          ]
+        },
+        {
+          "name": "p05.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 4336697,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 94862,
+          "q": 0.35,
+          "attempts": 7,
+          "decodeMs": 57,
+          "drawMs": 5,
+          "encodeMs": 36,
+          "ms": 98,
+          "tries": [
+            [
+              0.9,
+              680943
+            ],
+            [
+              0.1,
+              43663
+            ],
+            [
+              0.5,
+              139691
+            ],
+            [
+              0.3,
+              81531
+            ],
+            [
+              0.4,
+              107596
+            ],
+            [
+              0.35,
+              94862
+            ],
+            [
+              0.375,
+              103542
+            ]
+          ]
+        },
+        {
+          "name": "p06.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 4570851,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 94254,
+          "q": 0.35,
+          "attempts": 7,
+          "decodeMs": 58,
+          "drawMs": 5,
+          "encodeMs": 34,
+          "ms": 97,
+          "tries": [
+            [
+              0.9,
+              687603
+            ],
+            [
+              0.1,
+              41523
+            ],
+            [
+              0.5,
+              144559
+            ],
+            [
+              0.3,
+              78743
+            ],
+            [
+              0.4,
+              109182
+            ],
+            [
+              0.35,
+              94254
+            ],
+            [
+              0.375,
+              104306
+            ]
+          ]
+        },
+        {
+          "name": "p07.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 4876100,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 96355,
+          "q": 0.32499999999999996,
+          "attempts": 7,
+          "decodeMs": 61,
+          "drawMs": 5,
+          "encodeMs": 34,
+          "ms": 100,
+          "tries": [
+            [
+              0.9,
+              735566
+            ],
+            [
+              0.1,
+              42136
+            ],
+            [
+              0.5,
+              163814
+            ],
+            [
+              0.3,
+              89007
+            ],
+            [
+              0.4,
+              126121
+            ],
+            [
+              0.35,
+              108588
+            ],
+            [
+              0.325,
+              96355
+            ]
+          ]
+        },
+        {
+          "name": "p08.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5120573,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 97356,
+          "q": 0.3,
+          "attempts": 7,
+          "decodeMs": 61,
+          "drawMs": 5,
+          "encodeMs": 36,
+          "ms": 102,
+          "tries": [
+            [
+              0.9,
+              768112
+            ],
+            [
+              0.1,
+              42464
+            ],
+            [
+              0.5,
+              177504
+            ],
+            [
+              0.3,
+              97356
+            ],
+            [
+              0.4,
+              138702
+            ],
+            [
+              0.35,
+              119766
+            ],
+            [
+              0.325,
+              105856
+            ]
+          ]
+        },
+        {
+          "name": "p09.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5385624,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 89106,
+          "q": 0.25,
+          "attempts": 7,
+          "decodeMs": 64,
+          "drawMs": 4,
+          "encodeMs": 36,
+          "ms": 104,
+          "tries": [
+            [
+              0.9,
+              816094
+            ],
+            [
+              0.1,
+              44136
+            ],
+            [
+              0.5,
+              196354
+            ],
+            [
+              0.3,
+              111865
+            ],
+            [
+              0.2,
+              68897
+            ],
+            [
+              0.25,
+              89106
+            ],
+            [
+              0.275,
+              103387
+            ]
+          ]
+        },
+        {
+          "name": "p10.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5611386,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 96430,
+          "q": 0.25,
+          "attempts": 7,
+          "decodeMs": 67,
+          "drawMs": 5,
+          "encodeMs": 36,
+          "ms": 108,
+          "tries": [
+            [
+              0.9,
+              864318
+            ],
+            [
+              0.1,
+              44309
+            ],
+            [
+              0.5,
+              209972
+            ],
+            [
+              0.3,
+              122128
+            ],
+            [
+              0.2,
+              72919
+            ],
+            [
+              0.25,
+              96430
+            ],
+            [
+              0.275,
+              112791
+            ]
+          ]
+        },
+        {
+          "name": "p11.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5756517,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 92449,
+          "q": 0.225,
+          "attempts": 7,
+          "decodeMs": 68,
+          "drawMs": 4,
+          "encodeMs": 37,
+          "ms": 109,
+          "tries": [
+            [
+              0.9,
+              870010
+            ],
+            [
+              0.1,
+              44214
+            ],
+            [
+              0.5,
+              220086
+            ],
+            [
+              0.3,
+              130928
+            ],
+            [
+              0.2,
+              76878
+            ],
+            [
+              0.25,
+              103175
+            ],
+            [
+              0.225,
+              92449
+            ]
+          ]
+        },
+        {
+          "name": "p12.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 5954564,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 101725,
+          "q": 0.225,
+          "attempts": 7,
+          "decodeMs": 69,
+          "drawMs": 5,
+          "encodeMs": 36,
+          "ms": 110,
+          "tries": [
+            [
+              0.9,
+              906193
+            ],
+            [
+              0.1,
+              45162
+            ],
+            [
+              0.5,
+              234624
+            ],
+            [
+              0.3,
+              142349
+            ],
+            [
+              0.2,
+              84171
+            ],
+            [
+              0.25,
+              113468
+            ],
+            [
+              0.225,
+              101725
+            ]
+          ]
+        },
+        {
+          "name": "p13.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6107976,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 89586,
+          "q": 0.2,
+          "attempts": 7,
+          "decodeMs": 72,
+          "drawMs": 5,
+          "encodeMs": 36,
+          "ms": 113,
+          "tries": [
+            [
+              0.9,
+              927313
+            ],
+            [
+              0.1,
+              45696
+            ],
+            [
+              0.5,
+              246716
+            ],
+            [
+              0.3,
+              151219
+            ],
+            [
+              0.2,
+              89586
+            ],
+            [
+              0.25,
+              121538
+            ],
+            [
+              0.225,
+              109167
+            ]
+          ]
+        },
+        {
+          "name": "p14.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6125903,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 88719,
+          "q": 0.2,
+          "attempts": 7,
+          "decodeMs": 70,
+          "drawMs": 5,
+          "encodeMs": 36,
+          "ms": 111,
+          "tries": [
+            [
+              0.9,
+              892943
+            ],
+            [
+              0.1,
+              41918
+            ],
+            [
+              0.5,
+              248458
+            ],
+            [
+              0.3,
+              151671
+            ],
+            [
+              0.2,
+              88719
+            ],
+            [
+              0.25,
+              122245
+            ],
+            [
+              0.225,
+              109410
+            ]
+          ]
+        },
+        {
+          "name": "p15.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6436571,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 92471,
+          "q": 0.17500000000000002,
+          "attempts": 7,
+          "decodeMs": 72,
+          "drawMs": 5,
+          "encodeMs": 39,
+          "ms": 116,
+          "tries": [
+            [
+              0.9,
+              993786
+            ],
+            [
+              0.1,
+              48273
+            ],
+            [
+              0.5,
+              276403
+            ],
+            [
+              0.3,
+              172138
+            ],
+            [
+              0.2,
+              105746
+            ],
+            [
+              0.15,
+              72098
+            ],
+            [
+              0.175,
+              92471
+            ]
+          ]
+        },
+        {
+          "name": "p16.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6410288,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 90794,
+          "q": 0.17500000000000002,
+          "attempts": 7,
+          "decodeMs": 71,
+          "drawMs": 5,
+          "encodeMs": 38,
+          "ms": 114,
+          "tries": [
+            [
+              0.9,
+              935460
+            ],
+            [
+              0.1,
+              44332
+            ],
+            [
+              0.5,
+              276084
+            ],
+            [
+              0.3,
+              170082
+            ],
+            [
+              0.2,
+              104597
+            ],
+            [
+              0.15,
+              69348
+            ],
+            [
+              0.175,
+              90794
+            ]
+          ]
+        },
+        {
+          "name": "p17.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6668069,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 80380,
+          "q": 0.15000000000000002,
+          "attempts": 7,
+          "decodeMs": 73,
+          "drawMs": 5,
+          "encodeMs": 38,
+          "ms": 116,
+          "tries": [
+            [
+              0.9,
+              1019642
+            ],
+            [
+              0.1,
+              50025
+            ],
+            [
+              0.5,
+              300248
+            ],
+            [
+              0.3,
+              187362
+            ],
+            [
+              0.2,
+              119412
+            ],
+            [
+              0.15,
+              80380
+            ],
+            [
+              0.175,
+              104355
+            ]
+          ]
+        },
+        {
+          "name": "p18.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6674846,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 80431,
+          "q": 0.15000000000000002,
+          "attempts": 7,
+          "decodeMs": 74,
+          "drawMs": 6,
+          "encodeMs": 38,
+          "ms": 118,
+          "tries": [
+            [
+              0.9,
+              983460
+            ],
+            [
+              0.1,
+              48053
+            ],
+            [
+              0.5,
+              305534
+            ],
+            [
+              0.3,
+              188899
+            ],
+            [
+              0.2,
+              121292
+            ],
+            [
+              0.15,
+              80431
+            ],
+            [
+              0.175,
+              106088
+            ]
+          ]
+        },
+        {
+          "name": "p19.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 6785386,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 85508,
+          "q": 0.15000000000000002,
+          "attempts": 7,
+          "decodeMs": 74,
+          "drawMs": 5,
+          "encodeMs": 39,
+          "ms": 118,
+          "tries": [
+            [
+              0.9,
+              998094
+            ],
+            [
+              0.1,
+              49265
+            ],
+            [
+              0.5,
+              317754
+            ],
+            [
+              0.3,
+              195429
+            ],
+            [
+              0.2,
+              127366
+            ],
+            [
+              0.15,
+              85508
+            ],
+            [
+              0.175,
+              112097
+            ]
+          ]
+        },
+        {
+          "name": "p20.jpg",
+          "srcW": 4032,
+          "srcH": 3024,
+          "w": 1600,
+          "h": 1200,
+          "origSize": 7186155,
+          "status": "ok",
+          "actualType": "image/jpeg",
+          "size": 87195,
+          "q": 0.125,
+          "attempts": 7,
+          "decodeMs": 77,
+          "drawMs": 6,
+          "encodeMs": 39,
+          "ms": 122,
+          "tries": [
+            [
+              0.9,
+              1138173
+            ],
+            [
+              0.1,
+              62203
+            ],
+            [
+              0.5,
+              346267
+            ],
+            [
+              0.3,
+              215008
+            ],
+            [
+              0.2,
+              144165
+            ],
+            [
+              0.15,
+              104087
+            ],
+            [
+              0.125,
+              87195
+            ]
+          ]
+        }
+      ],
+      "rssMB": {
+        "before": 767,
+        "peak": 856,
+        "delta": 89
+      }
+    }
+  },
+  "batch200": {
+    "mime": "image/webp",
+    "main": {
+      "mode": "main",
+      "workers": 0,
+      "mime": "image/webp",
+      "targetKB": 300,
+      "search": {},
+      "count": 200,
+      "totalMs": 226728,
+      "perImageMs": {
+        "mean": 1133,
+        "p50": 1224,
+        "p95": 1420,
+        "max": 1529
+      },
+      "throughputMsPerImage": 1134,
+      "decodeMsMean": 71,
+      "encodeMsMean": 1058,
+      "attempts": {
+        "mean": 6.4,
+        "max": 7,
+        "hist": {
+          "1": 20,
+          "7": 180
+        }
+      },
+      "statuses": {
+        "ok": 200
+      },
+      "actualTypes": [
+        "image/webp"
+      ],
+      "outKB": {
+        "mean": 283,
+        "max": 299
+      },
+      "overMinKB": [],
+      "outW": 1600,
+      "outH": 1200,
+      "monitor": {
+        "maxGapMs": 367,
+        "gapsOver60ms": 175,
+        "longtasks": "unsupported",
+        "heapMB": "unsupported"
+      },
+      "rssMB": {
+        "before": 772,
+        "peak": 979,
+        "delta": 207
+      }
+    },
+    "worker1": {
+      "mode": "worker",
+      "workers": 1,
+      "mime": "image/webp",
+      "targetKB": 300,
+      "search": {},
+      "count": 200,
+      "totalMs": 224018,
+      "perImageMs": {
+        "mean": 1120,
+        "p50": 1226,
+        "p95": 1334,
+        "max": 1511
+      },
+      "throughputMsPerImage": 1120,
+      "decodeMsMean": 67,
+      "encodeMsMean": 1047,
+      "attempts": {
+        "mean": 6.4,
+        "max": 7,
+        "hist": {
+          "1": 20,
+          "7": 180
+        }
+      },
+      "statuses": {
+        "ok": 200
+      },
+      "actualTypes": [
+        "image/webp"
+      ],
+      "outKB": {
+        "mean": 283,
+        "max": 299
+      },
+      "overMinKB": [],
+      "outW": 1600,
+      "outH": 1200,
+      "monitor": {
+        "maxGapMs": 176,
+        "gapsOver60ms": 155,
+        "longtasks": "unsupported",
+        "heapMB": "unsupported"
+      },
+      "rssMB": {
+        "before": 766,
+        "peak": 846,
+        "delta": 80
+      }
+    },
+    "worker4": {
+      "mode": "worker",
+      "workers": 4,
+      "mime": "image/webp",
+      "targetKB": 300,
+      "search": {},
+      "count": 200,
+      "totalMs": 105471,
+      "perImageMs": {
+        "mean": 2100,
+        "p50": 2307,
+        "p95": 2486,
+        "max": 2579
+      },
+      "throughputMsPerImage": 527,
+      "decodeMsMean": 67,
+      "encodeMsMean": 2028,
+      "attempts": {
+        "mean": 6.4,
+        "max": 7,
+        "hist": {
+          "1": 20,
+          "7": 180
+        }
+      },
+      "statuses": {
+        "ok": 200
+      },
+      "actualTypes": [
+        "image/webp"
+      ],
+      "outKB": {
+        "mean": 283,
+        "max": 299
+      },
+      "overMinKB": [],
+      "outW": 1600,
+      "outH": 1200,
+      "monitor": {
+        "maxGapMs": 176,
+        "gapsOver60ms": 151,
+        "longtasks": "unsupported",
+        "heapMB": "unsupported"
+      },
+      "rssMB": {
+        "before": 765,
+        "peak": 1044,
+        "delta": 279
+      }
+    },
+    "worker4_zipOutputs": {
+      "kind": "zipStream",
+      "files": 200,
+      "zipBytes": 57965062,
+      "buildMs": 253,
+      "monitor": {
+        "maxGapMs": 14,
+        "gapsOver60ms": 0,
+        "longtasks": "unsupported",
+        "heapMB": "unsupported"
+      },
+      "savedBytes": 57965062,
+      "entries": 200
+    }
+  },
+  "zip": {
+    "zipStream": {
+      "kind": "zipStream",
+      "files": 200,
+      "zipBytes": 524319222,
+      "buildMs": 2231,
+      "monitor": {
+        "maxGapMs": 24,
+        "gapsOver60ms": 0,
+        "longtasks": "unsupported",
+        "heapMB": "unsupported"
+      },
+      "saveMs": 936,
+      "savedBytes": 524319222,
+      "entries": 200,
+      "sampleEntry": "2026-01/trip0/day0/IMG_0000.webp",
+      "dirsPreserved": true,
+      "unzipTest": "ok",
+      "rssMB": {
+        "before": 1326,
+        "peak": 2926,
+        "delta": 1600
+      },
+      "input": {
+        "files": 200,
+        "perBytes": 2621440,
+        "totalBytes": 524288000
+      }
+    },
+    "clientZip": {
+      "kind": "clientZip",
+      "files": 200,
+      "zipBytes": 524319222,
+      "buildMs": 4477,
+      "monitor": {
+        "maxGapMs": 26,
+        "gapsOver60ms": 0,
+        "longtasks": "unsupported",
+        "heapMB": "unsupported"
+      },
+      "saveMs": 986,
+      "savedBytes": 524319222,
+      "entries": 200,
+      "sampleEntry": "2026-01/trip0/day0/IMG_0000.webp",
+      "dirsPreserved": true,
+      "unzipTest": "ok",
+      "rssMB": {
+        "before": 1838,
+        "peak": 2345,
+        "delta": 507
+      },
+      "input": {
+        "files": 200,
+        "perBytes": 2621440,
+        "totalBytes": 524288000
+      }
+    },
+    "zipSync": {
+      "kind": "zipSync",
+      "files": 200,
+      "zipBytes": 524316022,
+      "buildMs": 2324,
+      "monitor": {
+        "maxGapMs": 14,
+        "gapsOver60ms": 0,
+        "longtasks": "unsupported",
+        "heapMB": "unsupported"
+      },
+      "saveMs": 987,
+      "savedBytes": 524316022,
+      "entries": 200,
+      "sampleEntry": "2026-01/trip0/day0/IMG_0000.webp",
+      "dirsPreserved": true,
+      "unzipTest": "ok",
+      "rssMB": {
+        "before": 1286,
+        "peak": 3375,
+        "delta": 2089
+      },
+      "input": {
+        "files": 200,
+        "perBytes": 2621440,
+        "totalBytes": 524288000
+      }
+    }
+  },
+  "diag": {
+    "decode": {
+      "totalMs": 1646,
+      "maxGapMs": 126,
+      "gapsOver60ms": 16,
+      "longtasks": "unsupported",
+      "heapMB": "unsupported"
+    },
+    "decodeFromBuffer": {
+      "totalMs": 1670,
+      "maxGapMs": 111,
+      "gapsOver60ms": 17,
+      "longtasks": "unsupported",
+      "heapMB": "unsupported"
+    },
+    "decodeResize": {
+      "totalMs": 2304,
+      "maxGapMs": 162,
+      "gapsOver60ms": 20,
+      "longtasks": "unsupported",
+      "heapMB": "unsupported"
+    },
+    "imageDecoder": {
+      "totalMs": 2232,
+      "maxGapMs": 26,
+      "gapsOver60ms": 0,
+      "longtasks": "unsupported",
+      "heapMB": "unsupported"
+    },
+    "decodeDraw": {
+      "totalMs": 1830,
+      "maxGapMs": 163,
+      "gapsOver60ms": 19,
+      "longtasks": "unsupported",
+      "heapMB": "unsupported"
+    },
+    "encodeWebp": {
+      "totalMs": 5060,
+      "maxGapMs": 14,
+      "gapsOver60ms": 0,
+      "longtasks": "unsupported",
+      "heapMB": "unsupported"
+    },
+    "encodeJpeg": {
+      "totalMs": 197,
+      "maxGapMs": 14,
+      "gapsOver60ms": 0,
+      "longtasks": "unsupported",
+      "heapMB": "unsupported"
+    }
+  },
+  "batch200_jpeg": {
+    "mime": "image/jpeg",
+    "main": {
+      "mode": "main",
+      "workers": 0,
+      "mime": "image/jpeg",
+      "targetKB": 300,
+      "search": {},
+      "count": 200,
+      "totalMs": 21899,
+      "perImageMs": {
+        "mean": 109,
+        "p50": 113,
+        "p95": 126,
+        "max": 139
+      },
+      "throughputMsPerImage": 109,
+      "decodeMsMean": 64,
+      "encodeMsMean": 40,
+      "attempts": {
+        "mean": 7,
+        "max": 7,
+        "hist": {
+          "7": 200
+        }
+      },
+      "statuses": {
+        "ok": 200
+      },
+      "actualTypes": [
+        "image/jpeg"
+      ],
+      "outKB": {
+        "mean": 286,
+        "max": 299
+      },
+      "overMinKB": [],
+      "outW": 1600,
+      "outH": 1200,
+      "monitor": {
+        "maxGapMs": 100,
+        "gapsOver60ms": 163,
+        "longtasks": "unsupported",
+        "heapMB": "unsupported"
+      },
+      "rssMB": {
+        "before": 678,
+        "peak": 1297,
+        "delta": 619
+      }
+    },
+    "worker1": {
+      "mode": "worker",
+      "workers": 1,
+      "mime": "image/jpeg",
+      "targetKB": 300,
+      "search": {},
+      "count": 200,
+      "totalMs": 22460,
+      "perImageMs": {
+        "mean": 112,
+        "p50": 115,
+        "p95": 132,
+        "max": 163
+      },
+      "throughputMsPerImage": 112,
+      "decodeMsMean": 66,
+      "encodeMsMean": 40,
+      "attempts": {
+        "mean": 7,
+        "max": 7,
+        "hist": {
+          "7": 200
+        }
+      },
+      "statuses": {
+        "ok": 200
+      },
+      "actualTypes": [
+        "image/jpeg"
+      ],
+      "outKB": {
+        "mean": 286,
+        "max": 299
+      },
+      "overMinKB": [],
+      "outW": 1600,
+      "outH": 1200,
+      "monitor": {
+        "maxGapMs": 111,
+        "gapsOver60ms": 158,
+        "longtasks": "unsupported",
+        "heapMB": "unsupported"
+      },
+      "rssMB": {
+        "before": 752,
+        "peak": 917,
+        "delta": 165
+      }
+    },
+    "worker4": {
+      "mode": "worker",
+      "workers": 4,
+      "mime": "image/jpeg",
+      "targetKB": 300,
+      "search": {},
+      "count": 200,
+      "totalMs": 14844,
+      "perImageMs": {
+        "mean": 195,
+        "p50": 186,
+        "p95": 338,
+        "max": 446
+      },
+      "throughputMsPerImage": 74,
+      "decodeMsMean": 148,
+      "encodeMsMean": 42,
+      "attempts": {
+        "mean": 7,
+        "max": 7,
+        "hist": {
+          "7": 200
+        }
+      },
+      "statuses": {
+        "ok": 200
+      },
+      "actualTypes": [
+        "image/jpeg"
+      ],
+      "outKB": {
+        "mean": 286,
+        "max": 299
+      },
+      "overMinKB": [],
+      "outW": 1600,
+      "outH": 1200,
+      "monitor": {
+        "maxGapMs": 397,
+        "gapsOver60ms": 69,
+        "longtasks": "unsupported",
+        "heapMB": "unsupported"
+      },
+      "rssMB": {
+        "before": 754,
+        "peak": 1193,
+        "delta": 439
+      }
+    },
+    "worker4_zipOutputs": {
+      "kind": "zipStream",
+      "files": 200,
+      "zipBytes": 58553502,
+      "buildMs": 249,
+      "monitor": {
+        "maxGapMs": 14,
+        "gapsOver60ms": 0,
+        "longtasks": "unsupported",
+        "heapMB": "unsupported"
+      },
+      "savedBytes": 58553502,
+      "entries": 200
+    }
+  }
+}

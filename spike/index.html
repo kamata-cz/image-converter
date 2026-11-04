@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Spike 4 実現性の検証</title>
+  <style>
+    body { font: 14px/1.6 system-ui, sans-serif; margin: 16px; }
+    label { display: block; margin: 8px 0; }
+    #drop { border: 2px dashed #888; padding: 24px; margin: 8px 0; }
+  </style>
+</head>
+<body>
+  <h1>Spike（4 実現性の検証）</h1>
+  <p>手動確認用。DevTools のコンソールで <code>await spike.capabilities()</code> などを呼ぶ。</p>
+  <label>フォルダ選択 <input type="file" id="dir" webkitdirectory multiple></label>
+  <div id="drop">ここにフォルダをドロップ（結果は <code>window.__drop</code>）</div>
+  <label>写真（測定用） <input type="file" id="photos" multiple accept="image/*"></label>
+  <label>EXIF <input type="file" id="exif" multiple></label>
+  <label>透過 PNG <input type="file" id="transparent"></label>
+  <label>読めない形式 <input type="file" id="bad" multiple></label>
+  <p>進み具合: <span id="progress">-</span></p>
+  <pre id="log"></pre>
+  <script type="module">
+    import './lib.js';
+    spike.installDropZone();
+    document.getElementById('dir').addEventListener('change', () => {
+      document.getElementById('log').textContent = JSON.stringify(spike.readDirInput(), null, 2);
+    });
+    document.getElementById('drop').addEventListener('drop', async () => {
+      for (let i = 0; i < 100 && !window.__drop; i++) await spike.sleep(50);
+      document.getElementById('log').textContent = JSON.stringify(window.__drop, null, 2);
+    });
+  </script>
+</body>
+</html>

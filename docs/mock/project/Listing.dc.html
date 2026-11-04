@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>案3 出品画像そろえ</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#0969da}a:hover{color:#0550ae}
+</style>
+</helmet>
+<div style="width: 1280px; height: 900px; box-sizing: border-box; background: #ffffff; color: #1f2328; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans JP', 'Hiragino Sans', Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.5; display: flex; flex-direction: column">
+  <header style="background: #f6f8fa; border-bottom: 1px solid #d1d9e0; padding: 16px 32px; display: flex; align-items: center; gap: 12px">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#59636e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h16l-1.5 12a2 2 0 0 1-2 1.8h-9a2 2 0 0 1-2-1.8z"></path><path d="M9 7a3 3 0 0 1 6 0"></path></svg>
+    <span style="font-size: 20px"><span style="color: #59636e">画像コンバータ</span> / <strong style="font-weight: 600">出品画像そろえ</strong></span>
+    <span style="border: 1px solid #d1d9e0; border-radius: 999px; padding: 0 8px; font-size: 12px; font-weight: 500; color: #59636e">画像は送信しません</span>
+  </header>
+  <div style="display: flex; gap: 24px; padding: 24px 32px; flex-grow: 1; min-height: 0">
+    <main style="flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; flex-direction: column; gap: 8px">
+        <strong style="font-weight: 600">販売先</strong>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap">
+          <button aria-pressed="true" style="height: 32px; padding: 0 14px; border: 1px solid #0969da; border-radius: 6px; background: #ddf4ff; color: #0969da; font: inherit; font-weight: 600">BASE</button>
+          <button aria-pressed="false" style="height: 32px; padding: 0 14px; border: 1px solid #d1d9e0; border-radius: 6px; background: #f6f8fa; color: #1f2328; font: inherit; font-weight: 500">メルカリ（条件は確認中）</button>
+          <button aria-pressed="false" style="height: 32px; padding: 0 14px; border: 1px solid #d1d9e0; border-radius: 6px; background: #f6f8fa; color: #1f2328; font: inherit; font-weight: 500">自分で指定</button>
+        </div>
+        <div style="color: #59636e; font-size: 12px">BASE の推奨: 1280×1280 px・1 枚 10 MB 以下・JPG/PNG/GIF（<a href="https://help.thebase.in/hc/ja/articles/43743736635161">出典: BASE ヘルプ</a>）</div>
+      </div>
+      <div style="border: 1px solid #d1d9e0; border-radius: 6px; overflow: hidden; flex-grow: 1">
+        <div style="background: #f6f8fa; border-bottom: 1px solid #d1d9e0; padding: 12px 16px; display: flex; align-items: center; gap: 12px">
+          <strong style="font-weight: 600">仕上がりの見本</strong>
+          <span style="background: rgba(129,139,152,0.2); border-radius: 999px; padding: 0 6px; font-size: 12px; font-weight: 500">12</span>
+          <span style="color: #59636e; font-size: 12px">商品は切らずに、白い余白で正方形にします</span>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; padding: 16px">
+          <div style="display: flex; flex-direction: column; gap: 6px"><div style="aspect-ratio: 1 / 1; border: 1px solid #d1d9e0; border-radius: 6px; background: #ffffff; display: flex; align-items: center; justify-content: center"><div style="width: 100%; height: 62%; background: #eaeef2; display: flex; align-items: center; justify-content: center; color: #59636e; font-size: 12px">[横長の写真]</div></div><span style="font-size: 12px">A102_01.jpg</span></div>
+          <div style="display: flex; flex-direction: column; gap: 6px"><div style="aspect-ratio: 1 / 1; border: 1px solid #d1d9e0; border-radius: 6px; background: #ffffff; display: flex; align-items: center; justify-content: center"><div style="width: 62%; height: 100%; background: #eaeef2; display: flex; align-items: center; justify-content: center; color: #59636e; font-size: 12px">[縦長]</div></div><span style="font-size: 12px">A102_02.jpg</span></div>
+          <div style="display: flex; flex-direction: column; gap: 6px"><div style="aspect-ratio: 1 / 1; border: 1px solid #d1d9e0; border-radius: 6px; background: #ffffff; display: flex; align-items: center; justify-content: center"><div style="width: 100%; height: 100%; background: #eaeef2; display: flex; align-items: center; justify-content: center; color: #59636e; font-size: 12px">[正方形]</div></div><span style="font-size: 12px">A102_03.jpg</span></div>
+          <div style="display: flex; flex-direction: column; gap: 6px"><div style="aspect-ratio: 1 / 1; border: 1px solid #d1d9e0; border-radius: 6px; background: #ffffff; display: flex; align-items: center; justify-content: center"><div style="width: 100%; height: 70%; background: #eaeef2; display: flex; align-items: center; justify-content: center; color: #59636e; font-size: 12px">[横長の写真]</div></div><span style="font-size: 12px">A103_01.jpg</span></div>
+        </div>
+      </div>
+    </main>
+    <aside style="width: 296px; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px">
+      <div style="border: 1px solid #d1d9e0; border-radius: 6px; padding: 16px; display: flex; flex-direction: column; gap: 12px">
+        <strong style="font-weight: 600">仕上げ方</strong>
+        <label style="display: flex; flex-direction: column; gap: 4px; font-weight: 600; font-size: 12px">大きさ<input value="1280 × 1280 px" style="height: 32px; padding: 0 12px; border: 1px solid #d1d9e0; border-radius: 6px; font: inherit; font-weight: 400; font-size: 14px"></label>
+        <label style="display: flex; flex-direction: column; gap: 4px; font-weight: 600; font-size: 12px">余白の色<input value="白（#FFFFFF）" style="height: 32px; padding: 0 12px; border: 1px solid #d1d9e0; border-radius: 6px; font: inherit; font-weight: 400; font-size: 14px"></label>
+        <label style="display: flex; flex-direction: column; gap: 4px; font-weight: 600; font-size: 12px">ファイル名の決まり<input value="{商品番号}_{連番}" style="height: 32px; padding: 0 12px; border: 1px solid #d1d9e0; border-radius: 6px; font: inherit; font-weight: 400; font-size: 14px"></label>
+        <span style="color: #59636e; font-size: 12px">例: A102_01.jpg、A102_02.jpg</span>
+      </div>
+      <button style="height: 40px; border: 1px solid rgba(31,35,40,0.15); border-radius: 6px; background: #1f883d; color: #ffffff; font: inherit; font-weight: 600">12 枚を ZIP で保存</button>
+      <p style="margin: 0; color: #59636e; font-size: 12px">有料版の案: 販売先の設定を複数保存、1 回 50 枚を超える処理（買い切り）</p>
+    </aside>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":900}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>
