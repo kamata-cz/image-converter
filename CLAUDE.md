@@ -5,7 +5,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 ## 現在の段階（企画し直し中）
 
 - 流れはスキル `app-dev-lifecycle`（0〜10）、0〜3 の詳細は `app-requirements`。段階の終わりは AskUserQuestion で承認を取る
-- 現在: **3 ヒアリング 開始前（2 案出しは完了: 案は「フォルダまるごと軽量化」）**（モック: https://claude.ai/artifact/HgL5pb6fUFPvFjDGtokzNc ）（2026-11-04。1 先行研究は承認済み: `docs/01-research/summary.md`）。上位 3 案はモック（Artifact＋`docs/mock/`）で比べてから選ぶ
+- 現在: **5 お金の設計 開始前（4 実現性の検証は承認済み: `docs/04-feasibility.md`、試作は `spike/`）（3 要件定義は承認済み: `docs/03-requirements.md`）**（モック: https://claude.ai/artifact/HgL5pb6fUFPvFjDGtokzNc ）（2026-11-04。1 先行研究は承認済み: `docs/01-research/summary.md`）。上位 3 案はモック（Artifact＋`docs/mock/`）で比べてから選ぶ
 - 前提と決定: `docs/00-brief.md`、`docs/decisions.md`。成果物は `docs/<番号>-<名前>.md`、委譲の指示文は `logs/prompts/`
 - 期限 1 か月・週 5 時間。見た目は GitHub（Primer）に寄せる。codex CLI は Web 調査と read-only レビューに使ってよい
 
@@ -113,6 +113,6 @@ Manual testing checklist:
 
 ## Deployment
 
-The app is a static SPA. Production: every push to `main` deploys to GitHub Pages via `.github/workflows/deploy.yml` (https://kamata-cz.github.io/image-converter/). So pushing to main publishes immediately — confirm with the user first. `netlify.toml` is a leftover alternative.
+The app is a static SPA. Production: every push to `main` deploys to GitHub Pages via `.github/workflows/deploy.yml` (https://viewpilla-wq.github.io/image-converter/). So pushing to main publishes immediately — confirm with the user first. `netlify.toml` is a leftover alternative.
 
 No server-side processing or API required - all processing is client-side.
