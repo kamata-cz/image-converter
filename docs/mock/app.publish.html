@@ -1,0 +1,929 @@
+<title>フォルダまるごと軽量化</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<style>
+/* ===== primer-base.css（スキル github-primer-artifact 同梱。build_app.py が差し込む） ===== */
+/* 入社準備ボード（2026-11-04）由来の GitHub(Primer) 風ベース CSS。light/dark 3ブロック・Primer の motion トークン込み */
+/* Layout（入社準備ボードと共通）: GitHub のリポジトリ画面。帯ヘッダ → 下線タブ（固定）→ 本文＋右サイドバー（768px 未満で1列）。
+   色と寸法は Primer の機能色トークンに合わせ、light/dark の両方を持つ。 */
+:root {
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans", "Noto Sans JP", "Hiragino Sans", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  --font-display: "Mona Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans JP", "Hiragino Sans", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+  --canvas: #ffffff; --canvas-subtle: #f6f8fa; --canvas-inset: #f6f8fa; --canvas-overlay: #ffffff;
+  --fg: #1f2328; --fg-muted: #59636e; --fg-onEmphasis: #ffffff;
+  --border: #d1d9e0; --border-muted: #d1d9e0b3;
+  --accent: #0969da; --accent-emphasis: #0969da; --accent-muted: #54aeff66; --accent-subtle: #ddf4ff;
+  --success: #1a7f37; --success-emphasis: #1f883d; --success-subtle: #dafbe1;
+  --attention: #9a6700; --attention-subtle: #fff8c5;
+  --danger: #d1242f; --danger-subtle: #ffebe9;
+  --done: #8250df; --done-emphasis: #8250df; --done-subtle: #fbefff;
+  --neutral-muted: #818b981f; --neutral-emphasis: #59636e;
+  --sponsors: #bf3989; --sponsors-subtle: #ffeff7;
+  --grass-0: #eff2f5; --grass-1: #aceebb; --grass-2: #4ac26b; --grass-3: #2da44e; --grass-4: #116329;
+  --shadow-overlay: 0 1px 1px #1f23280d, 0 8px 24px #42474e33;
+  --shadow-resting: 0 1px 0 #1f23280a;
+
+  --r-s: 6px; --r-m: 6px; --r-l: 12px; --r-full: 9999px;
+  /* Primer primitives: motion.duration micro/short/medium/long と base.easing */
+  --dur-fast: 100ms; --dur-base: 200ms; --dur-slow: 300ms; --dur-long: 500ms;
+  --ease: cubic-bezier(.25, .1, .25, 1); --ease-out: cubic-bezier(.3, .8, .6, 1); --ease-in: cubic-bezier(.7, .1, .75, .9);
+  --ease-in-out: cubic-bezier(.6, 0, .2, 1); --ease-overlay: cubic-bezier(.33, 1, .68, 1); --ease-btn: cubic-bezier(.65, 0, .35, 1);
+  --underline: #fd8c73;
+  --btn-bg: #f6f8fa; --btn-hover: #eff2f5; --btn-active: #e6eaef; --btn-fg: #25292e; --btn-shadow: 0 1px 0 #1f23280a;
+  --btn-primary: #1f883d; --btn-primary-hover: #1c8139; --btn-primary-active: #197935; --btn-primary-border: #1f232826;
+  --sidebar: 296px;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --canvas: #0d1117; --canvas-subtle: #151b23; --canvas-inset: #010409; --canvas-overlay: #151b23;
+  --fg: #f0f6fc; --fg-muted: #9198a1; --fg-onEmphasis: #ffffff;
+  --border: #3d444d; --border-muted: #3d444db3;
+  --accent: #4493f8; --accent-emphasis: #1f6feb; --accent-muted: #4493f866; --accent-subtle: #388bfd1a;
+  --success: #3fb950; --success-emphasis: #238636; --success-subtle: #2ea04326;
+  --attention: #d29922; --attention-subtle: #bb800926;
+  --danger: #f85149; --danger-subtle: #f851491a;
+  --done: #ab7df8; --done-emphasis: #8957e5; --done-subtle: #ab7df81a;
+  --neutral-muted: #656c7633; --neutral-emphasis: #656c76;
+  --sponsors: #db61a2; --sponsors-subtle: #db61a21a;
+  --grass-0: #151b23; --grass-1: #033a16; --grass-2: #196c2e; --grass-3: #2ea043; --grass-4: #56d364;
+  --shadow-overlay: 0 0 0 1px #3d444d, 0 8px 24px #01040966;
+  --shadow-resting: 0 1px 0 #0104090a;
+  --underline: #f78166;
+  --btn-bg: #212830; --btn-hover: #262c36; --btn-active: #2a313c; --btn-fg: #f0f6fc; --btn-shadow: none;
+  --btn-primary: #238636; --btn-primary-hover: #1f7a31; --btn-primary-active: #196c2e; --btn-primary-border: #ffffff26;
+  color-scheme: dark; } }
+:root[data-theme="dark"] {
+  --canvas: #0d1117; --canvas-subtle: #151b23; --canvas-inset: #010409; --canvas-overlay: #151b23;
+  --fg: #f0f6fc; --fg-muted: #9198a1; --fg-onEmphasis: #ffffff;
+  --border: #3d444d; --border-muted: #3d444db3;
+  --accent: #4493f8; --accent-emphasis: #1f6feb; --accent-muted: #4493f866; --accent-subtle: #388bfd1a;
+  --success: #3fb950; --success-emphasis: #238636; --success-subtle: #2ea04326;
+  --attention: #d29922; --attention-subtle: #bb800926;
+  --danger: #f85149; --danger-subtle: #f851491a;
+  --done: #ab7df8; --done-emphasis: #8957e5; --done-subtle: #ab7df81a;
+  --neutral-muted: #656c7633; --neutral-emphasis: #656c76;
+  --sponsors: #db61a2; --sponsors-subtle: #db61a21a;
+  --grass-0: #151b23; --grass-1: #033a16; --grass-2: #196c2e; --grass-3: #2ea043; --grass-4: #56d364;
+  --shadow-overlay: 0 0 0 1px #3d444d, 0 8px 24px #01040966;
+  --shadow-resting: 0 1px 0 #0104090a;
+  --underline: #f78166;
+  --btn-bg: #212830; --btn-hover: #262c36; --btn-active: #2a313c; --btn-fg: #f0f6fc; --btn-shadow: none;
+  --btn-primary: #238636; --btn-primary-hover: #1f7a31; --btn-primary-active: #196c2e; --btn-primary-border: #ffffff26;
+  color-scheme: dark; }
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 64px; -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--canvas); color: var(--fg); font-family: var(--font); font-size: 14px; line-height: 1.5; }
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 40; background: var(--canvas); }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; text-underline-offset: .2em; }
+:focus-visible { outline: 2px solid var(--accent-emphasis); outline-offset: -2px; border-radius: var(--r-s); }
+button { font: inherit; color: inherit; }
+.octicon { width: 16px; height: 16px; flex: none; fill: currentColor; vertical-align: text-bottom; }
+.gutter { padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.container { max-width: 1280px; margin: 0 auto; }
+.num { font-variant-numeric: tabular-nums; }
+.muted { color: var(--fg-muted); }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- 帯ヘッダ ---------- */
+.repohead { background: var(--canvas-subtle); border-bottom: 1px solid var(--border); padding-block: 16px 0; }
+.crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 20px; line-height: 1.4; }
+.crumbs .octicon { color: var(--fg-muted); }
+.crumbs .owner { color: var(--accent); font-weight: 400; }
+.crumbs .sep { color: var(--fg-muted); }
+.crumbs strong { color: var(--accent); font-weight: 600; font-family: var(--font-display); letter-spacing: -.01em; }
+.Label { display: inline-flex; align-items: center; gap: 4px; padding: 0 6px; height: 20px; font-size: 12px; font-weight: 500; line-height: 18px;
+  border: 1px solid var(--border); border-radius: var(--r-full); color: var(--fg-muted); white-space: nowrap; background: transparent; }
+.Label--success { color: var(--success); border-color: color-mix(in srgb, var(--success) 45%, transparent); }
+.Label--attention { color: var(--attention); border-color: color-mix(in srgb, var(--attention) 45%, transparent); }
+.Label--done { color: var(--done); border-color: color-mix(in srgb, var(--done) 45%, transparent); }
+.Label--accent { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+.headrow { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+.headactions { display: flex; flex-wrap: wrap; gap: 8px; }
+.btn { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 12px; font-size: 12px; font-weight: 500; border-radius: var(--r-s);
+  border: 1px solid var(--border); background: var(--btn-bg); color: var(--btn-fg); box-shadow: var(--btn-shadow); cursor: pointer; text-decoration: none !important;
+  transition: color 80ms var(--ease-btn), background-color 80ms var(--ease-btn), border-color 80ms var(--ease-btn); }
+.btn:hover { background: var(--btn-hover); }
+.btn:active { background: var(--btn-active); transition: none; }
+.btn .Counter { margin-left: 2px; }
+.btn--primary { background: var(--btn-primary); color: #fff; border-color: var(--btn-primary-border); }
+.btn--primary:hover { background: var(--btn-primary-hover); }
+.btn--primary:focus-visible { outline-offset: 2px; }
+.btn--primary:active { background: var(--btn-primary-active); }
+.btn--primary .Counter { background: #ffffff33; color: #fff; }
+.Counter { display: inline-block; min-width: 20px; padding: 0 6px; font-size: 12px; font-weight: 500; line-height: 18px; text-align: center; font-weight: 600;
+  border-radius: var(--r-full); background: var(--neutral-muted); color: var(--fg); border: 1px solid transparent; }
+
+/* 下線タブ */
+.unav-wrap { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 30; background: var(--canvas-subtle); border-bottom: 1px solid var(--border); margin-top: -1px; }
+.unav { position: relative; display: flex; gap: 8px; overflow-x: auto; scrollbar-width: none; min-height: 48px; align-items: center; }
+.unav::-webkit-scrollbar { display: none; }
+.unav a { position: relative; display: inline-flex; align-items: center; gap: 8px; padding: 0 8px; height: 32px; border-radius: var(--r-s);
+  color: var(--fg); font-size: 14px; white-space: nowrap; text-decoration: none !important; transition: background-color 120ms ease-out; }
+.unav a .octicon { color: var(--fg-muted); }
+.unav a:hover { background: var(--neutral-muted); }
+.unav a[aria-current="true"] { font-weight: 600; }
+.unav a[aria-current="true"] .octicon { color: var(--fg); }
+.unav-ind { position: absolute; bottom: 0; left: 0; height: 2px; width: 0; border-radius: 2px; background: var(--underline); pointer-events: none;
+}
+
+/* ---------- 本文 ---------- */
+.layout { display: grid; grid-template-columns: minmax(0, 1fr) var(--sidebar); gap: 24px; padding-block: 24px 48px; }
+.main { min-width: 0; display: flex; flex-direction: column; gap: 24px; }
+.side { min-width: 0; display: flex; flex-direction: column; gap: 0; }
+@media (max-width: 767px) { .layout { grid-template-columns: minmax(0, 1fr); } .side { order: -1; } }
+
+.Box { border: 1px solid var(--border); border-radius: var(--r-m); background: var(--canvas); min-width: 0; }
+.Box-header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px; padding: 16px; background: var(--canvas-subtle);
+  border-bottom: 1px solid var(--border); border-radius: var(--r-m) var(--r-m) 0 0; }
+.Box-title { display: flex; align-items: center; gap: 8px; margin: 0; font-size: 14px; font-weight: 600; }
+.Box-body { padding: 16px; }
+.Box-row { padding: 12px 16px; border-top: 1px solid var(--border-muted); }
+.Box-row:first-child { border-top: 0; }
+
+.markdown { font-size: 16px; line-height: 1.75; }
+.markdown h2 { font-family: var(--font-display); font-size: 1.5em; font-weight: 700; line-height: 1.25; margin: 0 0 16px; padding-bottom: .3em; border-bottom: 1px solid var(--border-muted); text-wrap: balance; letter-spacing: -.005em; }
+.markdown h3 { font-size: 1.25em; font-weight: 600; margin: 24px 0 12px; line-height: 1.25; }
+.markdown p { margin: 0 0 16px; max-width: 46em; }
+.markdown blockquote { margin: 0 0 16px; padding: 0 1em; color: var(--fg-muted); border-left: .25em solid var(--border); }
+.markdown blockquote strong { color: var(--fg); }
+.markdown code { font-family: var(--font-mono); font-size: 85%; padding: .2em .4em; border-radius: var(--r-s); background: var(--neutral-muted); }
+.markdown ul { margin: 0 0 16px; padding-left: 2em; }
+.markdown li + li { margin-top: .25em; }
+
+.markdown-alert { padding: 8px 16px; margin: 0 0 16px; border-left: .25em solid var(--accent-emphasis); }
+.markdown-alert-title { display: flex; align-items: center; gap: 8px; font-weight: 600; color: var(--accent); margin-bottom: 4px; }
+.markdown-alert.warn { border-left-color: var(--attention); }
+.markdown-alert.warn .markdown-alert-title { color: var(--attention); }
+.markdown-alert p:last-child { margin-bottom: 0; }
+
+.sec-h { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; flex-wrap: wrap; margin: 0 0 8px; }
+.sec-h h2 { margin: 0; font-family: var(--font-display); font-size: 20px; font-weight: 700; letter-spacing: -.005em; }
+.sec-h p { margin: 0; color: var(--fg-muted); font-size: 12px; }
+section[id] { scroll-margin-top: 0; }
+
+/* ---------- 草（入社までの道のり） ---------- */
+.grass-scroll { overflow-x: auto; padding-bottom: 4px; }
+.grass { display: grid; grid-template-columns: 28px auto; gap: 4px 6px; width: max-content; font-size: 12px; color: var(--fg-muted); }
+.grass-months { grid-column: 2; position: relative; height: 16px; }
+.grass-months span { position: absolute; top: 0; white-space: nowrap; }
+.grass-days { display: grid; grid-template-rows: repeat(7, 10px); gap: 3px; line-height: 10px; font-size: 11px; }
+.grass-grid { display: grid; grid-auto-flow: column; grid-template-rows: repeat(7, 10px); grid-auto-columns: 10px; gap: 3px; }
+.cell { width: 10px; height: 10px; border-radius: 2px; background: var(--grass-0); outline: 1px solid color-mix(in srgb, var(--fg) 5%, transparent); outline-offset: -1px;
+  animation: cellIn var(--dur-slow) var(--ease-out) both; animation-delay: calc(var(--c, 0) * 14ms); cursor: default; }
+.cell[data-l="1"] { background: var(--grass-1); } .cell[data-l="2"] { background: var(--grass-2); }
+.cell[data-l="3"] { background: var(--grass-3); } .cell[data-l="4"] { background: var(--grass-4); }
+.cell.future { background: color-mix(in srgb, var(--grass-0) 60%, transparent); outline: 1px dashed color-mix(in srgb, var(--fg) 32%, transparent); }
+.cell.future[data-l] { outline-style: solid; }
+.cell.today { outline: 2px solid var(--accent-emphasis); outline-offset: 0; }
+.cell.pad { visibility: hidden; animation: none; }
+.cell:hover, .cell:focus-visible { outline: 2px solid var(--fg); outline-offset: 0; }
+@keyframes cellIn { from { transform: scale(.4); opacity: .2; } to { transform: none; opacity: 1; } }
+.grass-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 16px; margin-top: 12px; font-size: 12px; color: var(--fg-muted); }
+.legend { display: inline-flex; align-items: center; gap: 4px; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; }
+.tip { position: fixed; z-index: 60; pointer-events: none; padding: 4px 8px; font-size: 12px; line-height: 1.5; color: var(--fg-onEmphasis); background: #25292e;
+  border-radius: var(--r-s); max-width: 260px; opacity: 0; transform: translate(-50%, calc(-100% - 6px)) translateY(4px);
+  transition: opacity var(--dur-fast) ease-in, transform var(--dur-base) var(--ease-overlay); }
+.tip.on { opacity: 1; transform: translate(-50%, calc(-100% - 6px)); transition-delay: 50ms; }
+.tip::after { content: ""; position: absolute; left: 50%; bottom: -4px; margin-left: -4px; border: 4px solid transparent; border-bottom: 0; border-top-color: #25292e; }
+
+/* ---------- Issues ---------- */
+.issue-tools { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 16px; }
+.search { position: relative; flex: 1 1 240px; min-width: 0; }
+.search .octicon { position: absolute; left: 8px; top: 8px; color: var(--fg-muted); }
+.search input { width: 100%; height: 32px; padding: 0 36px 0 32px; font: inherit; font-size: 14px; color: var(--fg); background: var(--canvas-inset);
+  border: 1px solid var(--border); border-radius: var(--r-s); transition: border-color var(--dur-fast) linear, box-shadow var(--dur-fast) linear; }
+.search input:focus { outline: none; border-color: var(--accent-emphasis); box-shadow: inset 0 0 0 1px var(--accent-emphasis); background: var(--canvas); }
+.search kbd { position: absolute; right: 8px; top: 7px; }
+kbd { display: inline-block; padding: 0 5px; font: 11px/16px var(--font-mono); color: var(--fg-muted); background: var(--canvas-subtle); border: 1px solid var(--border);
+  border-bottom-color: color-mix(in srgb, var(--border) 70%, var(--fg)); border-radius: var(--r-s); }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { display: inline-flex; align-items: center; gap: 6px; height: 28px; padding: 0 10px; font-size: 12px; font-weight: 500; border-radius: var(--r-full);
+  border: 1px solid var(--border); background: var(--canvas); color: var(--fg); cursor: pointer; transition: background-color var(--dur-fast) linear, border-color var(--dur-fast) linear; }
+.chip:hover { background: var(--canvas-subtle); }
+.chip[aria-pressed="true"] { border-color: var(--accent-emphasis); background: var(--accent-subtle); color: var(--accent); }
+.chip i { width: 10px; height: 10px; border-radius: 50%; }
+.tabset { display: flex; gap: 4px; }
+.tabset button { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 8px; border: 0; background: transparent; border-radius: var(--r-s);
+  color: var(--fg-muted); cursor: pointer; font-size: 14px; }
+.tabset button:hover { background: var(--neutral-muted); }
+.tabset button[aria-pressed="true"] { color: var(--fg); font-weight: 600; }
+.issues { list-style: none; margin: 0; padding: 0; }
+.issue { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; gap: 4px 8px; padding: 10px 16px; border-top: 1px solid var(--border-muted);
+  transition: background-color var(--dur-fast) linear, opacity var(--dur-base) linear; }
+.issue:first-child { border-top: 0; }
+.issue:hover { background: var(--canvas-subtle); }
+.issue.leaving { opacity: 0; }
+.issue-state { width: 24px; height: 24px; display: grid; place-items: center; border: 0; padding: 0; margin-top: -2px; background: transparent; border-radius: var(--r-s); cursor: pointer; color: var(--success); }
+.issue-state:hover { background: var(--neutral-muted); }
+.issue-state svg { transition: transform var(--dur-base) var(--ease-out); }
+.issue-state:active svg { transform: scale(.8) rotate(-12deg); }
+.issue.closed .issue-state { color: var(--done); }
+.issue-title { margin: 0; font-size: 16px; font-weight: 600; line-height: 1.4; }
+.issue-title .Label { margin-left: 4px; vertical-align: 2px; }
+.issue-meta { grid-column: 2; font-size: 12px; color: var(--fg-muted); }
+.issue-body { grid-column: 2 / 4; margin: 4px 0 0; font-size: 14px; color: var(--fg); max-width: 60em; }
+.issue-body ul { margin: 4px 0 0; padding-left: 1.4em; }
+.issue-right { display: flex; align-items: flex-start; gap: 4px; flex-wrap: wrap; justify-content: flex-end; }
+.lbl { display: inline-flex; align-items: center; height: 20px; padding: 0 7px; font-size: 12px; font-weight: 500; border-radius: var(--r-full); border: 1px solid transparent; white-space: nowrap; }
+.lbl-proc { color: var(--accent); background: var(--accent-subtle); border-color: var(--accent-muted); }
+.lbl-money { color: var(--success); background: var(--success-subtle); border-color: color-mix(in srgb, var(--success) 35%, transparent); }
+.lbl-school { color: var(--done); background: var(--done-subtle); border-color: color-mix(in srgb, var(--done) 35%, transparent); }
+.lbl-ask { color: var(--attention); background: var(--attention-subtle); border-color: color-mix(in srgb, var(--attention) 40%, transparent); }
+.lbl-cert { color: var(--sponsors); background: var(--sponsors-subtle); border-color: color-mix(in srgb, var(--sponsors) 35%, transparent); }
+.lbl-after { color: var(--fg-muted); background: var(--neutral-muted); border-color: var(--border); }
+.blank { padding: 32px 16px; text-align: center; color: var(--fg-muted); }
+@media (max-width: 600px) { .issue { grid-template-columns: 24px minmax(0, 1fr); } .issue-right { grid-column: 2; justify-content: flex-start; } .issue-body { grid-column: 2; } }
+
+/* ---------- Timeline ---------- */
+.tl { position: relative; margin: 0; padding: 0 0 0 0; list-style: none; }
+.tl::before { content: ""; position: absolute; top: 0; bottom: 0; left: 15px; width: 2px; background: var(--border-muted); }
+.tl li { position: relative; display: grid; grid-template-columns: 32px minmax(0, 1fr); gap: 8px; padding: 16px 0; }
+.tl-badge { position: relative; z-index: 1; width: 32px; height: 32px; display: grid; place-items: center; border-radius: 50%; border: 2px solid var(--canvas);
+  background: var(--canvas-subtle); color: var(--fg-muted); box-shadow: 0 0 0 1px var(--border); }
+.tl li.done .tl-badge { background: var(--done-emphasis); color: #fff; box-shadow: none; }
+.tl li.now .tl-badge { background: var(--success-emphasis); color: #fff; box-shadow: 0 0 0 4px color-mix(in srgb, var(--success) 25%, transparent); animation: pulse 2.4s var(--ease-in-out) 2; }
+.tl li.goal .tl-badge { background: var(--accent-emphasis); color: #fff; box-shadow: none; }
+@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 3px color-mix(in srgb, var(--success) 30%, transparent); } 50% { box-shadow: 0 0 0 7px color-mix(in srgb, var(--success) 8%, transparent); } }
+.tl-body { padding-top: 5px; min-width: 0; }
+.tl-date { font-family: var(--font-mono); font-size: 12px; color: var(--fg-muted); }
+.tl-title { font-weight: 600; }
+.tl-note { color: var(--fg-muted); max-width: 56em; }
+.tl-break { height: 0; border-top: 4px solid var(--border-muted); margin: 4px 0 4px 32px; }
+
+/* ---------- 入社後 ---------- */
+.stages { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; }
+.stage { padding: 16px; border-left: 1px solid var(--border-muted); min-width: 0; }
+.stage:first-child { border-left: 0; }
+.stage h3 { margin: 0 0 4px; font-size: 14px; font-weight: 600; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.stage .big { font-family: var(--font-display); font-size: 28px; font-weight: 700; line-height: 1.2; letter-spacing: -.01em; }
+.stage .big small { font-size: 14px; font-weight: 500; color: var(--fg-muted); margin-left: 2px; }
+.stage p { margin: 4px 0 0; color: var(--fg-muted); }
+@media (max-width: 700px) { .stages { grid-template-columns: 1fr; } .stage { border-left: 0; border-top: 1px solid var(--border-muted); } .stage:first-child { border-top: 0; } }
+.checks { list-style: none; margin: 0; padding: 0; }
+.checks li { display: grid; grid-template-columns: 16px minmax(0, 1fr) auto; gap: 8px; align-items: start; padding: 10px 16px; border-top: 1px solid var(--border-muted); }
+.checks li:first-child { border-top: 0; }
+.checks .octicon { margin-top: 2px; color: var(--attention); }
+.checks b { font-weight: 600; }
+.checks span.muted { font-size: 12px; white-space: nowrap; }
+
+/* ---------- お金 ---------- */
+.seg { display: inline-flex; padding: 2px; gap: 2px; border-radius: var(--r-s); background: var(--neutral-muted); position: relative; }
+.seg button { position: relative; z-index: 1; height: 28px; padding: 0 12px; border: 0; background: transparent; border-radius: 5px; font-size: 13px; color: var(--fg); cursor: pointer; }
+.seg button[aria-pressed="true"] { font-weight: 600; }
+.seg-ind { position: absolute; z-index: 0; top: 2px; bottom: 2px; left: 0; border-radius: 5px; background: var(--canvas); border: 1px solid var(--border);
+  box-shadow: var(--shadow-resting); transition: transform var(--dur-base) var(--ease-in-out), width var(--dur-base) var(--ease-in-out); }
+.seg[hidden] { display: none; }
+.money-tools { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.chart-wrap { position: relative; margin-top: 12px; }
+.chart-wrap svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart-wrap .bar { fill: var(--success-emphasis); transition: y var(--dur-slow) var(--ease-out), height var(--dur-slow) var(--ease-out), fill var(--dur-fast) linear; }
+.chart-wrap .bar.neg { fill: var(--danger); }
+.chart-wrap .bar.hl { fill: var(--accent-emphasis); }
+.chart-wrap .grid line { stroke: var(--border-muted); stroke-width: 1; }
+.chart-wrap .grid .zero { stroke: var(--fg-muted); }
+.chart-wrap text { fill: var(--fg-muted); font-size: 11px; font-family: var(--font); }
+.chart-wrap .vlab { fill: var(--fg); font-weight: 600; font-size: 11px; transition: y var(--dur-slow) var(--ease-out); }
+.chart-wrap .hit { fill: transparent; cursor: crosshair; }
+.chart-note { margin: 8px 0 0; font-size: 12px; color: var(--fg-muted); max-width: 60em; }
+
+/* ---------- 資格 ---------- */
+.cert-stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.cert-stats > div { padding: 16px; border-left: 1px solid var(--border-muted); min-width: 0; }
+.cert-stats > div:first-child { border-left: 0; }
+.cert-stats b { display: block; font-family: var(--font-display); font-size: 24px; font-weight: 700; line-height: 1.25; letter-spacing: -.01em; }
+.cert-stats span { color: var(--fg-muted); font-size: 12px; }
+@media (max-width: 600px) { .cert-stats { grid-template-columns: 1fr; } .cert-stats > div { border-left: 0; border-top: 1px solid var(--border-muted); } .cert-stats > div:first-child { border-top: 0; } }
+table.certs { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 720px; }
+table.certs th, table.certs td { text-align: left; vertical-align: top; padding: 8px 16px; border-top: 1px solid var(--border-muted); }
+table.certs thead th { background: var(--canvas-subtle); font-size: 12px; font-weight: 600; color: var(--fg-muted); border-top: 1px solid var(--border); }
+table.certs td:first-child { font-weight: 600; white-space: nowrap; }
+table.certs .num { white-space: nowrap; }
+
+/* ---------- 表・事実 ---------- */
+.tbl-scroll { overflow-x: auto; }
+table.facts { width: 100%; border-collapse: collapse; font-size: 14px; }
+table.facts th, table.facts td { text-align: left; vertical-align: top; padding: 8px 16px; border-top: 1px solid var(--border-muted); }
+table.facts tr:first-child th, table.facts tr:first-child td { border-top: 0; }
+table.facts th { width: 9.5em; font-weight: 600; white-space: nowrap; color: var(--fg); background: var(--canvas-subtle); }
+table.facts td { min-width: 16em; }
+table.results th, table.results td { padding: 8px 16px; border-top: 1px solid var(--border-muted); text-align: left; font-size: 14px; }
+table.results { width: 100%; border-collapse: collapse; }
+table.results thead th { background: var(--canvas-subtle); border-top: 0; font-weight: 600; font-size: 12px; color: var(--fg-muted); }
+
+/* ---------- サイドバー ---------- */
+.side-sec { padding: 0 0 16px; margin-bottom: 16px; border-bottom: 1px solid var(--border-muted); }
+.side-sec:last-child { border-bottom: 0; }
+.side-sec h2 { margin: 0 0 12px; font-size: 16px; font-weight: 600; }
+.side-sec p { margin: 0 0 12px; font-size: 16px; line-height: 1.5; }
+.side-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; color: var(--fg-muted); }
+.side-list li { display: flex; gap: 8px; align-items: flex-start; }
+.side-list .octicon { margin-top: 2px; }
+.side-list b { color: var(--fg); font-weight: 600; }
+.countdown { display: flex; align-items: baseline; gap: 6px; }
+.countdown b { font-family: var(--font-display); font-size: 40px; font-weight: 800; line-height: 1; letter-spacing: -.02em; color: var(--fg); }
+.Progress { display: flex; height: 8px; overflow: hidden; border-radius: var(--r-full); background: var(--neutral-muted); margin: 8px 0 6px; }
+.Progress span { display: block; height: 100%; transition: width var(--dur-slow) var(--ease-out); }
+.Progress .p-done { background: var(--done-emphasis); }
+.Progress .p-open { background: var(--success-emphasis); opacity: .35; }
+.langs { display: flex; flex-wrap: wrap; gap: 4px 12px; font-size: 12px; color: var(--fg-muted); }
+.langs span { display: inline-flex; align-items: center; gap: 6px; }
+.langs i { width: 8px; height: 8px; border-radius: 50%; }
+
+/* フラッシュ（トースト） */
+.toast { position: fixed; z-index: 70; left: 50%; bottom: calc(16px + env(safe-area-inset-bottom, 0px)); display: flex; align-items: center; gap: 12px;
+  padding: 10px 12px 10px 16px; border-radius: var(--r-m); background: var(--canvas-overlay); color: var(--fg); border: 1px solid var(--border); box-shadow: var(--shadow-overlay);
+  transform: translate(-50%, 16px); opacity: 0; pointer-events: none; visibility: hidden; transition: transform var(--dur-slow) var(--ease-out), opacity var(--dur-base) var(--ease-overlay); max-width: calc(100vw - 32px); }
+.toast.on { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; visibility: visible; }
+.toast .octicon { color: var(--done); }
+
+/* ショートカット一覧 */
+dialog.keys { border: 1px solid var(--border); border-radius: var(--r-l); background: var(--canvas-overlay); color: var(--fg); box-shadow: var(--shadow-overlay);
+  padding: 0; width: min(420px, calc(100vw - 32px)); }
+dialog.keys[open] { animation: dlgIn var(--dur-base) var(--ease-overlay); }
+.keys-toggle { display: flex; align-items: center; gap: 8px; padding: 12px 16px; border-top: 1px solid var(--border); font-size: 14px; cursor: pointer; }
+.keys-toggle input { width: 16px; height: 16px; accent-color: var(--accent-emphasis); }
+dialog.keys::backdrop { background: color-mix(in srgb, #010409 45%, transparent); }
+@keyframes dlgIn { from { opacity: 0; transform: translateY(8px) scale(.98); } to { opacity: 1; transform: none; } }
+.keys-h { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; border-bottom: 1px solid var(--border); font-weight: 600; }
+.keys dl { margin: 0; padding: 8px 16px 16px; display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; align-items: center; }
+.keys dd { margin: 0; color: var(--fg-muted); }
+.iconbtn { width: 32px; height: 32px; display: grid; place-items: center; border: 0; background: transparent; border-radius: var(--r-s); color: var(--fg-muted); cursor: pointer; }
+.iconbtn:hover { background: var(--neutral-muted); color: var(--fg); }
+
+.foot { padding-block: 24px 40px; border-top: 1px solid var(--border-muted); color: var(--fg-muted); font-size: 12px; }
+.foot p { margin: 0 0 6px; max-width: 70em; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition-duration: 1ms !important; }
+}
+
+/* ---- 追加部品（テクニケのページ由来: gh-table・kv-grid・statgrid・ladder・split・details.note） ---- */
+/* このページ固有: GitHub の表・アバター・メール本文 */
+.avatar { width: 24px; height: 24px; border-radius: 6px; border: 1px solid var(--border); background: #fff; flex: none; }
+.gh-table { width: 100%; border-collapse: collapse; font-size: 14px; line-height: 1.6; }
+.gh-table th, .gh-table td { text-align: left; vertical-align: top; padding: 10px 16px; border-top: 1px solid var(--border-muted); }
+.gh-table thead th { background: var(--canvas-subtle); font-size: 12px; font-weight: 600; color: var(--fg-muted); border-top: 0; white-space: nowrap; }
+.gh-table tbody tr { transition: background-color var(--dur-fast) var(--ease); }
+.gh-table tbody tr:hover { background: var(--canvas-subtle); }
+.gh-table td.k { font-weight: 600; white-space: nowrap; }
+.gh-table td b { font-weight: 600; }
+.gh-table.wide { min-width: 720px; }
+.gh-table .muted-cell { color: var(--fg-muted); }
+.gh-table tr.hide { display: none; }
+.lbl-danger { color: var(--danger); background: var(--danger-subtle); border-color: color-mix(in srgb, var(--danger) 35%, transparent); }
+.lbl-warn { color: var(--attention); background: var(--attention-subtle); border-color: color-mix(in srgb, var(--attention) 40%, transparent); }
+.lbl-ok { color: var(--success); background: var(--success-subtle); border-color: color-mix(in srgb, var(--success) 35%, transparent); }
+.lbl-neutral { color: var(--fg-muted); background: var(--neutral-muted); border-color: var(--border); }
+.split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.split > div { padding: 16px; min-width: 0; }
+.split > div + div { border-left: 1px solid var(--border-muted); }
+.split h3 { display: flex; align-items: center; gap: 8px; margin: 0 0 8px; font-size: 14px; font-weight: 600; }
+.split ul { margin: 0; padding-left: 1.3em; }
+.split li + li { margin-top: 4px; }
+@media (max-width: 700px) { .split { grid-template-columns: 1fr; } .split > div + div { border-left: 0; border-top: 1px solid var(--border-muted); } }
+.mailbody { margin: 0; padding: 16px; font: 14px/1.9 var(--font); white-space: pre-wrap; overflow-wrap: anywhere; max-width: 46em; }
+.copy-ok { color: var(--success); }
+details.note { border-top: 1px solid var(--border-muted); }
+details.note > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 8px; padding: 12px 16px; font-weight: 600; font-size: 14px; }
+details.note > summary::-webkit-details-marker { display: none; }
+details.note > summary .octicon { transition: transform var(--dur-base) var(--ease-in-out); color: var(--fg-muted); }
+details.note[open] > summary .octicon { transform: rotate(90deg); }
+details.note > div { padding: 0 16px 16px; animation: noteIn var(--dur-slow) var(--ease-out); }
+
+/* 会社の情報 */
+.kv-grid { display: grid; grid-template-columns: 9em minmax(0, 1fr); margin: 0; }
+.kv-grid dt, .kv-grid dd { margin: 0; padding: 10px 16px; border-top: 1px solid var(--border-muted); }
+.kv-grid dt { font-weight: 600; color: var(--fg-muted); font-size: 13px; background: var(--canvas-subtle); }
+.kv-grid dt:first-of-type, .kv-grid dt:first-of-type + dd { border-top: 0; }
+@media (max-width: 600px) { .kv-grid { grid-template-columns: 1fr; } .kv-grid dd { border-top: 0; padding-top: 0; } }
+.topics { display: flex; flex-wrap: wrap; gap: 6px; }
+.topic { display: inline-flex; align-items: center; height: 24px; padding: 0 10px; font-size: 12px; font-weight: 500; border-radius: var(--r-full);
+  color: var(--accent); background: var(--accent-subtle); transition: background-color var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease); }
+.topic:hover { background: var(--accent-emphasis); color: #fff; }
+.statgrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.statgrid > div { padding: 16px; border-left: 1px solid var(--border-muted); border-top: 1px solid var(--border-muted); min-width: 0; }
+.statgrid > div:nth-child(4n+1) { border-left: 0; }
+.statgrid > div:nth-child(-n+4) { border-top: 0; }
+.statgrid b { display: block; font-family: var(--font-display); font-size: 22px; font-weight: 700; line-height: 1.25; letter-spacing: -.01em; }
+.statgrid span { font-size: 12px; color: var(--fg-muted); }
+@media (max-width: 700px) { .statgrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .statgrid > div { border-left: 0; border-top: 1px solid var(--border-muted); } .statgrid > div:nth-child(2n) { border-left: 1px solid var(--border-muted); } .statgrid > div:nth-child(-n+2) { border-top: 0; } }
+.lang-bar { display: flex; height: 8px; border-radius: var(--r-full); overflow: hidden; margin: 4px 0 8px; gap: 2px; }
+.lang-bar span { display: block; height: 100%; transform-origin: left; animation: growX var(--dur-long) var(--ease-out) both; }
+@keyframes growX { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+.ladder { display: grid; gap: 8px; padding: 16px; }
+.rung { display: grid; grid-template-columns: 8.5em minmax(0, 1fr) 6.5em; align-items: center; gap: 12px; font-size: 14px; }
+.rung .track { display: block; height: 20px; background: var(--neutral-muted); border-radius: var(--r-s); overflow: hidden; }
+.rung .fill { display: block; height: 100%; background: var(--success-emphasis); border-radius: var(--r-s); transform-origin: left; animation: growX var(--dur-long) var(--ease-out) both; }
+.rung .v { text-align: right; font-weight: 600; font-variant-numeric: tabular-nums; }
+@media (max-width: 600px) { .rung { grid-template-columns: 6.5em minmax(0, 1fr) 5.5em; } }
+@keyframes noteIn { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+.filter-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.filter-row .muted { font-size: 12px; }
+
+/* ===== このページの追加（段階 6 見本） ===== */
+/* 段階 6 見本のページ固有 CSS。値は primer-base.css の変数だけを使う（直書きの色を作らない） */
+h1, h2, h3, p { margin: 0; }
+.small { font-size: 12px; }
+
+/* 見本用の切り替え帯 */
+.demo { background: var(--attention-subtle); border-bottom: 1px solid var(--border); padding-block: 8px; }
+.demo-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.demo-note { font-size: 12px; color: var(--fg-muted); }
+
+/* セグメント: 選択枠は滑らせず、押された項目の背景をその場で切り替える */
+.seg button { transition: background-color var(--dur-fast) var(--ease); }
+.seg button[aria-pressed="true"] { background: var(--canvas); box-shadow: 0 0 0 1px var(--border); }
+.seg button:disabled { color: var(--fg-muted); cursor: not-allowed; text-decoration: line-through; }
+.seg.full { display: flex; }
+.seg.full button { flex: 1 1 0; }
+
+/* ヘッダ */
+.repohead { padding-block: 16px; }
+.lead { margin-top: 8px; color: var(--fg-muted); }
+
+/* ボタンの大きさ（Primer の medium 32px・large 40px） */
+.btn--md { height: 32px; font-size: 14px; }
+.btn--lg { height: 40px; font-size: 14px; font-weight: 600; padding: 0 16px; }
+.btn--block { width: 100%; justify-content: center; }
+.btn:disabled, .btn[aria-disabled="true"] { color: var(--fg-muted); background: var(--btn-bg); cursor: not-allowed; }
+.btn--primary:disabled { opacity: .5; }
+.hint { margin-top: 4px; min-height: 18px; font-size: 12px; line-height: 18px; color: var(--fg-muted); }
+.hint.two { min-height: 36px; }
+.hint.warn { color: var(--attention); }
+
+/* 入れる場所 */
+.drop { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; padding: 20px; border: 1px dashed var(--border); border-radius: var(--r-m);
+  background: var(--canvas-subtle); transition: border-color var(--dur-fast) var(--ease), background-color var(--dur-fast) var(--ease); }
+.drop.over { border-color: var(--accent-emphasis); background: var(--accent-subtle); }
+.drop-ic { width: 32px; height: 32px; fill: var(--fg-muted); flex: none; }
+.drop-text { flex: 1 1 240px; min-width: 0; }
+.drop-title { font-weight: 600; overflow-wrap: anywhere; }
+.drop-meta { font-size: 12px; color: var(--fg-muted); }
+.drop-actions { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* 合計と進み具合（高さは状態で変えない） */
+.sums { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.sums > div { display: flex; flex-direction: column; gap: 2px; padding: 12px 16px; border-left: 1px solid var(--border-muted); min-width: 0; }
+.sums > div:first-child { border-left: 0; }
+.sums .k { font-size: 12px; color: var(--fg-muted); }
+.sums .v { font-size: 24px; font-weight: 600; line-height: 1.25; overflow-wrap: anywhere; }
+.sums .s { font-size: 12px; color: var(--fg-muted); min-height: 18px; }
+.c-flag .v.has { color: var(--attention); }
+.prog { display: flex; flex-wrap: wrap; align-items: flex-start; gap: 12px 16px; padding: 12px 16px; border-top: 1px solid var(--border-muted); }
+.prog-main { flex: 1 1 260px; min-width: 0; }
+.prog-label { display: flex; justify-content: space-between; gap: 8px; font-size: 12px; margin-bottom: 6px; min-height: 18px; }
+.pbar { height: 8px; border-radius: var(--r-full); background: var(--neutral-muted); overflow: hidden; }
+.pbar span { display: block; height: 100%; width: 0; background: var(--success-emphasis); transition: width var(--dur-base) var(--ease-in-out); }
+.prog-act { width: 200px; flex: none; }
+.prog-act .btn { width: 100%; justify-content: center; }
+
+/* 結果の一覧（枠の高さは固定） */
+.list-head { padding: 12px 16px; }
+.filter-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; font-size: 12px; }
+.chip:disabled { color: var(--fg-muted); cursor: not-allowed; }
+.list-scroll { position: relative; height: 360px; overflow: auto; }
+.res { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 14px; }
+.res col.w-size { width: 26%; } .res col.w-dim { width: 15%; } .res col.w-st { width: 24%; }
+.res th { position: sticky; top: 0; z-index: 1; text-align: left; font-size: 12px; font-weight: 600; color: var(--fg-muted); background: var(--canvas);
+  padding: 8px 16px; border-bottom: 1px solid var(--border); }
+.res td { padding: 8px 16px; border-top: 1px solid var(--border-muted); vertical-align: top; overflow-wrap: anywhere; }
+.res tr:first-child td { border-top: 0; }
+.res .path { color: var(--fg-muted); font-size: 12px; display: block; }
+.res tr.fresh td { animation: rowin var(--dur-slow) var(--ease-out); }
+@keyframes rowin { from { background: var(--accent-subtle); } to { background: transparent; } }
+.st { display: inline-flex; flex-direction: column; gap: 2px; }
+.st .why { font-size: 12px; color: var(--fg-muted); }
+.Label--danger { color: var(--danger); border-color: color-mix(in srgb, var(--danger) 45%, transparent); }
+.blankslate { position: absolute; inset: 40px 0 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  padding: 24px; text-align: center; }
+.blankslate[hidden] { display: none; }
+.blankslate .octicon { width: 24px; height: 24px; color: var(--fg-muted); }
+.blankslate h3 { font-size: 16px; font-weight: 600; }
+.blankslate p { max-width: 440px; color: var(--fg-muted); }
+.list-foot { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; padding: 8px 16px; border-top: 1px solid var(--border); font-size: 12px;
+  color: var(--fg-muted); background: var(--canvas-subtle); border-radius: 0 0 var(--r-m) var(--r-m); min-height: 35px; }
+
+/* 右の列 */
+.side { gap: 16px; }
+.field + .field { margin-top: 16px; }
+.field label, .flabel { display: block; font-weight: 600; margin-bottom: 6px; }
+.tinput { display: flex; align-items: center; height: 32px; border: 1px solid var(--border); border-radius: var(--r-s); background: var(--canvas);
+  transition: border-color var(--dur-fast) var(--ease); }
+.tinput:focus-within { border-color: var(--accent-emphasis); box-shadow: inset 0 0 0 1px var(--accent-emphasis); }
+.tinput.bad { border-color: var(--danger); }
+.tinput input { flex: 1 1 auto; min-width: 0; height: 100%; padding: 0 12px; border: 0; background: transparent; color: var(--fg); font: inherit;
+  font-variant-numeric: tabular-nums; outline: none; }
+.tinput .unit { padding: 0 12px 0 4px; color: var(--fg-muted); font-size: 12px; white-space: nowrap; }
+.note { display: flex; gap: 8px; margin-top: 16px; padding: 8px 12px; border-radius: var(--r-s); background: var(--accent-subtle); color: var(--fg); font-size: 12px; }
+.note .octicon { color: var(--accent); margin-top: 1px; }
+.actions { display: flex; flex-direction: column; gap: 8px; }
+
+/* フッタ */
+.foot { border-top: 1px solid var(--border); padding-block: 16px 32px; }
+.foot-list { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 24px; font-size: 12px; color: var(--fg-muted); }
+.foot-list li { display: flex; align-items: center; gap: 6px; }
+.unset-mark { margin-left: 4px; color: var(--attention); }
+
+/* 1 列（767px 未満） */
+@media (max-width: 767px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .sums { grid-template-columns: minmax(0, 1fr); }
+  .sums > div { border-left: 0; border-top: 1px solid var(--border-muted); }
+  .sums > div:first-child { border-top: 0; }
+  .side { order: 0; }                 /* 画像を入れる操作を先に（ベースはサイドバーを上へ出す） */
+  .prog-act { width: 100%; }
+  /* 狭い幅では表をやめて 1 件ずつのカードに（1 行目 ファイル、2 行目 容量と状態。寸法は省く） */
+  .res thead { display: none; }
+  .res, .res tbody { display: block; }
+  .res tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 4px 12px; padding: 8px 16px; border-top: 1px solid var(--border-muted); }
+  .res tr:first-child { border-top: 0; }
+  .res td { padding: 0; border: 0; }
+  .res td:nth-child(1) { grid-column: 1 / -1; }
+  .res td:nth-child(3) { display: none; }
+  .res td:nth-child(4) { justify-self: end; text-align: right; }
+  .res tr:has(.st) td:nth-child(4) { grid-column: 1 / -1; justify-self: start; text-align: left; }  /* 理由の長い要確認は 1 行全体 */
+  .blankslate { inset: 0; }
+  .demo .seg { flex-wrap: wrap; }
+  .demo .seg button { white-space: nowrap; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { transition: none !important; animation: none !important; }
+}
+
+</style>
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true"><symbol id="i-repo" viewBox="0 0 16 16"><path d="M2 2.5A2.5 2.5 0 0 1 4.5 0h8.75a.75.75 0 0 1 .75.75v12.5a.75.75 0 0 1-.75.75h-2.5a.75.75 0 0 1 0-1.5h1.75v-2h-8a1 1 0 0 0-.714 1.7.75.75 0 1 1-1.072 1.05A2.495 2.495 0 0 1 2 11.5Zm10.5-1h-8a1 1 0 0 0-1 1v6.708A2.486 2.486 0 0 1 4.5 9h8ZM5 12.25a.25.25 0 0 1 .25-.25h3.5a.25.25 0 0 1 .25.25v3.25a.25.25 0 0 1-.4.2l-1.45-1.087a.249.249 0 0 0-.3 0L5.4 15.7a.25.25 0 0 1-.4-.2Z"/></symbol><symbol id="i-book" viewBox="0 0 16 16"><path d="M0 1.75A.75.75 0 0 1 .75 1h4.253c1.227 0 2.317.59 3 1.501A3.743 3.743 0 0 1 11.006 1h4.245a.75.75 0 0 1 .75.75v10.5a.75.75 0 0 1-.75.75h-4.507a2.25 2.25 0 0 0-1.591.659l-.622.621a.75.75 0 0 1-1.06 0l-.622-.621A2.25 2.25 0 0 0 5.258 13H.75a.75.75 0 0 1-.75-.75Zm7.251 10.324.004-5.073-.002-2.253A2.25 2.25 0 0 0 5.003 2.5H1.5v9h3.757a3.75 3.75 0 0 1 1.994.574ZM8.755 4.75l-.004 7.322a3.752 3.752 0 0 1 1.992-.572H14.5v-9h-3.495a2.25 2.25 0 0 0-2.25 2.25Z"/></symbol><symbol id="i-issue" viewBox="0 0 16 16"><path d="M8 9.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3Z"/><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Z"/></symbol><symbol id="i-issue-closed" viewBox="0 0 16 16"><path d="M11.28 6.78a.75.75 0 0 0-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 0 0-1.06 1.06l2 2a.75.75 0 0 0 1.06 0l3.5-3.5Z"/><path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0Zm-1.5 0a6.5 6.5 0 1 0-13 0 6.5 6.5 0 0 0 13 0Z"/></symbol><symbol id="i-project" viewBox="0 0 16 16"><path d="M1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25V1.75C0 .784.784 0 1.75 0ZM1.5 1.75v12.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25ZM11.75 3a.75.75 0 0 1 .75.75v7.5a.75.75 0 0 1-1.5 0v-7.5a.75.75 0 0 1 .75-.75Zm-8.25.75a.75.75 0 0 1 1.5 0v5.5a.75.75 0 0 1-1.5 0ZM8 3a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 3Z"/></symbol><symbol id="i-graph" viewBox="0 0 16 16"><path d="M1.5 1.75V13.5h13.75a.75.75 0 0 1 0 1.5H.75a.75.75 0 0 1-.75-.75V1.75a.75.75 0 0 1 1.5 0Zm14.28 2.53-5.25 5.25a.75.75 0 0 1-1.06 0L7 7.06 4.28 9.78a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042l3.25-3.25a.75.75 0 0 1 1.06 0L10 7.94l4.72-4.72a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042Z"/></symbol><symbol id="i-rocket" viewBox="0 0 16 16"><path d="M14.064 0h.186C15.216 0 16 .784 16 1.75v.186a8.752 8.752 0 0 1-2.564 6.186l-.458.459c-.314.314-.641.616-.979.904v3.207c0 .608-.315 1.172-.833 1.49l-2.774 1.707a.749.749 0 0 1-1.11-.418l-.954-3.102a1.214 1.214 0 0 1-.145-.125L3.754 9.816a1.218 1.218 0 0 1-.124-.145L.528 8.717a.749.749 0 0 1-.418-1.11l1.71-2.774A1.748 1.748 0 0 1 3.31 4h3.204c.288-.338.59-.665.904-.979l.459-.458A8.749 8.749 0 0 1 14.064 0ZM8.938 3.623h-.002l-.458.458c-.76.76-1.437 1.598-2.02 2.5l-1.5 2.317 2.143 2.143 2.317-1.5c.902-.583 1.74-1.26 2.499-2.02l.459-.458a7.25 7.25 0 0 0 2.123-5.127V1.75a.25.25 0 0 0-.25-.25h-.186a7.249 7.249 0 0 0-5.125 2.123ZM3.56 14.56c-.732.732-2.334 1.045-3.005 1.148a.234.234 0 0 1-.201-.064.234.234 0 0 1-.064-.201c.103-.671.416-2.273 1.15-3.003a1.502 1.502 0 1 1 2.12 2.12Zm6.94-3.935c-.088.06-.177.118-.266.175l-2.35 1.521.548 1.783 1.949-1.2a.25.25 0 0 0 .119-.213ZM3.678 8.116 5.2 5.766c.058-.09.117-.178.176-.266H3.309a.25.25 0 0 0-.213.119l-1.2 1.95ZM12 5a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></symbol><symbol id="i-briefcase" viewBox="0 0 16 16"><path d="M6.75 0h2.5C10.216 0 11 .784 11 1.75V3h3.25c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25v-8.5C0 3.784.784 3 1.75 3H5V1.75C5 .784 5.784 0 6.75 0ZM3.5 9.5a3.49 3.49 0 0 1-2-.627v4.377c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V8.873a3.49 3.49 0 0 1-2 .627Zm-1.75-5a.25.25 0 0 0-.25.25V6a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V4.75a.25.25 0 0 0-.25-.25H1.75ZM9.5 3V1.75a.25.25 0 0 0-.25-.25h-2.5a.25.25 0 0 0-.25.25V3Z"/></symbol><symbol id="i-archive" viewBox="0 0 16 16"><path d="M0 2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75v1.5A1.75 1.75 0 0 1 15 5.732v7.518A1.75 1.75 0 0 1 13.25 15h-10.5A1.75 1.75 0 0 1 1 13.25V5.732A1.75 1.75 0 0 1 0 4.25Zm1.75-.25a.25.25 0 0 0-.25.25v1.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25v-1.5a.25.25 0 0 0-.25-.25Zm.75 3.5v7.25c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25V6h-11Zm3.75 1.5h3.5a.75.75 0 0 1 0 1.5h-3.5a.75.75 0 0 1 0-1.5Z"/></symbol><symbol id="i-search" viewBox="0 0 16 16"><path d="M10.68 11.74a6 6 0 0 1-7.922-8.982 6 6 0 0 1 8.982 7.922l3.04 3.04a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215ZM11.5 7a4.499 4.499 0 1 0-8.997 0A4.499 4.499 0 0 0 11.5 7Z"/></symbol><symbol id="i-calendar" viewBox="0 0 16 16"><path d="M4.75 0a.75.75 0 0 1 .75.75V2h5V.75a.75.75 0 0 1 1.5 0V2h1.25c.966 0 1.75.784 1.75 1.75v10.5A1.75 1.75 0 0 1 13.25 16H2.75A1.75 1.75 0 0 1 1 14.25V3.75C1 2.784 1.784 2 2.75 2H4V.75A.75.75 0 0 1 4.75 0ZM2.5 7.5v6.75c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25V7.5Zm10.75-4H2.75a.25.25 0 0 0-.25.25V6h11V3.75a.25.25 0 0 0-.25-.25Z"/></symbol><symbol id="i-location" viewBox="0 0 16 16"><path d="m12.596 11.596-3.535 3.536a1.5 1.5 0 0 1-2.122 0l-3.535-3.536a6.5 6.5 0 1 1 9.192-9.193 6.5 6.5 0 0 1 0 9.193Zm-1.06-8.132v-.001a5 5 0 1 0-7.072 7.072L8 14.07l3.536-3.534a5 5 0 0 0 0-7.072ZM8 9a2 2 0 1 1-.001-3.999A2 2 0 0 1 8 9Z"/></symbol><symbol id="i-link" viewBox="0 0 16 16"><path d="m7.775 3.275 1.25-1.25a3.5 3.5 0 1 1 4.95 4.95l-2.5 2.5a3.5 3.5 0 0 1-4.95 0 .751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018 1.998 1.998 0 0 0 2.83 0l2.5-2.5a2.002 2.002 0 0 0-2.83-2.83l-1.25 1.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042Zm-4.69 9.64a1.998 1.998 0 0 0 2.83 0l1.25-1.25a.751.751 0 0 1 1.042.018.751.751 0 0 1 .018 1.042l-1.25 1.25a3.5 3.5 0 1 1-4.95-4.95l2.5-2.5a3.5 3.5 0 0 1 4.95 0 .751.751 0 0 1-.018 1.042.751.751 0 0 1-1.042.018 1.998 1.998 0 0 0-2.83 0l-2.5 2.5a1.998 1.998 0 0 0 0 2.83Z"/></symbol><symbol id="i-check" viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0Z"/></symbol><symbol id="i-dot" viewBox="0 0 16 16"><path d="M8 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8Z"/></symbol><symbol id="i-flag" viewBox="0 0 16 16"><path d="M3.75 0a.75.75 0 0 1 .75.75V1h7.25a.75.75 0 0 1 .6 1.2L10.5 4.5l1.85 2.3a.75.75 0 0 1-.6 1.2H4.5v7.25a.75.75 0 0 1-1.5 0V.75A.75.75 0 0 1 3.75 0ZM4.5 6.5h5.684l-1.25-1.553a.75.75 0 0 1 0-.94L10.184 2.5H4.5Z"/></symbol><symbol id="i-alert" viewBox="0 0 16 16"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z"/></symbol><symbol id="i-info" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></symbol><symbol id="i-x" viewBox="0 0 16 16"><path d="M3.72 3.72a.75.75 0 0 1 1.06 0L8 6.94l3.22-3.22a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l3.22 3.22a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-3.22 3.22a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L6.94 8 3.72 4.78a.75.75 0 0 1 0-1.06Z"/></symbol><symbol id="i-keyboard" viewBox="0 0 16 16"><path d="M0 4.75C0 3.784.784 3 1.75 3h12.5c.966 0 1.75.784 1.75 1.75v6.5A1.75 1.75 0 0 1 14.25 13H1.75A1.75 1.75 0 0 1 0 11.25ZM14.25 4.5H1.75a.25.25 0 0 0-.25.25v6.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25v-6.5a.25.25 0 0 0-.25-.25ZM3.5 6.75v-.5a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25Zm3 0v-.5a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25Zm3 0v-.5a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25Zm3 0v-.5a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25ZM4 9.25a.25.25 0 0 1 .25-.25h7.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-7.5a.25.25 0 0 1-.25-.25Z"/></symbol><symbol id="i-mail" viewBox="0 0 16 16"><path d="M1.75 2h12.5c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 14H1.75A1.75 1.75 0 0 1 0 12.25v-8.5C0 2.784.784 2 1.75 2ZM1.5 12.251c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25V5.809L8.38 9.397a.75.75 0 0 1-.76 0L1.5 5.809v6.442Zm13-8.181v-.32a.25.25 0 0 0-.25-.25H1.75a.25.25 0 0 0-.25.25v.32L8 7.88Z"/></symbol><symbol id="i-people" viewBox="0 0 16 16"><path d="M2 5.5a3.5 3.5 0 1 1 5.898 2.549 5.508 5.508 0 0 1 3.034 4.084.75.75 0 1 1-1.482.235 4 4 0 0 0-7.9 0 .75.75 0 0 1-1.482-.236A5.507 5.507 0 0 1 3.102 8.05 3.493 3.493 0 0 1 2 5.5ZM11 4a3.001 3.001 0 0 1 2.22 5.018 5.01 5.01 0 0 1 2.56 3.012.749.749 0 0 1-.885.954.752.752 0 0 1-.549-.514 3.507 3.507 0 0 0-2.522-2.372.75.75 0 0 1-.574-.73v-.352a.75.75 0 0 1 .416-.672A1.5 1.5 0 0 0 11 5.5.75.75 0 0 1 11 4Zm-5.5-.5a2 2 0 1 0-.001 3.999A2 2 0 0 0 5.5 3.5Z"/></symbol><symbol id="i-file" viewBox="0 0 16 16"><path d="M2 1.75C2 .784 2.784 0 3.75 0h6.586c.464 0 .909.184 1.237.513l2.914 2.914c.329.328.513.773.513 1.237v9.586A1.75 1.75 0 0 1 13.25 16h-9.5A1.75 1.75 0 0 1 2 14.25Zm1.75-.25a.25.25 0 0 0-.25.25v12.5c0 .138.112.25.25.25h9.5a.25.25 0 0 0 .25-.25V6h-2.75A1.75 1.75 0 0 1 9 4.25V1.5Zm6.75.062V4.25c0 .138.112.25.25.25h2.688l-.011-.013-2.914-2.914-.013-.011Z"/></symbol><symbol id="i-comment" viewBox="0 0 16 16"><path d="M1 2.75C1 1.784 1.784 1 2.75 1h10.5c.966 0 1.75.784 1.75 1.75v7.5A1.75 1.75 0 0 1 13.25 12H9.06l-2.573 2.573A1.458 1.458 0 0 1 4 13.543V12H2.75A1.75 1.75 0 0 1 1 10.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h4.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/></symbol><symbol id="i-copy" viewBox="0 0 16 16"><path d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 0 1 0 1.5h-1.5a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-1.5a.75.75 0 0 1 1.5 0v1.5A1.75 1.75 0 0 1 9.25 16h-7.5A1.75 1.75 0 0 1 0 14.25ZM5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0 1 14.25 11h-7.5A1.75 1.75 0 0 1 5 9.25Zm1.75-.25a.25.25 0 0 0-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 0 0 .25-.25v-7.5a.25.25 0 0 0-.25-.25Z"/></symbol><symbol id="i-chevron" viewBox="0 0 16 16"><path d="M6.22 3.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.751.751 0 0 1-1.042-.018.751.751 0 0 1-.018-1.042L9.94 8 6.22 4.28a.75.75 0 0 1 0-1.06Z"/></symbol><symbol id="i-org" viewBox="0 0 16 16"><path d="M1.75 16A1.75 1.75 0 0 1 0 14.25V1.75C0 .784.784 0 1.75 0h8.5C11.216 0 12 .784 12 1.75v12.5c0 .085-.006.168-.018.25h2.268a.25.25 0 0 0 .25-.25V8.285a.25.25 0 0 0-.111-.208l-1.055-.703a.749.749 0 1 1 .832-1.248l1.055.703c.487.325.779.871.779 1.456v5.965A1.75 1.75 0 0 1 14.25 16h-3.5a.766.766 0 0 1-.197-.026c-.099.017-.2.026-.303.026h-3a.75.75 0 0 1-.75-.75V14h-1v1.25a.75.75 0 0 1-.75.75Zm-.25-1.75c0 .138.112.25.25.25H4v-1.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 .75.75v1.25h2.25a.25.25 0 0 0 .25-.25V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25ZM3.75 6h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5ZM3 3.75A.75.75 0 0 1 3.75 3h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 3 3.75Zm4 3A.75.75 0 0 1 7.75 6h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 7 6.75ZM7.75 3h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5ZM3 9.75A.75.75 0 0 1 3.75 9h.5a.75.75 0 0 1 0 1.5h-.5A.75.75 0 0 1 3 9.75ZM7.75 9h.5a.75.75 0 0 1 0 1.5h-.5a.75.75 0 0 1 0-1.5Z"/></symbol><symbol id="i-file-directory" viewBox="0 0 16 16"><path d="M0 2.75C0 1.784.784 1 1.75 1H5c.55 0 1.07.26 1.4.7l.9 1.2a.25.25 0 0 0 .2.1h6.75c.966 0 1.75.784 1.75 1.75v8.5A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25Zm1.75-.25a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h12.5a.25.25 0 0 0 .25-.25v-8.5a.25.25 0 0 0-.25-.25H7.5c-.55 0-1.07-.26-1.4-.7l-.9-1.2a.25.25 0 0 0-.2-.1Z"/></symbol><symbol id="i-file-directory-24" viewBox="0 0 24 24"><path d="M2 4.75C2 3.784 2.784 3 3.75 3h4.971c.58 0 1.12.286 1.447.765l1.404 2.063c.046.069.124.11.207.11h8.471c.966 0 1.75.783 1.75 1.75V19.25A1.75 1.75 0 0 1 20.25 21H3.75A1.75 1.75 0 0 1 2 19.25Zm1.75-.25a.25.25 0 0 0-.25.25v14.5c0 .138.112.25.25.25h16.5a.25.25 0 0 0 .25-.25V7.687a.25.25 0 0 0-.25-.25h-8.471a1.75 1.75 0 0 1-1.447-.765L8.928 4.61a.252.252 0 0 0-.208-.11Z"/></symbol><symbol id="i-upload" viewBox="0 0 16 16"><path d="M2.75 14A1.75 1.75 0 0 1 1 12.25v-2.5a.75.75 0 0 1 1.5 0v2.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 1.5 0v2.5A1.75 1.75 0 0 1 13.25 14Z"/><path d="M11.78 4.72a.749.749 0 1 1-1.06 1.06L8.75 3.811V9.5a.75.75 0 0 1-1.5 0V3.811L5.28 5.78a.749.749 0 1 1-1.06-1.06l3.25-3.25a.749.749 0 0 1 1.06 0l3.25 3.25Z"/></symbol><symbol id="i-download" viewBox="0 0 16 16"><path d="M2.75 14A1.75 1.75 0 0 1 1 12.25v-2.5a.75.75 0 0 1 1.5 0v2.5c0 .138.112.25.25.25h10.5a.25.25 0 0 0 .25-.25v-2.5a.75.75 0 0 1 1.5 0v2.5A1.75 1.75 0 0 1 13.25 14Z"/><path d="M7.25 7.689V2a.75.75 0 0 1 1.5 0v5.689l1.97-1.969a.749.749 0 1 1 1.06 1.06l-3.25 3.25a.749.749 0 0 1-1.06 0L4.22 6.78a.749.749 0 1 1 1.06-1.06l1.97 1.969Z"/></symbol><symbol id="i-sync" viewBox="0 0 16 16"><path d="M1.705 8.005a.75.75 0 0 1 .834.656 5.5 5.5 0 0 0 9.592 2.97l-1.204-1.204a.25.25 0 0 1 .177-.427h3.646a.25.25 0 0 1 .25.25v3.646a.25.25 0 0 1-.427.177l-1.38-1.38A7.002 7.002 0 0 1 1.05 8.84a.75.75 0 0 1 .656-.834ZM8 2.5a5.487 5.487 0 0 0-4.131 1.869l1.204 1.204A.25.25 0 0 1 4.896 6H1.25A.25.25 0 0 1 1 5.75V2.104a.25.25 0 0 1 .427-.177l1.38 1.38A7.002 7.002 0 0 1 14.95 7.16a.75.75 0 0 1-1.49.178A5.5 5.5 0 0 0 8 2.5Z"/></symbol><symbol id="i-table" viewBox="0 0 16 16"><path d="M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v12.5A1.75 1.75 0 0 1 14.25 16H1.75A1.75 1.75 0 0 1 0 14.25ZM6.5 6.5v8h7.75a.25.25 0 0 0 .25-.25V6.5Zm8-1.5V1.75a.25.25 0 0 0-.25-.25H6.5V5Zm-13 1.5v7.75c0 .138.112.25.25.25H5v-8ZM5 5V1.5H1.75a.25.25 0 0 0-.25.25V5Z"/></symbol><symbol id="i-heart" viewBox="0 0 16 16"><path d="m8 14.25.345.666a.75.75 0 0 1-.69 0l-.008-.004-.018-.01a7.152 7.152 0 0 1-.31-.17 22.055 22.055 0 0 1-3.434-2.414C2.045 10.731 0 8.35 0 5.5 0 2.836 2.086 1 4.25 1 5.797 1 7.153 1.802 8 3.02 8.847 1.802 10.203 1 11.75 1 13.914 1 16 2.836 16 5.5c0 2.85-2.045 5.231-3.885 6.818a22.066 22.066 0 0 1-3.744 2.584l-.018.01-.006.003h-.002ZM4.25 2.5c-1.336 0-2.75 1.164-2.75 3 0 2.15 1.58 4.144 3.365 5.682A20.58 20.58 0 0 0 8 13.393a20.58 20.58 0 0 0 3.135-2.211C12.92 9.644 14.5 7.65 14.5 5.5c0-1.836-1.414-3-2.75-3-1.373 0-2.609.986-3.029 2.456a.749.749 0 0 1-1.442 0C6.859 3.486 5.623 2.5 4.25 2.5Z"/></symbol><symbol id="i-shield-lock" viewBox="0 0 16 16"><path d="m8.533.133 5.25 1.68A1.75 1.75 0 0 1 15 3.48V7c0 1.566-.32 3.182-1.303 4.682-.983 1.498-2.585 2.813-5.032 3.855a1.697 1.697 0 0 1-1.33 0c-2.447-1.042-4.049-2.357-5.032-3.855C1.32 10.182 1 8.566 1 7V3.48a1.75 1.75 0 0 1 1.217-1.667l5.25-1.68a1.748 1.748 0 0 1 1.066 0Zm-.61 1.429.001.001-5.25 1.68a.251.251 0 0 0-.174.237V7c0 1.36.275 2.666 1.057 3.859.784 1.194 2.121 2.342 4.366 3.298a.196.196 0 0 0 .154 0c2.245-.957 3.582-2.103 4.366-3.297C13.225 9.666 13.5 8.358 13.5 7V3.48a.25.25 0 0 0-.174-.238l-5.25-1.68a.25.25 0 0 0-.153 0ZM9.5 6.5c0 .536-.286 1.032-.75 1.3v2.45a.75.75 0 0 1-1.5 0V7.8A1.5 1.5 0 1 1 9.5 6.5Z"/></symbol><symbol id="i-filter" viewBox="0 0 16 16"><path d="M.75 3h14.5a.75.75 0 0 1 0 1.5H.75a.75.75 0 0 1 0-1.5ZM3 7.75A.75.75 0 0 1 3.75 7h8.5a.75.75 0 0 1 0 1.5h-8.5A.75.75 0 0 1 3 7.75Zm3 4a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z"/></symbol><symbol id="i-image" viewBox="0 0 16 16"><path d="M16 13.25A1.75 1.75 0 0 1 14.25 15H1.75A1.75 1.75 0 0 1 0 13.25V2.75C0 1.784.784 1 1.75 1h12.5c.966 0 1.75.784 1.75 1.75ZM1.75 2.5a.25.25 0 0 0-.25.25v10.5c0 .138.112.25.25.25h.94l.03-.03 6.077-6.078a1.75 1.75 0 0 1 2.412-.06L14.5 10.31V2.75a.25.25 0 0 0-.25-.25Zm12.5 11a.25.25 0 0 0 .25-.25v-.917l-4.298-3.889a.25.25 0 0 0-.344.009L4.81 13.5ZM7 6a2 2 0 1 1-3.999.001A2 2 0 0 1 7 6ZM5.5 6a.5.5 0 1 0-1 0 .5.5 0 0 0 1 0Z"/></symbol><symbol id="i-play" viewBox="0 0 16 16"><path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0ZM1.5 8a6.5 6.5 0 1 0 13 0 6.5 6.5 0 0 0-13 0Zm4.879-2.773 4.264 2.559a.25.25 0 0 1 0 .428l-4.264 2.559A.25.25 0 0 1 6 10.559V5.442a.25.25 0 0 1 .379-.215Z"/></symbol><symbol id="i-law" viewBox="0 0 16 16"><path d="M8.75.75V2h.985c.304 0 .603.08.867.231l1.29.736c.038.022.08.033.124.033h2.234a.75.75 0 0 1 0 1.5h-.427l2.111 4.692a.75.75 0 0 1-.154.838l-.53-.53.529.531-.001.002-.002.002-.006.006-.006.005-.01.01-.045.04c-.21.176-.441.327-.686.45C14.556 10.78 13.88 11 13 11a4.498 4.498 0 0 1-2.023-.454 3.544 3.544 0 0 1-.686-.45l-.045-.04-.016-.015-.006-.006-.004-.004v-.001a.75.75 0 0 1-.154-.838L12.178 4.5h-.162c-.305 0-.604-.079-.868-.231l-1.29-.736a.245.245 0 0 0-.124-.033H8.75V13h2.5a.75.75 0 0 1 0 1.5h-6.5a.75.75 0 0 1 0-1.5h2.5V3.5h-.984a.245.245 0 0 0-.124.033l-1.289.737c-.265.15-.564.23-.869.23h-.162l2.112 4.692a.75.75 0 0 1-.154.838l-.53-.53.529.531-.001.002-.002.002-.006.006-.016.015-.045.04c-.21.176-.441.327-.686.45C4.556 10.78 3.88 11 3 11a4.498 4.498 0 0 1-2.023-.454 3.544 3.544 0 0 1-.686-.45l-.045-.04-.016-.015-.006-.006-.004-.004v-.001a.75.75 0 0 1-.154-.838L2.178 4.5H1.75a.75.75 0 0 1 0-1.5h2.234a.249.249 0 0 0 .125-.033l1.288-.737c.265-.15.564-.23.869-.23h.984V.75a.75.75 0 0 1 1.5 0Zm2.945 8.477c.285.135.718.273 1.305.273s1.02-.138 1.305-.273L13 6.327Zm-10 0c.285.135.718.273 1.305.273s1.02-.138 1.305-.273L3 6.327Z"/></symbol><symbol id="i-x-circle" viewBox="0 0 16 16"><path d="M2.344 2.343h-.001a8 8 0 0 1 11.314 11.314A8.002 8.002 0 0 1 .234 10.089a8 8 0 0 1 2.11-7.746Zm1.06 10.253a6.5 6.5 0 1 0 9.108-9.275 6.5 6.5 0 0 0-9.108 9.275ZM6.03 4.97 8 6.94l1.97-1.97a.749.749 0 0 1 1.275.326.749.749 0 0 1-.215.734L9.06 8l1.97 1.97a.749.749 0 0 1-.326 1.275.749.749 0 0 1-.734-.215L8 9.06l-1.97 1.97a.749.749 0 0 1-1.275-.326.749.749 0 0 1 .215-.734L6.94 8 4.97 6.03a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018Z"/></symbol><symbol id="i-stop" viewBox="0 0 16 16"><path d="M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z"/></symbol></svg>
+
+<!-- ===== 見本用の切り替え（実際の画面には無い） ===== -->
+<div class="demo gutter" id="demo">
+  <div class="container demo-row">
+    <span class="Label Label--attention">見本</span>
+    <span class="demo-note" id="demo-label">※見本用の切り替え（実際の画面には無い）</span>
+    <div class="seg" role="group" aria-labelledby="demo-label" id="demo-seg">
+      <button type="button" data-state="empty" aria-pressed="false">① 入れる前</button>
+      <button type="button" data-state="loaded" aria-pressed="false">② 読み込み済み</button>
+      <button type="button" data-state="processing" aria-pressed="false">③ 処理中</button>
+      <button type="button" data-state="done" aria-pressed="false">④ 完了</button>
+      <button type="button" data-state="safari" aria-pressed="false">⑤ Safari</button>
+    </div>
+    <span class="demo-note">ボタンやドロップはダミーのデータで動きます。切り替えると設定は初期値に戻ります。</span>
+  </div>
+</div>
+
+<!-- ===== 帯ヘッダ ===== -->
+<header class="repohead gutter">
+  <div class="container">
+    <div class="headrow">
+      <h1 class="crumbs">
+        <svg class="octicon" aria-hidden="true"><use href="#i-image"/></svg>
+        <span class="owner">画像ツール</span><span class="sep" aria-hidden="true">/</span>
+        <strong>フォルダまるごと軽量化</strong>
+        <span class="Label">仮称</span>
+      </h1>
+      <span class="Label Label--success"><svg class="octicon" aria-hidden="true"><use href="#i-shield-lock"/></svg>画像は送信しません</span>
+    </div>
+    <p class="lead">写真をフォルダごと入れると、同じフォルダ構成のまま軽くして、ZIP で受け取れます。</p>
+  </div>
+</header>
+
+<div class="gutter">
+<div class="container layout">
+
+  <!-- ===== 本文 ===== -->
+  <div class="main">
+
+    <!-- 入れる場所 -->
+    <section class="drop" id="drop" aria-labelledby="drop-h">
+      <h2 class="sr" id="drop-h">画像を入れる</h2>
+      <svg class="drop-ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-file-directory-24"/></svg>
+      <div class="drop-text">
+        <p class="drop-title" id="drop-title">フォルダをここにドロップ</p>
+        <p class="drop-meta" id="drop-meta">下の階層のフォルダまで読み込みます。数枚の画像だけでも使えます。</p>
+      </div>
+      <div class="drop-actions">
+        <button type="button" class="btn btn--md" id="pick-folder" aria-describedby="drop-meta"><svg class="octicon" aria-hidden="true"><use href="#i-file-directory"/></svg>フォルダを選ぶ</button>
+        <button type="button" class="btn btn--md" id="pick-files" aria-describedby="drop-meta"><svg class="octicon" aria-hidden="true"><use href="#i-image"/></svg>画像を選ぶ</button>
+      </div>
+    </section>
+
+    <!-- 合計の数字と進み具合 -->
+    <section class="Box sums-box" aria-labelledby="sums-h">
+      <h2 class="sr" id="sums-h">合計と進み具合</h2>
+      <div class="sums">
+        <div class="c-count"><span class="k">処理した枚数</span><b class="v num" id="v-count">—</b><span class="s" id="s-count">画像を入れると数えます</span></div>
+        <div class="c-size"><span class="k">合計の容量（前 → 後）</span><b class="v num" id="v-size">—</b><span class="s" id="s-size"></span></div>
+        <div class="c-flag"><span class="k">要確認</span><b class="v num" id="v-flag">—</b><span class="s" id="s-flag">目標を超過・読めない形式</span></div>
+      </div>
+      <div class="prog">
+        <div class="prog-main">
+          <div class="prog-label"><span id="prog-text">まだ画像がありません</span><span class="num muted" id="prog-pct"></span></div>
+          <div class="pbar" id="pbar" role="progressbar" aria-labelledby="prog-text" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="pbar-fill"></span></div>
+        </div>
+        <div class="prog-act">
+          <button type="button" class="btn btn--md" id="run" aria-describedby="run-hint"><svg class="octicon" aria-hidden="true"><use id="run-ic" href="#i-play"/></svg><span id="run-label">軽量化を始める</span></button>
+          <p class="hint" id="run-hint">画像を入れると始められます</p>
+        </div>
+      </div>
+      <p class="sr" aria-live="polite" id="live"></p>
+    </section>
+
+    <!-- 結果の一覧 -->
+    <section class="Box list-box" aria-labelledby="list-h">
+      <div class="Box-header list-head">
+        <h2 class="Box-title" id="list-h">結果の一覧 <span class="Counter num" id="list-count">0</span></h2>
+        <div class="filter-row">
+          <span class="muted" id="filter-hint">処理を始めると使えます</span>
+          <button type="button" class="chip" id="filter" aria-pressed="false" aria-describedby="filter-hint"><svg class="octicon" aria-hidden="true"><use href="#i-filter"/></svg>要確認だけ表示</button>
+        </div>
+      </div>
+      <div class="list-scroll" id="list-scroll" tabindex="0" aria-labelledby="list-h">
+        <table class="res" id="res" role="table" aria-labelledby="list-h">
+          <colgroup><col><col class="w-size"><col class="w-dim"><col class="w-st"></colgroup>
+          <thead role="rowgroup"><tr role="row">
+            <th role="columnheader" scope="col">ファイル</th>
+            <th role="columnheader" scope="col">容量（前 → 後）</th>
+            <th role="columnheader" scope="col">寸法</th>
+            <th role="columnheader" scope="col">状態</th>
+          </tr></thead>
+          <tbody role="rowgroup" id="rows"></tbody>
+        </table>
+        <div class="blankslate" id="blank">
+          <svg class="octicon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-file-directory-24"/></svg>
+          <h3 id="blank-h">まだ画像がありません</h3>
+          <p id="blank-p">フォルダをドロップするか「フォルダを選ぶ」を押すと、ここに 1 枚ずつ結果が出ます。JPEG・PNG・WebP などの画像を読み込みます。</p>
+        </div>
+      </div>
+      <div class="list-foot"><span id="foot-left">画像を入れると、ここに件数が出ます</span><span id="foot-right"></span></div>
+    </section>
+  </div>
+
+  <!-- ===== 右の列 ===== -->
+  <div class="side">
+    <section class="Box set-box" aria-labelledby="set-h">
+      <div class="Box-header">
+        <h2 class="Box-title" id="set-h">設定</h2>
+        <span class="muted small" id="set-hint">次回も同じ設定で開きます</span>
+      </div>
+      <div class="Box-body">
+        <div class="field">
+          <label for="edge">長い辺の最大</label>
+          <div class="tinput" id="edge-box"><input id="edge" type="text" inputmode="numeric" autocomplete="off" value="1600" aria-describedby="edge-hint set-hint"><span class="unit" aria-hidden="true">px</span></div>
+          <p class="hint" id="edge-hint">小さい画像は大きくしません</p>
+        </div>
+        <div class="field">
+          <span class="flabel" id="fmt-label">形式</span>
+          <div class="seg full" role="group" aria-labelledby="fmt-label" aria-describedby="fmt-hint" id="fmt-seg">
+            <button type="button" data-fmt="webp" aria-pressed="true">WebP</button>
+            <button type="button" data-fmt="jpeg" aria-pressed="false">JPEG</button>
+            <button type="button" data-fmt="png" aria-pressed="false">PNG</button>
+          </div>
+          <p class="hint two" id="fmt-hint">いちばん軽くなります。ブログで広く使えます</p>
+        </div>
+        <div class="field">
+          <label for="target">1 枚あたりの目標容量</label>
+          <div class="tinput" id="target-box"><input id="target" type="text" inputmode="numeric" autocomplete="off" value="300" aria-describedby="target-hint set-hint"><span class="unit" aria-hidden="true">KB 以下</span></div>
+          <p class="hint" id="target-hint">届かないものは「要確認」になります</p>
+        </div>
+        <div class="note">
+          <svg class="octicon" aria-hidden="true"><use href="#i-info"/></svg>
+          <p>撮影情報（位置情報など）は保存時に消えます。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="actions" aria-labelledby="act-h">
+      <h2 class="sr" id="act-h">保存と書き出し</h2>
+      <div class="act">
+        <button type="button" class="btn btn--lg btn--primary btn--block" id="zip" aria-describedby="zip-hint"><svg class="octicon" aria-hidden="true"><use href="#i-download"/></svg><span id="zip-label">ZIP で保存</span></button>
+        <p class="hint" id="zip-hint">画像を入れると保存できます</p>
+      </div>
+      <div class="act">
+        <button type="button" class="btn btn--md btn--block" id="redo" aria-describedby="redo-hint"><svg class="octicon" aria-hidden="true"><use href="#i-sync"/></svg>要確認だけやり直す</button>
+        <p class="hint" id="redo-hint">要確認が出たときに使えます</p>
+      </div>
+      <div class="act">
+        <button type="button" class="btn btn--md btn--block" id="csv" aria-describedby="csv-hint"><svg class="octicon" aria-hidden="true"><use href="#i-table"/></svg>CSV で書き出す</button>
+        <p class="hint" id="csv-hint">画像を入れると書き出せます</p>
+      </div>
+    </section>
+  </div>
+</div>
+</div>
+
+<!-- ===== フッタ ===== -->
+<footer class="foot gutter">
+  <ul class="container foot-list">
+    <li><svg class="octicon" aria-hidden="true"><use href="#i-shield-lock"/></svg>画像は送信しません（この端末の中だけで処理します）</li>
+    <li><svg class="octicon" aria-hidden="true"><use href="#i-graph"/></svg><span>表示回数を数えるために <a href="#unset-goatcounter" class="unset">GoatCounter</a> を使っています（Cookie なし）<span class="unset-mark">※未設定</span></span></li>
+    <li><svg class="octicon" aria-hidden="true"><use href="#i-heart"/></svg><span><a href="#unset-ofuse" class="unset">開発を応援する（OFUSE）</a><span class="unset-mark">※未設定</span></span></li>
+    <li><svg class="octicon" aria-hidden="true"><use href="#i-law"/></svg><span><a href="#unset-licenses" class="unset">利用しているライブラリのライセンス</a><span class="unset-mark">※未設定</span></span></li>
+  </ul>
+</footer>
+
+<!-- トースト（保存の通知など） -->
+<div class="toast" id="toast" role="status" aria-live="polite"><svg class="octicon" aria-hidden="true"><use href="#i-check"/></svg><span id="toast-msg"></span></div>
+
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // ---- ダミーのデータ（ブログの月・記事ごとのフォルダ。個人情報なし） ----
+  var folders = ['2026-08/hokkaido-roadtrip', '2026-09/cafe-meguri', '2026-09/kyoto-momiji-mae', '2026-10/home-baking', '2026-10/camp-gear-review', '2026-11/autumn-walk'];
+  var counts = [24, 18, 30, 16, 22, 18]; // 合計 128
+  var files = [];
+  folders.forEach(function (f, fi) {
+    for (var i = 1; i <= counts[fi]; i++) {
+      var name = 'IMG_' + String(4000 + fi * 100 + i) + '.jpg';
+      if (fi === 2 && i === 7) name = 'momiji-light-up-at-night-kiyomizu-dera-sannenzaka-ninenzaka-long-exposure-tripod-version-final.jpg';
+      var before = 2.4 + ((fi * 7 + i * 13) % 37) / 10; // 2.4〜6.0 MB
+      files.push({ path: 'blog-images/' + f + '/', name: name, before: before, w: 4032, h: 3024, status: 'wait' });
+    }
+  });
+  files[37].name = 'IMG_4212.HEIC'; files[37].heic = true;          // 読めない形式（Chromium・Firefox）
+  files[90].name = 'chart-screenshot.png'; files[90].png = true;     // 目標を超過しやすい画像
+  var TOTAL = files.length, EXCLUDED = 3, FOLDERS = folders.length;
+
+  var st = { state: 'empty', done: 0, timer: null, filter: false, fmt: 'webp', safari: false, stopped: false };
+
+  // ---- 表示の部品 ----
+  function mb(x) { return x >= 1 ? x.toFixed(1) + ' MB' : Math.round(x * 1024) + ' KB'; }
+  function setBtn(id, on, hintId, hint) {
+    var b = $(id); b.disabled = !on;
+    if (hintId) { $(hintId).textContent = hint; }
+  }
+  function toast(msg) {
+    var t = $('toast'); $('toast-msg').textContent = msg; t.classList.add('on');
+    clearTimeout(toast.h); toast.h = setTimeout(function () { t.classList.remove('on'); }, 4000);
+  }
+  function live(msg) { $('live').textContent = msg; }
+
+  function finish(f) {
+    var target = Number($('target').value) || 300;
+    if (f.heic) { f.status = 'bad'; f.why = 'このブラウザは HEIC を読めません。Safari で開くか、JPEG に書き出してから入れてください'; return; }
+    if (f.png && !f.retried) { f.status = 'over'; f.after = (target + 112) / 1024; f.why = '画質を最小にしても ' + (target + 112) + ' KB。長い辺を小さくするか、目標を上げてください'; return; }
+    f.status = 'ok'; f.after = (target * (0.62 + ((f.before * 10) % 30) / 100)) / 1024; f.w2 = 1600; f.h2 = 1200; f.why = '';
+  }
+  function statusCell(f) {
+    if (f.status === 'ok') return '<span class="Label Label--success">完了</span>';
+    if (f.status === 'over') return '<span class="st"><span class="Label Label--attention">目標を超過</span><span class="why">' + f.why + '</span></span>';
+    if (f.status === 'bad') return '<span class="st"><span class="Label Label--danger">読めない形式</span><span class="why">' + f.why + '</span></span>';
+    if (f.status === 'skip') return '<span class="Label">未処理（中止）</span>';
+    return '<span class="Label">待機中</span>';
+  }
+  function row(f, fresh) {
+    var size = f.after ? mb(f.before) + ' → ' + mb(f.after) : (f.status === 'bad' ? mb(f.before) + ' → —' : mb(f.before));
+    var dim = f.status === 'ok' ? f.w2 + '×' + f.h2 : (f.status === 'over' ? '1600×1200' : '—');
+    return '<tr role="row"' + (fresh ? ' class="fresh"' : '') + '><td role="cell"><span class="path">' + f.path + '</span>' + f.name + '</td><td role="cell" class="num">' + size +
+      '</td><td role="cell" class="num">' + dim + '</td><td role="cell">' + statusCell(f) + '</td></tr>';
+  }
+  function flagged() { return files.filter(function (f) { return f.status === 'over' || f.status === 'bad'; }); }
+
+  function renderRows(freshIndex) {
+    var list = st.state === 'empty' ? [] : files;
+    if (st.filter) list = flagged();
+    $('rows').innerHTML = list.map(function (f, i) { return row(f, i === freshIndex); }).join('');
+    $('blank').hidden = list.length > 0;
+    $('list-count').textContent = String(list.length);
+  }
+
+  function renderSums() {
+    var e = st.state === 'empty';
+    var processed = files.filter(function (f) { return f.status === 'ok' || f.status === 'over'; }).length;
+    var before = files.reduce(function (a, f) { return a + f.before; }, 0);
+    var after = files.reduce(function (a, f) { return a + (f.after || 0); }, 0);
+    var fl = flagged().length;
+    $('v-count').textContent = e ? '—' : processed + ' / ' + TOTAL;
+    $('s-count').textContent = e ? '画像を入れると数えます' : '対象外 ' + EXCLUDED + ' 件（画像以外）・フォルダ ' + FOLDERS + ' 個';
+    $('v-size').textContent = e ? '—' : (after ? mb(before) + ' → ' + mb(after) : mb(before));
+    $('s-size').textContent = e || !after ? '' : '約 ' + Math.round((1 - after / before) * 100) + '% 軽くなりました（処理した分）';
+    $('v-flag').textContent = e ? '—' : String(fl);
+    $('v-flag').classList.toggle('has', fl > 0);
+    var pct = Math.round(st.done / TOTAL * 100);
+    $('pbar-fill').style.width = pct + '%';
+    $('pbar').setAttribute('aria-valuenow', String(pct));
+    $('prog-pct').textContent = e ? '' : st.done + ' / ' + TOTAL;
+  }
+
+  function renderControls() {
+    var s = st.state, fl = flagged().length;
+    var running = s === 'processing';
+    var hasResult = s === 'done';
+    // 入れる場所
+    $('drop-title').textContent = s === 'empty' ? 'フォルダをここにドロップ' : 'blog-images/ を読み込みました（' + TOTAL + ' 枚・フォルダ ' + FOLDERS + ' 個）';
+    $('drop-meta').textContent = s === 'empty' ? '下の階層のフォルダまで読み込みます。数枚の画像だけでも使えます。' : '別のフォルダを入れると、今の一覧と入れ替わります。';
+    $('pick-folder').disabled = running; $('pick-files').disabled = running;
+    // 実行ボタン（位置は同じまま、文言と色だけ変える）
+    var run = $('run');
+    run.classList.toggle('btn--primary', s === 'loaded' || s === 'safari');
+    run.disabled = s === 'empty';
+    $('run-ic').setAttribute('href', running ? '#i-stop' : (hasResult ? '#i-sync' : '#i-play'));
+    $('run-label').textContent = running ? '中止する' : (st.stopped ? '続きから始める' : (hasResult ? '同じ設定でもう一度' : '軽量化を始める'));
+    $('run-hint').textContent = s === 'empty' ? '画像を入れると始められます' : (running ? '中止しても、終わった分は保存できます' : '');
+    $('prog-text').textContent = s === 'empty' ? 'まだ画像がありません' : (running ? '処理しています' : (hasResult ? (st.stopped ? '中止しました' : 'すべて処理しました') : '始める準備ができました'));
+    // 一覧の絞り込み
+    $('filter').disabled = !hasResult;
+    $('filter').setAttribute('aria-pressed', String(st.filter));
+    $('filter-hint').textContent = hasResult ? (fl ? '要確認 ' + fl + ' 件' : '要確認はありません') : '処理を始めると使えます';
+    $('foot-left').textContent = s === 'empty' ? '画像を入れると、ここに件数が出ます' : '表示 ' + $('list-count').textContent + ' 件 / 全 ' + TOTAL + ' 件';
+    $('foot-right').textContent = hasResult ? 'ZIP は 500MB ごとに分けます（今回は 1 つ）' : '';
+    // 右の列
+    setBtn('zip', hasResult, 'zip-hint', s === 'empty' ? '画像を入れると保存できます' : (running ? '処理が終わると保存できます' : (hasResult ? '元と同じフォルダ構成で保存します' : '処理を始めると保存できます')));
+    setBtn('redo', hasResult && fl > 0, 'redo-hint', hasResult ? (fl ? '要確認の ' + fl + ' 件だけ、今の設定で処理し直します' : '要確認はありません') : '要確認が出たときに使えます');
+    setBtn('csv', hasResult, 'csv-hint', hasResult ? '結果の一覧を Excel で開ける形で保存します' : (s === 'empty' ? '画像を入れると書き出せます' : '処理が終わると書き出せます'));
+    ['edge', 'target'].forEach(function (id) { $(id).disabled = running; });
+    // 形式（Safari では WebP を選べない）
+    Array.prototype.forEach.call(document.querySelectorAll('#fmt-seg button'), function (b) {
+      var f = b.getAttribute('data-fmt');
+      b.disabled = running || (st.safari && f === 'webp');
+      b.setAttribute('aria-pressed', String(st.fmt === f));
+    });
+    var fh = $('fmt-hint');
+    fh.classList.toggle('warn', st.safari);
+    fh.textContent = st.safari ? 'Safari では WebP を作れないため、JPEG か PNG を選んでください'
+      : ({ webp: 'いちばん軽くなります。ブログで広く使えます', jpeg: '写真向き。どこでも使えます', png: '図や文字の画像向き。写真は重くなります' })[st.fmt];
+  }
+
+  function render(freshIndex) { renderRows(freshIndex); renderSums(); renderControls(); }
+
+  // ---- 状態の切り替え ----
+  function reset() { clearInterval(st.timer); st.done = 0; st.filter = false; st.stopped = false; files.forEach(function (f) { f.status = 'wait'; f.after = 0; f.retried = false; }); }
+  function setState(s) {
+    reset();
+    st.safari = s === 'safari'; st.fmt = st.safari ? 'jpeg' : 'webp';
+    st.state = s === 'safari' ? 'loaded' : s;
+    if (s === 'done') { files.forEach(finish); st.done = TOTAL; }
+    if (s === 'processing') { start(); return; }
+    Array.prototype.forEach.call(document.querySelectorAll('#demo-seg button'), function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-state') === s)); });
+    render();
+  }
+  function markDemo(s) { Array.prototype.forEach.call(document.querySelectorAll('#demo-seg button'), function (b) { b.setAttribute('aria-pressed', String(b.getAttribute('data-state') === s)); }); }
+
+  function start() {
+    st.state = 'processing'; st.stopped = false; markDemo('processing'); render(); live('処理を始めました');
+    var step = reduce ? TOTAL : 2;
+    st.timer = setInterval(function () {
+      for (var k = 0; k < step && st.done < TOTAL; k++) { finish(files[st.done]); st.done++; }
+      renderSums(); renderRows(st.done - 1);
+      var sc = $('list-scroll'); if (!st.filter) sc.scrollTop = sc.scrollHeight;
+      if (st.done % 32 === 0) live(st.done + ' / ' + TOTAL + ' 枚を処理しました');
+      if (st.done >= TOTAL) { clearInterval(st.timer); st.state = 'done'; markDemo('done'); render(); live('すべて処理しました。要確認 ' + flagged().length + ' 件'); }
+    }, 60);
+  }
+  function stop() {
+    clearInterval(st.timer);
+    files.forEach(function (f, i) { if (i >= st.done) f.status = 'skip'; });
+    st.state = 'done'; st.stopped = true; markDemo('done'); render(); live('中止しました。' + st.done + ' 枚は保存できます');
+  }
+
+  // ---- 操作 ----
+  Array.prototype.forEach.call(document.querySelectorAll('#demo-seg button'), function (b) {
+    b.addEventListener('click', function () { setState(b.getAttribute('data-state')); });
+  });
+  function loadDummy() { reset(); st.state = 'loaded'; markDemo(st.safari ? 'safari' : 'loaded'); render(); live(TOTAL + ' 枚を読み込みました'); }
+  $('pick-folder').addEventListener('click', loadDummy);
+  $('pick-files').addEventListener('click', loadDummy);
+  var drop = $('drop');
+  drop.addEventListener('dragover', function (e) { e.preventDefault(); drop.classList.add('over'); });
+  drop.addEventListener('dragleave', function () { drop.classList.remove('over'); });
+  drop.addEventListener('drop', function (e) { e.preventDefault(); drop.classList.remove('over'); if (st.state !== 'processing') loadDummy(); });
+  $('run').addEventListener('click', function () {
+    if (st.state === 'processing') { stop(); return; }
+    if (st.stopped) { files.forEach(function (f) { if (f.status === 'skip') f.status = 'wait'; }); start(); return; }
+    if (st.state === 'done') { reset(); }
+    start();
+  });
+  $('filter').addEventListener('click', function () { st.filter = !st.filter; render(); });
+  $('redo').addEventListener('click', function () {
+    var list = flagged();
+    list.forEach(function (f) { f.retried = true; finish(f); });
+    render(); var fl = flagged().length;
+    toast(list.length + ' 件を処理し直しました。残りの要確認は ' + fl + ' 件');
+  });
+  $('zip').addEventListener('click', function () { toast('blog-images.zip を保存しました（元と同じフォルダ構成）'); });
+  $('csv').addEventListener('click', function () { toast('blog-images-結果.csv を書き出しました'); });
+  Array.prototype.forEach.call(document.querySelectorAll('#fmt-seg button'), function (b) {
+    b.addEventListener('click', function () { if (!b.disabled) { st.fmt = b.getAttribute('data-fmt'); renderControls(); } });
+  });
+  function numField(id, boxId, hintId, okHint, min, max, unit) {
+    $(id).addEventListener('input', function () {
+      var v = $(id).value.trim(), n = Number(v), ok = /^\d+$/.test(v) && n >= min && n <= max;
+      $(boxId).classList.toggle('bad', !ok);
+      $(id).setAttribute('aria-invalid', String(!ok));
+      $(hintId).textContent = ok ? okHint : min + '〜' + max + ' ' + unit + ' の数字で入れてください';
+    });
+  }
+  numField('edge', 'edge-box', 'edge-hint', '小さい画像は大きくしません', 320, 8000, 'px');
+  numField('target', 'target-box', 'target-hint', '届かないものは「要確認」になります', 20, 20000, 'KB');
+
+  // URL の #state=done などで初期状態を選べる（撮影用）
+  var m = location.hash.match(/^#(?:state=)?(empty|loaded|processing|done|safari)$/);
+  setState(m ? m[1] : 'empty');
+})();
+
+</script>
