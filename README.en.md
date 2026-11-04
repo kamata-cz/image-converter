@@ -106,4 +106,5 @@ Direction may change, and so may the feature list above.
 
 ## License
 
-Not decided yet. There is no LICENSE file. It will be decided together with the monetization plan.
+No license is granted (All rights reserved). Please do not copy, redistribute, or modify the code. An open-source license may be adopted in the future.
+Third-party libraries (React, Vite, etc.) keep their own licenses, and their notices will be included as required.

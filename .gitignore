@@ -29,3 +29,6 @@ dist-ssr
 # Environment
 .env
 .env.local
+
+# codex-run の実行記録（手元のパスを含む）
+*.status.json

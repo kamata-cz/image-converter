@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>フォルダまるごと軽量化</title>
+<meta name="description" content="段階 6 UI・動きの操作できる見本（GitHub Primer の値・構成・動きに合わせた 1 画面）">
+<style>
+/* ===== primer-base.css（スキル github-primer-artifact 同梱。build_app.py が差し込む） ===== */
+{{PRIMER_BASE}}
+/* ===== このページの追加（段階 6 見本） ===== */
+{{PAGE_CSS}}
+</style>
+</head>
+<body>
+{{ICONS}}
+
+<!-- ===== 見本用の切り替え（実際の画面には無い） ===== -->
+<div class="demo gutter" id="demo">
+  <div class="container demo-row">
+    <span class="Label Label--attention">見本</span>
+    <span class="demo-note" id="demo-label">※見本用の切り替え（実際の画面には無い）</span>
+    <div class="seg" role="group" aria-labelledby="demo-label" id="demo-seg">
+      <button type="button" data-state="empty" aria-pressed="false">① 入れる前</button>
+      <button type="button" data-state="loaded" aria-pressed="false">② 読み込み済み</button>
+      <button type="button" data-state="processing" aria-pressed="false">③ 処理中</button>
+      <button type="button" data-state="done" aria-pressed="false">④ 完了</button>
+      <button type="button" data-state="safari" aria-pressed="false">⑤ Safari</button>
+    </div>
+    <span class="demo-note">ボタンやドロップはダミーのデータで動きます。切り替えると設定は初期値に戻ります。</span>
+  </div>
+</div>
+
+<!-- ===== 帯ヘッダ ===== -->
+<header class="repohead gutter">
+  <div class="container">
+    <div class="headrow">
+      <h1 class="crumbs">
+        <svg class="octicon" aria-hidden="true"><use href="#i-image"/></svg>
+        <span class="owner">画像ツール</span><span class="sep" aria-hidden="true">/</span>
+        <strong>フォルダまるごと軽量化</strong>
+        <span class="Label">仮称</span>
+      </h1>
+      <span class="Label Label--success"><svg class="octicon" aria-hidden="true"><use href="#i-shield-lock"/></svg>画像は送信しません</span>
+    </div>
+    <p class="lead">写真をフォルダごと入れると、同じフォルダ構成のまま軽くして、ZIP で受け取れます。</p>
+  </div>
+</header>
+
+<div class="gutter">
+<div class="container layout">
+
+  <!-- ===== 本文 ===== -->
+  <div class="main">
+
+    <!-- 入れる場所 -->
+    <section class="drop" id="drop" aria-labelledby="drop-h">
+      <h2 class="sr" id="drop-h">画像を入れる</h2>
+      <svg class="drop-ic" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-file-directory-24"/></svg>
+      <div class="drop-text">
+        <p class="drop-title" id="drop-title">フォルダをここにドロップ</p>
+        <p class="drop-meta" id="drop-meta">下の階層のフォルダまで読み込みます。数枚の画像だけでも使えます。</p>
+      </div>
+      <div class="drop-actions">
+        <button type="button" class="btn btn--md" id="pick-folder" aria-describedby="drop-meta"><svg class="octicon" aria-hidden="true"><use href="#i-file-directory"/></svg>フォルダを選ぶ</button>
+        <button type="button" class="btn btn--md" id="pick-files" aria-describedby="drop-meta"><svg class="octicon" aria-hidden="true"><use href="#i-image"/></svg>画像を選ぶ</button>
+      </div>
+    </section>
+
+    <!-- 合計の数字と進み具合 -->
+    <section class="Box sums-box" aria-labelledby="sums-h">
+      <h2 class="sr" id="sums-h">合計と進み具合</h2>
+      <div class="sums">
+        <div class="c-count"><span class="k">処理した枚数</span><b class="v num" id="v-count">—</b><span class="s" id="s-count">画像を入れると数えます</span></div>
+        <div class="c-size"><span class="k">合計の容量（前 → 後）</span><b class="v num" id="v-size">—</b><span class="s" id="s-size"></span></div>
+        <div class="c-flag"><span class="k">要確認</span><b class="v num" id="v-flag">—</b><span class="s" id="s-flag">目標を超過・読めない形式</span></div>
+      </div>
+      <div class="prog">
+        <div class="prog-main">
+          <div class="prog-label"><span id="prog-text">まだ画像がありません</span><span class="num muted" id="prog-pct"></span></div>
+          <div class="pbar" id="pbar" role="progressbar" aria-labelledby="prog-text" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="pbar-fill"></span></div>
+        </div>
+        <div class="prog-act">
+          <button type="button" class="btn btn--md" id="run" aria-describedby="run-hint"><svg class="octicon" aria-hidden="true"><use id="run-ic" href="#i-play"/></svg><span id="run-label">軽量化を始める</span></button>
+          <p class="hint" id="run-hint">画像を入れると始められます</p>
+        </div>
+      </div>
+      <p class="sr" aria-live="polite" id="live"></p>
+    </section>
+
+    <!-- 結果の一覧 -->
+    <section class="Box list-box" aria-labelledby="list-h">
+      <div class="Box-header list-head">
+        <h2 class="Box-title" id="list-h">結果の一覧 <span class="Counter num" id="list-count">0</span></h2>
+        <div class="filter-row">
+          <span class="muted" id="filter-hint">処理を始めると使えます</span>
+          <button type="button" class="chip" id="filter" aria-pressed="false" aria-describedby="filter-hint"><svg class="octicon" aria-hidden="true"><use href="#i-filter"/></svg>要確認だけ表示</button>
+        </div>
+      </div>
+      <div class="list-scroll" id="list-scroll" tabindex="0" aria-labelledby="list-h">
+        <table class="res" id="res" role="table" aria-labelledby="list-h">
+          <colgroup><col><col class="w-size"><col class="w-dim"><col class="w-st"></colgroup>
+          <thead role="rowgroup"><tr role="row">
+            <th role="columnheader" scope="col">ファイル</th>
+            <th role="columnheader" scope="col">容量（前 → 後）</th>
+            <th role="columnheader" scope="col">寸法</th>
+            <th role="columnheader" scope="col">状態</th>
+          </tr></thead>
+          <tbody role="rowgroup" id="rows"></tbody>
+        </table>
+        <div class="blankslate" id="blank">
+          <svg class="octicon" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-file-directory-24"/></svg>
+          <h3 id="blank-h">まだ画像がありません</h3>
+          <p id="blank-p">フォルダをドロップするか「フォルダを選ぶ」を押すと、ここに 1 枚ずつ結果が出ます。JPEG・PNG・WebP などの画像を読み込みます。</p>
+        </div>
+      </div>
+      <div class="list-foot"><span id="foot-left">画像を入れると、ここに件数が出ます</span><span id="foot-right"></span></div>
+    </section>
+  </div>
+
+  <!-- ===== 右の列 ===== -->
+  <div class="side">
+    <section class="Box set-box" aria-labelledby="set-h">
+      <div class="Box-header">
+        <h2 class="Box-title" id="set-h">設定</h2>
+        <span class="muted small" id="set-hint">次回も同じ設定で開きます</span>
+      </div>
+      <div class="Box-body">
+        <div class="field">
+          <label for="edge">長い辺の最大</label>
+          <div class="tinput" id="edge-box"><input id="edge" type="text" inputmode="numeric" autocomplete="off" value="1600" aria-describedby="edge-hint set-hint"><span class="unit" aria-hidden="true">px</span></div>
+          <p class="hint" id="edge-hint">小さい画像は大きくしません</p>
+        </div>
+        <div class="field">
+          <span class="flabel" id="fmt-label">形式</span>
+          <div class="seg full" role="group" aria-labelledby="fmt-label" aria-describedby="fmt-hint" id="fmt-seg">
+            <button type="button" data-fmt="webp" aria-pressed="true">WebP</button>
+            <button type="button" data-fmt="jpeg" aria-pressed="false">JPEG</button>
+            <button type="button" data-fmt="png" aria-pressed="false">PNG</button>
+          </div>
+          <p class="hint two" id="fmt-hint">いちばん軽くなります。ブログで広く使えます</p>
+        </div>
+        <div class="field">
+          <label for="target">1 枚あたりの目標容量</label>
+          <div class="tinput" id="target-box"><input id="target" type="text" inputmode="numeric" autocomplete="off" value="300" aria-describedby="target-hint set-hint"><span class="unit" aria-hidden="true">KB 以下</span></div>
+          <p class="hint" id="target-hint">届かないものは「要確認」になります</p>
+        </div>
+        <div class="note">
+          <svg class="octicon" aria-hidden="true"><use href="#i-info"/></svg>
+          <p>撮影情報（位置情報など）は保存時に消えます。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="actions" aria-labelledby="act-h">
+      <h2 class="sr" id="act-h">保存と書き出し</h2>
+      <div class="act">
+        <button type="button" class="btn btn--lg btn--primary btn--block" id="zip" aria-describedby="zip-hint"><svg class="octicon" aria-hidden="true"><use href="#i-download"/></svg><span id="zip-label">ZIP で保存</span></button>
+        <p class="hint" id="zip-hint">画像を入れると保存できます</p>
+      </div>
+      <div class="act">
+        <button type="button" class="btn btn--md btn--block" id="redo" aria-describedby="redo-hint"><svg class="octicon" aria-hidden="true"><use href="#i-sync"/></svg>要確認だけやり直す</button>
+        <p class="hint" id="redo-hint">要確認が出たときに使えます</p>
+      </div>
+      <div class="act">
+        <button type="button" class="btn btn--md btn--block" id="csv" aria-describedby="csv-hint"><svg class="octicon" aria-hidden="true"><use href="#i-table"/></svg>CSV で書き出す</button>
+        <p class="hint" id="csv-hint">画像を入れると書き出せます</p>
+      </div>
+    </section>
+  </div>
+</div>
+</div>
+
+<!-- ===== フッタ ===== -->
+<footer class="foot gutter">
+  <ul class="container foot-list">
+    <li><svg class="octicon" aria-hidden="true"><use href="#i-shield-lock"/></svg>画像は送信しません（この端末の中だけで処理します）</li>
+    <li><svg class="octicon" aria-hidden="true"><use href="#i-graph"/></svg><span>表示回数を数えるために <a href="#unset-goatcounter" class="unset">GoatCounter</a> を使っています（Cookie なし）<span class="unset-mark">※未設定</span></span></li>
+    <li><svg class="octicon" aria-hidden="true"><use href="#i-heart"/></svg><span><a href="#unset-ofuse" class="unset">開発を応援する（OFUSE）</a><span class="unset-mark">※未設定</span></span></li>
+    <li><svg class="octicon" aria-hidden="true"><use href="#i-law"/></svg><span><a href="#unset-licenses" class="unset">利用しているライブラリのライセンス</a><span class="unset-mark">※未設定</span></span></li>
+  </ul>
+</footer>
+
+<!-- トースト（保存の通知など） -->
+<div class="toast" id="toast" role="status" aria-live="polite"><svg class="octicon" aria-hidden="true"><use href="#i-check"/></svg><span id="toast-msg"></span></div>
+
+<script>
+{{PAGE_JS}}
+</script>
+</body>
+</html>
