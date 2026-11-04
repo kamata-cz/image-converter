@@ -4,7 +4,7 @@
 
 A web tool that converts images entirely inside your browser. Images are never uploaded to a server.
 
-- Live site: https://kamata-cz.github.io/image-converter/
+- Live site: https://viewpilla-wq.github.io/image-converter/
 - Note: the project is being re-planned. See "What's next".
 
 ## Features

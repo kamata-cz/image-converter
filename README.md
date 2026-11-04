@@ -4,7 +4,7 @@ English: [README.en.md](README.en.md)
 
 ブラウザの中だけで画像を変換する Web ツールです。画像はサーバーに送信しません。処理はすべて手元のブラウザで行います。
 
-- 公開 URL: https://kamata-cz.github.io/image-converter/
+- 公開 URL: https://viewpilla-wq.github.io/image-converter/
 - 注意: いま、このツールは企画し直しの途中です。くわしくは「今後」を見てください。
 
 ## できること
